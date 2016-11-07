@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: regular;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+#app {
+  max-width: 1920px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  
+  h1 {
+    font-size: 3em;
+    margin: 0;
+    font-weight: 400;
+  }
+  h2 {
+    font-size 1.5em;
+    margin: 0;
+    font-weight: 300;
+  }
+  h3 {
+    font-size 1.2em;
+    margin: 0;
+    font-weight: 300;
+  }
+  
+}
+    
+
+/* Global Variables */
+stats-small = 50px
+statsLarge = 250px
+headerHeight = 60px;
+
+/*Colors*/
+dark-green = #003144
+medium-green = #144052
+action = #528DFF
+action-hover = #EE6123
+dark-grey = #757575
+light-grey = #F1F1F1
+
+/*Breakpoints*/
+break-large = 1000px
+break-medium = 800px
+break-small = 460px
+
+flex-center()
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+@import './components/*';

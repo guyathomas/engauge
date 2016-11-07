@@ -1,0 +1,83 @@
+version: '3.1'
+
+services:
+  nginx:
+    image: stolemyusername/engauge-nginx:latest
+    depends_on:
+      - 'app'
+      - 'landing'
+    ports:
+      - "81:80"
+    deploy:
+      labels:
+        - "traefik.docker.network=traefik-net"
+        - "traefik.frontend.rule=Host:www.engauge.xyz,engauge.xyz,app.engauge.xyz"
+        - "traefik.frontend.entryPoints=http,https"
+        - "traefik.port=80"
+        - "traefik.enable=true"
+      placement:
+        constraints:
+         - node.role == manager
+    networks:
+      - traefik-net
+      - engauge
+  app:
+    image: stolemyusername/engauge-app:latest
+    env_file: .env
+    depends_on:
+      - 'database'
+    deploy:
+      placement:
+        constraints:
+         - node.role == manager
+    networks:
+      - engauge
+    ports:
+      - "3000:3000"
+  landing:
+    image: stolemyusername/engauge-landing:latest
+    deploy:
+      placement:
+        constraints:
+         - node.role == manager
+    networks:
+      - engauge
+    ports:
+      - "3001:3001"
+  screenshot:
+    image: stolemyusername/engauge-screenshot:latest
+    env_file: .env
+    deploy:
+      placement:
+        constraints:
+         - node.role == manager
+    networks:
+      - engauge
+    secrets:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+  database:
+    image: postgres:9.6
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - engauge-db:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints:
+         - node.role == manager
+    networks:
+      - engauge
+volumes:
+  engauge-db:
+networks:
+  engauge:
+    external: true
+  traefik-net:
+    external: true
+secrets:
+  AWS_ACCESS_KEY_ID:
+    external: true
+  AWS_SECRET_ACCESS_KEY:
+    external: true

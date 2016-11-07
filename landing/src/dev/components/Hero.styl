@@ -1,0 +1,85 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../images/landing-hero-full.jpg");
+  color: white;
+  text-align: center;
+  
+  & > * {
+    padding-bottom: 0.5em;
+  }
+  h1 {
+    padding-top: 1em;
+  }
+  
+  form {
+    width: 460px;
+    padding-bottom: 50px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    
+    @media screen and (max-width: 460px) {
+      width: 100%;
+    }
+    
+    input {
+      height: 1.7em;
+      font-size: 1.3em;
+      font-weight: 200;
+      border:none;
+      margin-bottom: 1%;
+      border-radius: 3px;
+      height: 1.7em;
+      font-size: 1.3em;
+      border: none;
+      
+      &[type=text] {
+        width: 100%;
+        color: action;
+        background: white;
+        text-indent: 10px;
+      }
+      
+      &[type=submit] {
+        width: 50%;
+        padding: 0;
+        &.inactive {
+          background: dark-grey;
+        }
+        &:active {
+          box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+        }
+      }
+    }
+  }
+}
+
+.form-message {
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  text-align: center;
+}
+
+.copy {
+  background: #DA4167;
+  color: #FFFFFF;
+  flex:1;
+  border-radius: 3px 0px 0px 3px;
+}
+
+.text-box {
+  background: rgba(255,255,255,0.75);
+  color: #0D1321;
+  padding: 5px 15px
+  border-radius: 3px;
+  display: flex;
+  font-size: 1.5em;
+  margin: 1% 0; 
+}
+
+.hidden {
+   display:none;
+}

@@ -1,0 +1,105 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "Authentication": {
+    "Bucket": "engauge-bucket",
+    "Key": "docker/dockercfg"
+  },
+  "volumes": [{
+      "name": "certs",
+      "host": {
+        "sourcePath": "/etc/letsencrypt/"
+      }
+    },
+    {
+      "name": "certs-data",
+      "host": {
+        "sourcePath": "/data/letsencrypt/"
+      }
+    },
+    {
+      "name": "cert-logs",
+      "host": {
+        "sourcePath": "/var/log/letsencrypt/"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "nginx-proxy",
+      "image": "stolemyusername/nginx:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [{
+          "hostPort": 80,
+          "containerPort": 80
+        },
+        {
+          "hostPort": 443,
+          "containerPort": 443
+        }
+      ],
+      "links": [
+        "app",
+        "landing"
+      ],
+      "mountPoints": [{
+          "sourceVolume": "certs",
+          "containerPath": "/etc/letsencrypt/"
+        },
+        {
+          "sourceVolume": "certs-data",
+          "containerPath": "/data/letsencrypt/"
+        }
+      ],
+      "volumesFrom": [{
+          "sourceContainer": "landing"
+        },
+        {
+          "sourceContainer": "app"
+        }
+      ]
+    }, {
+      "name": "app",
+      "image": "stolemyusername/engauge:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [{
+        "hostPort": 3000,
+        "containerPort": 3000
+      }],
+      "links": [
+        "screenshot"
+      ],
+      "mountPoints": []
+    },
+    {
+      "name": "landing",
+      "image": "stolemyusername/engauge-landing:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [{
+        "hostPort": 3001,
+        "containerPort": 3001
+      }],
+      "links": [
+        "app",
+        "screenshot"
+      ],
+      "mountPoints": []
+    },
+    {
+      "name": "screenshot",
+      "image": "stolemyusername/engauge-screenshot:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [{
+        "hostPort": 3001,
+        "containerPort": 3001
+      }],
+      "links": [
+        "app"
+      ],
+      "mountPoints": []
+    }
+  ]
+}

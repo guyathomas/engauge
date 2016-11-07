@@ -1,0 +1,52 @@
+.sessions-container {
+  padding: 15px 15px 0 15px;
+  grid-column-start: span 2
+  
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 50px 1fr;
+  
+  @media screen and (max-width: break-medium) {
+    grid-column-start: span 3
+    padding: 0;
+  }
+  
+  .titles {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 0;
+    grid-column: 1 / span 2;
+    margin: 0;
+    list-style: none;
+    border-bottom: 1px solid grey;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    cursor: default;
+    overflow-x: scroll;
+    li {
+      margin: 0 auto;
+      padding: 0 1em;
+      &.active {
+        font-weight: 600;
+        color: #528DFF;
+        font-size: 1em;
+        
+        /*Underline the selected tab*/
+        border-bottom: 3px solid #528dff;
+        margin-bottom: -6px;
+        padding-bottom: 4px;
+
+      }
+
+      &:hover {
+        color: #ee6123;
+      }
+    }
+  }
+
+  .not-finished {
+    text-align: center;
+    grid-column: 1/span 2;
+    align-self: center;
+  }
+}

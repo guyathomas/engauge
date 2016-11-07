@@ -1,0 +1,5 @@
+#dash {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: statsLarge ('calc(100vh - %s - %s)' % (statsLarge headerHeight))
+}

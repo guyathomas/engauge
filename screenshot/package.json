@@ -1,0 +1,79 @@
+{
+  "name": "engauge-landing",
+  "version": "1.0.0",
+  "description": "A landing page for engauge",
+  "main": "./index.js",
+  "scripts": {
+    "start": "nodemon ./server/index.js --exec babel-node --presets es2015,stage-0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "aws-sdk": "^2.82.0",
+<<<<<<< HEAD
+||||||| parent of e538b7d... Add minio support
+    "aws-sdk": "^2.82.0",
+=======
+>>>>>>> e538b7d... Add minio support
+||||||| parent of 814895a... Add AWS dependecy
+=======
+    "aws-sdk": "^2.156.0",
+>>>>>>> 814895a... Add AWS dependecy
+    "bluebird": "^3.5.0",
+<<<<<<< HEAD
+    "body-parser": "^1.17.2",
+||||||| parent of 49b9dd7... Service will now accept a URL take an image and upload to S3
+=======
+    "bluebird": "^3.5.0",
+>>>>>>> 49b9dd7... Service will now accept a URL take an image and upload to S3
+||||||| parent of bdd3088... Finish basic screenshot service
+=======
+    "body-parser": "^1.17.2",
+>>>>>>> bdd3088... Finish basic screenshot service
+    "concurrently": "^3.1.0",
+    "express": "^4.14.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "pageres": "^4.5.0",
+    "phantomjs-prebuilt": "^2.1.14"
+||||||| parent of 28ae1e6... Update docker compose to accomodate landing
+    "pageres": "^4.5.0",
+    "s3-upload-stream": "^1.0.7",
+    "zlib": "^1.0.5"
+=======
+    "pageres": "^4.5.0"
+>>>>>>> 28ae1e6... Update docker compose to accomodate landing
+||||||| parent of b04790c... Clean up deployment steps and stop buttons hiding on small devices
+    "pageres": "^4.5.0"
+=======
+    "pageres": "^4.5.0",
+    "phantomjs-prebuilt": "^2.1.14"
+>>>>>>> b04790c... Clean up deployment steps and stop buttons hiding on small devices
+||||||| parent of a7beddc... Remove phantomJS dependency
+    "pageres": "^4.5.0",
+    "phantomjs-prebuilt": "^2.1.14"
+=======
+||||||| parent of e538b7d... Add minio support
+=======
+    "minio": "^3.2.1",
+>>>>>>> e538b7d... Add minio support
+    "pageres": "^4.5.0"
+>>>>>>> a7beddc... Remove phantomJS dependency
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  }
+}

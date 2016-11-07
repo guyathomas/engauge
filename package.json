@@ -1,11 +1,128 @@
 {
   "name": "engauge",
   "version": "1.0.0",
-  "description": "Track where users are looking on your designs",
+  "description": "Determine visual hotspots on your site",
   "main": "index.js",
+  "engines": {
+    "node": "6.1.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run start:app && npm run start:landing",
+    "start:app": "cd app && npm start && cd ../",
+    "start:landing": "cd landing && npm start && cd ../",
+    "dev": "concurrently \"npm run dev:app\" \"npm run dev:landing\"",
+    "dev:app": "cd ./app && npm run dev",
+    "dev:landing": "cd ./landing && npm run dev",
+    "dev:screenshot": "cd ./screenshot && npm start",
+    "test:app": "cd app && npm run test && cd ../'",
+    "test:landing": "cd landing && npm run test && cd ../",
+    "test:unit": "npm run test:landing && npm run test:app",
+    "test": "mocha test"
   },
   "author": "Guy Thomas",
-  "license": "ISC"
+  "license": "ISC",
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "dependencies": {
+    "autoprefixer-stylus": "^0.14.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.15.2",
+    "codemirror": "5.25.0",
+    "codemirror-graphql": "0.6.3",
+    "concurrently": "^3.1.0",
+    "cors": "^2.8.3",
+    "express": "^4.14.0",
+    "express-graphql": "0.6.4",
+    "graphiql": "0.10.0",
+    "graphql": "0.9.1",
+    "graphql-relay": "0.5.1",
+    "graphql-sequelize": "^5.3.2",
+    "graphql-type-json": "^0.1.4",
+    "lodash": "^4.17.4",
+    "morgan": "^1.7.0",
+    "pg": "^5.1.0",
+    "pg-hstore": "^2.3.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router": "3.0.0",
+    "react-router-redux": "4.0.8",
+    "redux": "3.6.0",
+    "relay-compiler": "1.0.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "sequelize": ">=3.30.4 <4.0.0",
+||||||| parent of e717fa1... Force package.json?
+    "sequelize": "^3.0.0",
+=======
+    "sequelize": ">=3.30.0 <4.0.0",
+>>>>>>> e717fa1... Force package.json?
+||||||| parent of 267a5dc... Finally resolved dependency issue
+    "sequelize": ">=3.30.4 <4.0.0",
+=======
+    "sequelize": "3.30.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 267a5dc... Finally resolved dependency issue
+    "webpack": "^1.13.3"
+||||||| parent of 4a099c3... Review styles to use stylus and webpack loader
+    "webpack": "^1.13.3"
+=======
+    "webpack": "^3.0.0"
+>>>>>>> 4a099c3... Review styles to use stylus and webpack loader
+||||||| parent of a3ba9b7... Add fetch polyfill
+    "webpack": "^3.0.0"
+=======
+    "webpack": "^3.0.0",
+    "whatwg-fetch": "^2.0.3"
+>>>>>>> a3ba9b7... Add fetch polyfill
+  },
+||||||| parent of 798d23d... Fix references to start, run, dev and test scripts
+  "dependencies": {
+    "autoprefixer-stylus": "^0.14.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.15.2",
+    "codemirror": "5.25.0",
+    "codemirror-graphql": "0.6.3",
+    "concurrently": "^3.1.0",
+    "cors": "^2.8.3",
+    "express": "^4.14.0",
+    "express-graphql": "0.6.4",
+    "graphiql": "0.10.0",
+    "graphql": "0.9.1",
+    "graphql-relay": "0.5.1",
+    "graphql-sequelize": "^5.3.2",
+    "graphql-type-json": "^0.1.4",
+    "lodash": "^4.17.4",
+    "morgan": "^1.7.0",
+    "pg": "^5.1.0",
+    "pg-hstore": "^2.3.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router": "3.0.0",
+    "react-router-redux": "4.0.8",
+    "redux": "3.6.0",
+    "relay-compiler": "1.0.0",
+    "sequelize": "3.30.0",
+    "webpack": "^3.0.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+=======
+  "dependencies": {},
+>>>>>>> 798d23d... Fix references to start, run, dev and test scripts
+||||||| parent of 814895a... Add AWS dependecy
+  "dependencies": {},
+=======
+>>>>>>> 814895a... Add AWS dependecy
+  "devDependencies": {
+    "concurrently": "^3.4.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-2"
+    ]
+  }
 }

@@ -1,0 +1,79 @@
+machine:
+  python:
+    version: 2.7.3
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - pip install awscli
+    # For building arm devices on x64 https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/
+    - sudo docker run --rm --privileged multiarch/qemu-user-static:register --reset
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    #Push new app image to dockerhub
+<<<<<<< HEAD
+<<<<<<< HEAD
+    - docker build --rm=false -f ./app/Dockerfile-arm -t stolemyusername/engauge:arm ./app
+    - docker push stolemyusername/engauge
+    #Push new landing image to dockerhub
+    - docker build --rm=false -f ./landing/Dockerfile-arm -t stolemyusername/engauge-landing:arm ./landing
+    - docker push stolemyusername/engauge-landing
+    #Push new screenshot service image to dockerhub
+    - docker build --rm=false -f ./screenshot/Dockerfile-arm -t stolemyusername/engauge-screenshot:arm ./screenshot
+    - docker push stolemyusername/engauge-screenshot
+||||||| parent of f8f99f3... Change so that port references refer to the internal port
+    - docker build --rm=false -t stolemyusername/engauge-app:latest ./app
+    - docker push stolemyusername/engauge-app
+    #Push new landing image to dockerhub
+    - docker build --rm=false -t stolemyusername/engauge-landing:latest ./landing
+    - docker push stolemyusername/engauge-landing
+    #Push new screenshot service image to dockerhub
+    - docker build --rm=false -t stolemyusername/engauge-screenshot:latest ./screenshot
+    - docker push stolemyusername/engauge-screenshot
+=======
+    # - docker build --rm=false -t stolemyusername/engauge-app:latest ./app
+    # - docker push stolemyusername/engauge-app
+||||||| parent of 9ac8114... Change port mappings
+    # - docker build --rm=false -t stolemyusername/engauge-app:latest ./app
+    # - docker push stolemyusername/engauge-app
+=======
+    - docker build --rm=false -t stolemyusername/engauge-app:latest ./app
+    - docker push stolemyusername/engauge-app
+>>>>>>> 9ac8114... Change port mappings
+    # #Push new landing image to dockerhub
+    - docker build --rm=false -t stolemyusername/engauge-landing:latest ./landing
+    - docker push stolemyusername/engauge-landing
+    # #Push new screenshot service image to dockerhub
+<<<<<<< HEAD
+    # - docker build --rm=false -t stolemyusername/engauge-screenshot:latest ./screenshot
+    # - docker push stolemyusername/engauge-screenshot
+>>>>>>> f8f99f3... Change so that port references refer to the internal port
+||||||| parent of 9ac8114... Change port mappings
+    # - docker build --rm=false -t stolemyusername/engauge-screenshot:latest ./screenshot
+    # - docker push stolemyusername/engauge-screenshot
+=======
+    - docker build --rm=false -t stolemyusername/engauge-screenshot:latest ./screenshot
+    - docker push stolemyusername/engauge-screenshot
+>>>>>>> 9ac8114... Change port mappings
+    #Push new ngnix proxy
+    - docker build --rm=false -f ./nginx/Dockerfile-arm -t stolemyusername/nginx:arm ./nginx
+    - docker push stolemyusername/nginx
+    # #Push new app image to dockerhub
+    # - docker build --rm=false -t stolemyusername/engauge:latest ./app
+    # - docker push stolemyusername/engauge
+    # #Push new landing image to dockerhub
+    # - docker build --rm=false -t stolemyusername/engauge-landing:latest ./landing
+    # - docker push stolemyusername/engauge-landing
+    # #Push new screenshot service image to dockerhub
+    # - docker build --rm=false -t stolemyusername/engauge-screenshot:latest ./screenshot
+    # - docker push stolemyusername/engauge-screenshot
+    # #Push new ngnix proxy
+    # - docker build --rm=false -t stolemyusername/nginx:latest ./nginx
+    # - docker push stolemyusername/nginx
+test:
+  override:
+    - echo "test"
+
+deployment:
+  elasticbeanstalk:
+    branch: master

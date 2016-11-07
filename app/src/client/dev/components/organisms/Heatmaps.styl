@@ -1,0 +1,17 @@
+.heatmaps-container {
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 2;
+	height: 100%;
+	overflow: scroll;
+	display: flex;
+	flex-direction: row;
+	
+	
+	@media screen and (max-width: break-large) {
+		flex-direction: column
+	}
+}
+
+.heatmaps-container .sessions-sidebar {
+	overflow: scroll;
+}

@@ -1,0 +1,29 @@
+#stats-container {
+	grid-column-start: span 3;
+	grid-row: 1 / span 1;
+	background-color: medium-green;
+	padding: 10px;
+	position: relative;
+	#stats {
+		font-size: 1.5em;
+		color: white;
+		height: 100%;
+		widht: 100%;
+		text-align: center;
+		flex-center()
+	}
+	
+	.bottom-bar {
+		width: 100%;
+		position: absolute;
+		justify-content: center;
+		display: flex;
+		bottom: -10px;
+		.button {
+			background-color: medium-green;
+			&:hover {
+				background-color: action-hover;
+			}
+		}
+	}
+}

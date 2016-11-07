@@ -1,0 +1,26 @@
+//Based off https://miki725.github.io/docker/crypto/2017/01/29/docker+nginx+letsencrypt.html
+
+
+//Change the A DNS in crazydomains
+//Allow HTTPS in AWS??
+Instructions to get SSH
+
+container_commands:
+  00_createdir:
+    command: "sudo mkdir /opt/certbot || true"
+  10_installcertbot:
+    command: "sudo wget https://dl.eff.org/certbot-auto -O /opt/certbot/certbot-auto"
+  20_permission:
+    command: "sudo chmod a+x /opt/certbot/certbot-auto"
+  30_getcert:
+    command: "sudo /opt/certbot/certbot-auto certonly --debug --non-interactive --email ${CERT_EMAIL} --agree-tos --standalone --domains ${CERT_DOMAIN} --keep-until-expiring"
+  40_link:
+    command: "sudo ln -sf /etc/letsencrypt/live/${CERT_DOMAIN} /etc/letsencrypt/live/ebcert"
+  50_config:
+    command: "sudo mv /etc/nginx/conf.d/https_custom.pre /etc/nginx/conf.d/https_custom.conf"
+  80_create_cronjob_file:
+  	command: "sudo echo "0 3 1 * * root /opt/certbot/certbot-auto renew --standalone --pre-hook \"sudo initctl stop nginx\" --post-hook \"sudo initctl start nginx\" --force-renew\n" > certificate_renew.txt"
+  90_cronjob_renew:
+    command: "sudo sh -c 'cat certificate_renew.txt sudo > /etc/cron.d/certificate_renew'"
+  100_start_cronjob:
+  	command: "sudo chmod 644 /etc/cron.d/certificate_renew"

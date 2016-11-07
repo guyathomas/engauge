@@ -1,0 +1,51 @@
+version: '3' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  nginx:
+    image: stolemyusername/nginx:arm # specify image to build container from
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    # volumes:
+      # Generate the keys locally with:
+      # openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout privkey.pem -out fullchain.pem
+      # - ~/.localhost/:/etc/letsencrypt/live/ebcert/
+    links:
+      - app
+      - landing
+      - screenshot
+    depends_on:
+      - 'app'
+      - 'landing'
+  app: # name of the first service
+    image: stolemyusername/engauge:arm # specify image to build container from
+    ports:
+      - "3000:3000" # specify port forewarding
+    links:
+      - database
+    env_file: .env
+    depends_on:
+      - 'database'
+  landing:
+    image: stolemyusername/engauge-landing:arm # specify image to build container from
+    ports:
+      - "3001:3001"
+    links:
+      - app
+      - screenshot
+  database: # name of the third service
+    image: tobi312/rpi-postgresql:9.6 # specify image to build container from
+    ports:
+      - "5432:5432" # specify port forewarding
+    env_file: .env
+    volumes:
+      - enguage-db:/var/lib/postgresql/data
+  screenshot: # name of the third service
+    image: stolemyusername/engauge-screenshot:arm # specify image to build container from
+    ports:
+      - "3002:3002" # specify port forewarding
+    env_file: .env
+volumes:
+  enguage-db:
