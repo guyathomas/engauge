@@ -22033,7 +22033,7 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 	
 	    _this.state = {
-	      locations: []
+	      counter: 0
 	    };
 	    return _this;
 	  }
@@ -22042,47 +22042,44 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.startGazeListener();
-	      this.createHeatmap();
+	      this.heatmap = this.createHeatmap();
 	    }
 	  }, {
 	    key: 'createHeatmap',
 	    value: function createHeatmap() {
 	      var heatmap = h337.create({
 	        container: document.getElementById('heatmapContainer'),
-	        maxOpacity: 0.6,
-	        radius: 50,
-	        blur: 0.90,
-	        backgroundColor: 'rgba(0, 0, 58, 0.96)'
+	        // maxOpacity: 0.6,
+	        radius: 50
 	      });
+	
+	      return heatmap;
+	    }
+	  }, {
+	    key: 'addHeat',
+	    value: function addHeat(x, y) {
 	      var heatmapContainer = document.getElementById('heatmapContainerWrapper');
-	
-	      heatmapContainer.onmousemove = heatmapContainer.ontouchmove = function (e) {
-	        e.preventDefault();
-	        var x = e.layerX;
-	        var y = e.layerY;
-	        if (e.touches) {
-	          x = e.touches[0].pageX;
-	          y = e.touches[0].pageY;
-	        }
-	
-	        heatmap.addData({ x: x, y: y, value: 1 });
-	      };
-	      heatmapContainer.onclick = function (e) {
-	        var x = e.layerX;
-	        var y = e.layerY;
-	        heatmap.addData({ x: x, y: y, value: 1 });
-	      };
+	      var newPoint = { x: x, y: y, value: 1 };
+	      this.heatmap.addData(newPoint);
 	    }
 	  }, {
 	    key: 'startGazeListener',
 	    value: function startGazeListener() {
+	      var _this2 = this;
+	
 	      webgazer.setGazeListener(function (data, elapsedTime) {
 	        if (data == null) {
 	          return;
 	        }
-	        console.log('x,y', data.x, data.y, elapsedTime);
-	        var xprediction = data.x;
-	        var yprediction = data.y;
+	
+	        var count = _this2.state.counter;
+	        _this2.setState({ counter: count + 1 });
+	
+	        if (count % 100 === 0) {
+	          _this2.addHeat(data.x, data.y);
+	          console.log(_this2.state.counter);
+	          console.log('x,y', data.x, data.y, elapsedTime);
+	        }
 	      }).begin();
 	    }
 	  }, {
