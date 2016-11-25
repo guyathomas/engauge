@@ -1,4 +1,5 @@
 import React from 'react';
+const h337 = require('heatmap.js');
 
 // const App = () => (<p>App</p>);
 
@@ -11,22 +12,24 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('webgazer', webgazer);
+    this.startGazeListener();
+  }
+  // that's it... yay right? ;)
+
+  startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
       if (data == null) {
         return;
       }
-      const xprediction = data.x; // these x coordinates are relative to the viewport
-      const yprediction = data.y; // these y coordinates are relative to the viewport
-      const newLocations = this.state.locations.push([xprediction, yprediction]);
-
-      this.setState({ locations: newLocations });
-      console.log(elapsedTime, this.state.locations);
+      console.log('x,y', data.x, data.ym, elapsedTime);
+      const xprediction = data.x;
+      const yprediction = data.y;
     }).begin();
   }
 
+
   render() {
-    return (<div>In the app</div>);
+    return (<div id="heatmap" />);
   }
 }
 
