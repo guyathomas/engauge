@@ -4,10 +4,10 @@ import { Link } from 'react-router';
 
 const Links = () => (
   <nav className="primary-nav">
-    <Link to="/">Home</Link>
-    <Link to="/blog">Blog</Link>
+    <div><Link to="/">Home</Link></div>
+    <div><Link to="/blog">Blog</Link></div>
     <div>Register</div>
-    <div>Login</div>
+    <div className="navitem-special"><span>Login</span></div>
   </nav>
   );
 
