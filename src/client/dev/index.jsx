@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import Landing from './components/Landing';
 import Watch from './components/Watch';
 import Blog from './components/Blog';
@@ -8,7 +8,7 @@ import Review from './components/Review';
 import NotFound from './components/NotFound';
 
 render(
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={Landing} />
     <Route path="/watch" component={Watch} >
       <Route path=":itemID" component={Watch} />

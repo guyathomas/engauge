@@ -65,15 +65,15 @@
 	
 	var _Watch2 = _interopRequireDefault(_Watch);
 	
-	var _Blog = __webpack_require__(/*! ./components/Blog */ 240);
+	var _Blog = __webpack_require__(/*! ./components/Blog */ 237);
 	
 	var _Blog2 = _interopRequireDefault(_Blog);
 	
-	var _Review = __webpack_require__(/*! ./components/Review */ 237);
+	var _Review = __webpack_require__(/*! ./components/Review */ 238);
 	
 	var _Review2 = _interopRequireDefault(_Review);
 	
-	var _NotFound = __webpack_require__(/*! ./components/NotFound */ 238);
+	var _NotFound = __webpack_require__(/*! ./components/NotFound */ 239);
 	
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 	
@@ -81,7 +81,7 @@
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRouter.Router,
-	  { history: _reactRouter.hashHistory },
+	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Landing2.default }),
 	  _react2.default.createElement(
 	    _reactRouter.Route,
@@ -27293,6 +27293,31 @@
 
 /***/ },
 /* 237 */
+/*!*******************************************!*\
+  !*** ./src/client/dev/components/Blog.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Blog = function Blog() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'Blog'
+	  );
+	};
+	
+	module.exports = Blog;
+
+/***/ },
+/* 238 */
 /*!*********************************************!*\
   !*** ./src/client/dev/components/Review.js ***!
   \*********************************************/
@@ -27341,7 +27366,7 @@
 	module.exports = Review;
 
 /***/ },
-/* 238 */
+/* 239 */
 /*!***********************************************!*\
   !*** ./src/client/dev/components/NotFound.js ***!
   \***********************************************/
@@ -27364,32 +27389,6 @@
 	};
 	
 	module.exports = NotFound;
-
-/***/ },
-/* 239 */,
-/* 240 */
-/*!*******************************************!*\
-  !*** ./src/client/dev/components/Blog.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Blog = function Blog() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'Blog'
-	  );
-	};
-	
-	module.exports = Blog;
 
 /***/ }
 /******/ ]);
