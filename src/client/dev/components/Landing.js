@@ -3,7 +3,7 @@ import Header from './Header';
 import Hero from './Hero';
 
 const Landing = () => (
-  <div>
+  <div className="landing">
     <Header />
     <Hero />
   </div>
