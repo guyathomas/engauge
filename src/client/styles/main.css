@@ -18,7 +18,9 @@
 }
 
 .primary-nav {
+	font-family: 'Raleway', sans-serif;
 	display: flex;
+	flex: 1;
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
@@ -51,14 +53,22 @@
 }
 
 .hero {
-	margin-top: 10%;
+	font-family: 'Raleway', sans-serif;
+	margin-top: 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 40%;
+    justify-content: space-around;
 }
 
 .herotext {
 	color: white;
+	text-align: center;
+}
+
+.herotext-parent {
+	flex: 1;
 }
 
 .herotext.main {
@@ -67,19 +77,83 @@
 .herotext.sub {
 	font-size: 1.5em;
 }
-/*
-a:link {
-    text-decoration: none;
+
+.tracknew {
+	width: 30%;
+	flex: 1;
+	align-items: : center;
 }
 
-a:visited {
-    text-decoration: none;
+.tracknew .input {
+	background: rgba(215,215,215,0.40);
+	border-radius: 3px;
+	text-align: center;
+	display: block;
+    width: 100%;
+    height: 1.7em;
+    font-size: 1.5em;
+    border: none;
+    margin-bottom: 1%;
+    color: white;
+
 }
 
-a:hover {
-    text-decoration: underline;
+.tracknew .submit {
+	display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
 }
 
-a:active {
-    text-decoration: underline;
-}*/
+.button-cta {
+	background: #DA4167;
+	border-radius: 3px;
+	color: #FFFFFF;
+	width: 50%;
+	height:1.7em;
+	font-size: 1.5em;
+	display: flex;
+	flex:1;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: auto;
+	cursor: pointer;
+}
+
+.button-cta:active {
+    box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+}
+
+/*This state will be for when the primary CTA button is not yet valid because the input fields have not been filled out*/
+.inactive {
+	background: #D8D8D8;
+	cursor: no-drop;
+}
+
+.copy-container {
+	display: flex;
+	flex: 1;
+}
+
+.copy {
+	background: #DA4167;
+	color: #FFFFFF;
+	flex:1;
+	border-radius: 3px 0px 0px 3px;
+}
+
+.copy-text {
+	background: rgba(255,255,255,0.75);
+	color: #0D1321;
+	flex: 3;
+	border-radius: 0px 3px 3px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5em;
+}
+
+/* Rectangle 2: */
+/* Copy: */
+/* Rectangle: */
