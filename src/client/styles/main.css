@@ -19,12 +19,12 @@
 
 .primary-nav {
 	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
 	display: flex;
 	flex: 1;
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
-	font-family: .SFNSDisplay-Light;
 	font-size: 2em;
 	color: #FFFFFF;
 	letter-spacing: -0.16px;
