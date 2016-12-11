@@ -4,11 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     shortURL: DataTypes.STRING,
   }, {
     classMethods: {
-      associate(models) {
-        console.log('The models are ', models);
-        console.log('Observation', Observation);
-        Observation.hasMany(models.sesssion, { as: 'observation' });
-        Observation.belongTo(models.user);
+      associate: (models) => {
+        Observation.belongsTo(models.user);
+        Observation.hasMany(models.session);
       },
     },
     tableName: 'Observations',

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     facebookInfo: DataTypes.JSON,
   }, {
     classMethods: {
-      associate(models) {
+      associate: (models) => {
         Session.belongsTo(models.observation);
       },
     },

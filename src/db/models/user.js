@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     organisation: DataTypes.STRING,
   }, {
     classMethods: {
-      associate(models) {
+      associate: (models) => {
         User.hasMany(models.observation, { as: 'owner' });
       },
     },
