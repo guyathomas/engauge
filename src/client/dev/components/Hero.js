@@ -16,7 +16,9 @@ class Hero extends React.Component {
   handleChange(e, target) {
     const stateObj = {};
     stateObj[target] = e.target.value;
-    this.setState(stateObj, () => console.log(this.state));
+    this.setState(stateObj, () => {
+      this.setState({ hasCompletedForm: !!(this.state.url && this.state.email) });
+    });
   }
 
   render() {
