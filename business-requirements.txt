@@ -1,0 +1,21 @@
+MVP is post a link of an image and do all the analysis on that.
+
+On creating a new link
+- Past URL in First screen
+- Post request to server with long URL and their email address
+- Check to see if the user already has a case study with that URL. If they do, return the shortl URL.
+- If they do not, send a req to the shortening service
+- With the shortened URL store this in the database
+- Queue the long URl website to be archived
+- In archiving it, append the script that will record their eye movements
+- Return the shortened URL to the user on the page
+
+On navigating to a link
+- Get the parameters in the URL
+- Try to find the shortened URL in the DB, if it exists then redirect them to the archived page (which will have the tracking script at the bottom). If it does not exist send them an error.
+- 
+
+To View the results of a page
+- Log in
+- Dashboard will show all of the different recordings associated with that account
+- Clicking on one of these will return the aggregated results of a study (after this action is performed, the user can than click on any of the individual items from the study)
