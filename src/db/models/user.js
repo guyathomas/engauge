@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        User.hasMany(models.observation, { as: 'owner' });
+        User.hasMany(models.casestudy, { as: 'owner' });
       },
     },
     tableName: 'Users',

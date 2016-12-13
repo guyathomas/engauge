@@ -14,16 +14,18 @@ class App extends React.Component {
     };
   }
 
-  createLink(url, email) {
-    console.log( url, email );
-    console.log({ url, email });
+  createLink(urlInput, emailInput) {
+    console.log('urlInput', urlInput, 'emailInput', emailInput);
+    const formFields = {
+      email: emailInput,
+      url: urlInput };
 
     fetch('/api/link', {
       method: 'post',
-      body: JSON.stringify({
-        email,
-        url,
-      }),
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+      body: JSON.stringify(formFields),
     })
     .then((response) => {
       console.log('The raw response is ', response);

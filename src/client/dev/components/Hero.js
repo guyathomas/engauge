@@ -15,8 +15,8 @@ class Hero extends React.Component {
   // Update state by a specific target value
   handleChange(e, target) {
     const stateObj = {};
-    stateObj[target] = target;
-    this.setState(stateObj);
+    stateObj[target] = e.target.value;
+    this.setState(stateObj, () => console.log(this.state));
   }
 
   render() {
