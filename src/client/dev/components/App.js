@@ -28,12 +28,12 @@ class App extends React.Component {
       body: JSON.stringify(formFields),
     })
     .then((response) => {
-      console.log('The raw response is ', response);
-      return response.json();
+      console.log('The raw response is ', response, typeof response);
+      return response;
     })
     .then((shortURL) => {
-      this.setState({ shortURL });
       console.log('The shortURL is ', shortURL);
+      this.setState({ shortURL });
     });
   }
 

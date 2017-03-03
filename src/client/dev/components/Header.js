@@ -5,9 +5,7 @@ import { Link } from 'react-router';
 const Links = () => (
   <nav className="primary-nav">
     <div><Link to="/">Home</Link></div>
-    <div><Link to="/blog">Blog</Link></div>
-    <div>Register</div>
-    <div className="navitem-special"><span>Login</span></div>
+    <div><Link to="/blog">Watch</Link></div>
   </nav>
   );
 

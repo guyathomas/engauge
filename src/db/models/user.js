@@ -6,11 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
     },
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    salt: DataTypes.STRING,
-    token: DataTypes.STRING,
-    isSignedUp: DataTypes.BOOLEAN,
-    organisation: DataTypes.STRING,
   }, {
     classMethods: {
       associate: (models) => {
