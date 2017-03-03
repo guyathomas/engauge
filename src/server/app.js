@@ -22,7 +22,7 @@ db.sequelize.sync()
 app.post('/api/link', (req, res) => {
   console.log('The post req was recieved - req.data', req);
   db.casestudy.find().then(results => console.log(results));
-  res.status(200).send('Hoory, post recieved');
+  res.status(200).send({'Hoory, post recieved'});
 });
 
 // Always return the main index.html, so react-router render the route in the client
