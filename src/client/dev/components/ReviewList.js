@@ -31,10 +31,11 @@ class ReviewList extends React.Component {
 
   render() {
     const sessions = this.state.sessions;
+    const url = window.location.pathname;
     console.log('The sessions', sessions);
     return (
       <div className="sessions">
-        {sessions.map((item) => (<div>{item.socketID}</div>))}
+        {sessions.map((item) => (<a href={url + "/" + item.socketID}><div>{item.socketID}</div></a>))}
       </div>
     );
   }
