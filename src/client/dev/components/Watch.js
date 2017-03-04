@@ -4,9 +4,17 @@ class Watch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0,
+      // counter: 0,
     };
   }
+
+  openConnection() {
+   var socket = io.connect('http://localhost:3000');
+    socket.on('connect', () => {
+       console.log('Client has opened the connection');
+    });
+  }
+
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
       if (data == null) {
@@ -14,17 +22,14 @@ class Watch extends React.Component {
         return;
       }
 
-      const count = this.state.counter;
-      this.setState({ counter: (count + 1) });
-
-      if (count % 20 === 0) {
-        this.addHeat(data.x, data.y);
-        console.log('Count: ', this.state.counter, 'x, y', data.x, data.y, `\n Seconds:${elapsedTime}`);
+      if (Math.floor(elapsedTime) % 5 < 0.01) {
+        console.log('x, y', data.x, data.y, `\n Seconds:${elapsedTime}`);
       }
     }).begin();
   }
 
   componentDidMount() {
+    this.openConnection();
     this.startGazeListener();
   }
 
