@@ -1,23 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   const Session = sequelize.define('session', {
-    date: DataTypes.STRING,
     duration: DataTypes.STRING,
     recording: DataTypes.JSON,
-    IPAddress: DataTypes.STRING,
-    location: DataTypes.STRING,
-    browser: DataTypes.STRING,
-    gavePermission: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    facebookInfo: DataTypes.JSON,
+    socketID: DataTypes.STRING,
   }, {
     classMethods: {
       associate: (models) => {
         Session.belongsTo(models.casestudy);
       },
     },
-    tableName: 'Observations',
+    tableName: 'Sessions',
   });
   return Session;
 };
