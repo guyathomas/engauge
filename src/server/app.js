@@ -21,7 +21,7 @@ db.sequelize.sync()
     });
 
 //TODO: Move the handlers into their own files
-app.post('/api/url', (req, res) => {
+app.post('/api/addUrl', (req, res) => {
   console.log('The post req was recieved - req.data', req.body);
   const url = req.body.url;
   const email = req.body.email;
@@ -62,27 +62,61 @@ app.post('/api/url', (req, res) => {
   });
 });
 
-app.get('/api/longURL', (req, res) => {
-  console.log('The post req was recieved - req.data', req.body);
-  const shortCode = req.body.shortCode;
+// app.get('/api/longURL', (req, res) => {
+//   console.log('The post req was recieved - req.data', req.body);
+//   const shortCode = req.body.shortCode;
 
-  db.user.findAll({
+//   db.user.findAll({
+//     where: {
+//       shortCode,
+//     },
+//   })
+//   .then((result) => {
+//     const record = result[0];
+//     const doesExist = result[1]; // boolean stating if it was created or not
+//     if (doesExist) {
+//       console.log('User already exists');
+//     } else {
+//       console.log('New user created');
+//     }
+//     res.status(200).send(record.longURL);
+//   });
+// });
+
+app.get('/api/sessions/:shortCode', (req, res) => {
+  console.log('The get req was recieved for sessions');
+  const shortCode = req.params.shortCode;
+  console.log('shortCode', shortCode);
+  db.casestudy.findOne({
     where: {
       shortCode,
     },
-  })
-  .then((result) => {
-    const record = result[0];
-    const doesExist = result[1]; // boolean stating if it was created or not
-    if (doesExist) {
-      console.log('User already exists');
-    } else {
-      console.log('New user created');
-    }
-    res.status(200).send(record.longURL);
+  }).then((result) => {
+    const casestudyId = result.dataValues.id;
+    console.log('The case study ID', casestudyId);
+    db.session.findAll({
+      where: {
+        casestudyId,
+      },
+    }).then((sessions) => {
+      //id, createdAt, duration, socketID
+      let reducedStats = [];
+      
+      sessions.forEach((session) => {
+        const tempSession = {};
+        tempSession.id = session.id;
+        tempSession.createdAt = session.createdAt;
+        tempSession.duration = session.duration;
+        tempSession.socketID = session.socketID;
+        reducedStats.push(tempSession);
+      });
+
+      const jsonStats = {data: reducedStats};
+      console.log(JSON.stringify(jsonStats));
+      res.json(jsonStats);
+    });
   });
 });
-
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {

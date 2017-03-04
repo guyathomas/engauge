@@ -4,7 +4,7 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: {},
+      imageURL: '',
     };
   }
 
@@ -18,18 +18,21 @@ class Review extends React.Component {
     })
     .then((response) => {
       console.log('The raw response from the fetch is ', response, typeof response);
-      return response;
+      return response.json();
     })
     .then((imageURL) => {
       console.log('The shortCode is ', shortCode);
-      this.setState({ imageURL });
+      // this.setState({ imageURL });
     });
   }
 
   render() {
     console.log(this.props);
     return (
-      <div>Review</div>
+      <div>
+        <div>Review</div>
+        <div>{this.state.imageURL}</div>
+      </div>
     );
   }
   }

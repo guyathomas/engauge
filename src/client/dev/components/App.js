@@ -21,7 +21,7 @@ class App extends React.Component {
       email: emailInput,
       url: urlInput };
 
-    fetch('/api/url', {
+    fetch('/api/addUrl', {
       method: 'post',
       headers: {
         'Content-Type': 'application/JSON',
@@ -42,8 +42,8 @@ class App extends React.Component {
     return (
       <Router history={browserHistory}>
         <Route path="/" component={Landing} createLink={this.createLink} />
-        <Route path="/watch/:itemID" component={Watch} />
-        <Route path="/review/:itemID" component={ReviewList} >
+        <Route path="/watch/:shortCode" component={Watch} />
+        <Route path="/review/:shortCode" component={ReviewList} >
           <Route path="(/:caseID)" component={Review} />
         </Route>
         <Route path="blog" component={Blog} />
