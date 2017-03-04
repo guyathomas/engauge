@@ -32,9 +32,9 @@ class App extends React.Component {
       console.log('The raw response is ', response, typeof response);
       return response;
     })
-    .then((shortURL) => {
-      console.log('The shortURL is ', shortURL);
-      this.setState({ shortURL });
+    .then((shortCode) => {
+      console.log('The shortCode is ', shortCode);
+      this.setState({ shortCode });
     });
   }
 

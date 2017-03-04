@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const CaseStudy = sequelize.define('casestudy', {
     url: DataTypes.STRING,
-    shortURL: DataTypes.STRING,
+    shortCode: DataTypes.STRING,
   }, {
     classMethods: {
       associate: (models) => {

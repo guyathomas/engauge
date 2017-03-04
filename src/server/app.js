@@ -20,11 +20,12 @@ db.sequelize.sync()
       throw new Error(e);
     });
 
+//TODO: Move the handlers into their own files
 app.post('/api/url', (req, res) => {
   console.log('The post req was recieved - req.data', req.body);
   const url = req.body.url;
   const email = req.body.email;
-  const shortURL = utils.createSha(url);
+  const shortID = utils.createSha(url);
 
   db.user.findOrCreate({
     where: {
@@ -47,7 +48,7 @@ app.post('/api/url', (req, res) => {
       where: {
         userId,
         url,
-        shortURL,
+        shortID,
       },
     }).then((result) => {
       const record = result[0];
