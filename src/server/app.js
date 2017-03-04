@@ -31,7 +31,8 @@ app.post('/api/url', (req, res) => {
     where: {
       email,
     },
-  }).then((result) => {
+  })
+  .then((result) => {
     const record = result[0];
     const doesExist = result[1]; // boolean stating if it was created or not
     console.log('UniquerecordID found was', record.id);
@@ -41,7 +42,8 @@ app.post('/api/url', (req, res) => {
       console.log('New user created');
     }
     return record.id;
-  }).then((userId) => {
+  })
+  .then((userId) => {
     db.casestudy.findOrCreate({
       where: {
         userId,
@@ -57,7 +59,9 @@ app.post('/api/url', (req, res) => {
         console.log('A new case study was created');
       }
     });
-  });
+  })
+})
+
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
