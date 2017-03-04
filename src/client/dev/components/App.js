@@ -20,7 +20,7 @@ class App extends React.Component {
       email: emailInput,
       url: urlInput };
 
-    fetch('/api/link', {
+    fetch('/api/url', {
       method: 'post',
       headers: {
         'Content-Type': 'application/JSON',

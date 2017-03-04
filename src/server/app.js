@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../db/models');
+const utils = require('./utils.js');
 
 const app = express();
 
@@ -19,10 +20,44 @@ db.sequelize.sync()
       throw new Error(e);
     });
 
-app.post('/api/link', (req, res) => {
-  console.log('The post req was recieved - req.data', req);
-  db.casestudy.find().then(results => console.log(results));
-  res.status(200).send({'Hoory, post recieved'});
+app.post('/api/url', (req, res) => {
+  console.log('The post req was recieved - req.data', req.body);
+  const url = req.body.url;
+  const email = req.body.email;
+  const shortURL = utils.createSha(url);
+
+  db.user.findOrCreate({
+    where: {
+      email,
+    },
+  }).then((result) => {
+    const record = result[0];
+    const doesExist = result[1]; // boolean stating if it was created or not
+    console.log('UniquerecordID found was', record.id);
+    if (doesExist) {
+      console.log('User already exists');
+    } else {
+      console.log('New user created');
+    }
+    return record.id;
+  }).then((userId) => {
+    db.casestudy.findOrCreate({
+      where: {
+        userId,
+        url,
+        shortURL,
+      },
+    }).then((result) => {
+      const record = result[0];
+      const doesExist = result[1]; // boolean stating if it was created or not
+      if (doesExist) {
+        console.log('casestudy already exists for this user');
+      } else {
+        console.log('A new case study was created');
+      }
+    });
+  });
+  res.status(200).send('Hoory, post recieved');
 });
 
 // Always return the main index.html, so react-router render the route in the client
