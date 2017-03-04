@@ -20,22 +20,20 @@ db.sequelize.sync()
       throw new Error(e);
     });
 
-//TODO: Move the handlers into their own files
-app.post('/api/addUrl', (req, res) => {
-  console.log('The post req was recieved - req.data', req.body);
+// TODO: Move the handlers into their own files
+//
+app.post('/api/caseStudy', (req, res) => {
   const url = req.body.url;
   const email = req.body.email;
   const shortID = utils.createSha(url);
+  let didExist = false;
 
   db.user.findOrCreate({
-    where: {
-      email,
-    },
-  })
-  .then((result) => {
+    where: { email },
+  }).then((result) => {
     const record = result[0];
     const doesExist = result[1]; // boolean stating if it was created or not
-    console.log('UniquerecordID found was', record.id);
+
     if (doesExist) {
       console.log('User already exists');
     } else {
@@ -44,6 +42,7 @@ app.post('/api/addUrl', (req, res) => {
     return record.id;
   })
   .then((userId) => {
+    // TODO: Find a way of not having nested promises
     db.casestudy.findOrCreate({
       where: {
         userId,
@@ -52,14 +51,15 @@ app.post('/api/addUrl', (req, res) => {
       },
     }).then((result) => {
       const record = result[0];
-      const doesExist = result[1]; // boolean stating if it was created or not
-      if (doesExist) {
+      didExist = result[1]; // boolean stating if it was created or not
+      if (didExist) {
         console.log('casestudy already exists for this user');
       } else {
         console.log('A new case study was created');
       }
     });
   });
+  res.status.send({ didExist });
 });
 
 // app.get('/api/longURL', (req, res) => {
@@ -95,25 +95,17 @@ app.get('/api/sessions/:shortCode', (req, res) => {
     const casestudyId = result.dataValues.id;
     console.log('The case study ID', casestudyId);
     db.session.findAll({
+      attributes: ['id', 'duration', 'socketID', 'createdAt'],
       where: {
         casestudyId,
       },
     }).then((sessions) => {
-      //id, createdAt, duration, socketID
-      let reducedStats = [];
-      
+      const reducedStats = [];
       sessions.forEach((session) => {
-        const tempSession = {};
-        tempSession.id = session.id;
-        tempSession.createdAt = session.createdAt;
-        tempSession.duration = session.duration;
-        tempSession.socketID = session.socketID;
-        reducedStats.push(tempSession);
+        reducedStats.push(session.dataValues);
       });
 
-      const jsonStats = {data: reducedStats};
-      console.log(JSON.stringify(jsonStats));
-      res.json(jsonStats);
+      res.status(200).json(reducedStats);
     });
   });
 });

@@ -7,17 +7,19 @@ function socketHandler(socket) {
   const shortCode = sourceURL.substr(lastSlashIndex);
 
   const socketID = socket.id;
-  const recording = {};
+  const dataPoints = {};
   console.log('The id is', socketID, 'for the short URL', shortCode);
 
   socket.on('data', (data) => {
     console.log(data);
-    recording[data.time] = { x: data.x, y: data.y };
+    dataPoints[data.time] = { x: data.x, y: data.y };
   });
 
   socket.on('disconnect', () => {
-    const recordKeys = Object.keys(recording);
-    const duration = recordKeys[recordKeys.length - 1];
+    const recordKeys = Object.keys(dataPoints);
+    const endTime = recordKeys[recordKeys.length - 1];
+    const startTime = recordKeys[0];
+    const duration = endTime - startTime;
 
     db.casestudy.findAll({
       where: { shortCode },
@@ -26,7 +28,7 @@ function socketHandler(socket) {
       // const isNewRecord = response[1];
       return data.id;
     }).then((casestudyId) => {
-      db.session.create({ casestudyId, socketID, duration, recording });
+      db.session.create({ casestudyId, socketID, duration, dataPoints });
     });
     console.log('Source URL has disconnected', shortCode);
   });
