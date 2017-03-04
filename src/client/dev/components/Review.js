@@ -9,7 +9,7 @@ class Review extends React.Component {
   }
 
   fetchImage(shortCode) {
-    fetch('/api/reviewImage', {
+    fetch('/api/longURL', {
       method: 'get',
       headers: {
         'Content-Type': 'application/JSON',

@@ -59,8 +59,29 @@ app.post('/api/url', (req, res) => {
         console.log('A new case study was created');
       }
     });
+  });
+});
+
+app.get('/api/longURL', (req, res) => {
+  console.log('The post req was recieved - req.data', req.body);
+  const shortCode = req.body.shortCode;
+
+  db.user.findAll({
+    where: {
+      shortCode,
+    },
   })
-})
+  .then((result) => {
+    const record = result[0];
+    const doesExist = result[1]; // boolean stating if it was created or not
+    if (doesExist) {
+      console.log('User already exists');
+    } else {
+      console.log('New user created');
+    }
+    res.status(200).send(record.longURL);
+  });
+});
 
 
 // Always return the main index.html, so react-router render the route in the client
