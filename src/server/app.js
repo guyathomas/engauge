@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
+// require('../db/models/index');
 const db = require('../db/models');
 const utils = require('./utils.js');
 
@@ -57,8 +58,6 @@ app.post('/api/url', (req, res) => {
       }
     });
   });
-  res.status(200).send('Hoory, post recieved');
-});
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {

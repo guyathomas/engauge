@@ -7,11 +7,6 @@ class Watch extends React.Component {
       counter: 0,
     };
   }
-
-  componentDidMount() {
-    console.log('Component Did Mount');
-  }
-
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
       if (data == null) {
@@ -28,6 +23,11 @@ class Watch extends React.Component {
       }
     }).begin();
   }
+
+  componentDidMount() {
+    this.startGazeListener();
+  }
+
 
   render() {
     console.log('props are', this.props);
