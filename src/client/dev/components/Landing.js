@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header';
+import LandingHeader from './LandingHeader';
 import Hero from './Hero';
 
 const Landing = props => (
   <div className="landing">
-    <Header />
+    <LandingHeader />
     <Hero createLink={props.route.createLink} />
   </div>
 );
