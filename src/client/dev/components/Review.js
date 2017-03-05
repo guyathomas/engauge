@@ -4,7 +4,8 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: 'test url',
+      imageURL: '',
+      hasTrained: false,
     };
   }
 
@@ -26,9 +27,7 @@ class Review extends React.Component {
   //   });
   // }
 
-  fetchSession() {
-    
-  }
+
 
   render() {
     console.log('The review page!', this.props);
@@ -36,6 +35,7 @@ class Review extends React.Component {
       <div>
         <div>Review</div>
         <div>{this.state.imageURL}</div>
+        <div>{JSON.stringify(this.props.activeSession)}</div>
       </div>
     );
   }

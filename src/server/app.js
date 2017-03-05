@@ -95,7 +95,7 @@ app.get('/api/sessions/:shortCode', (req, res) => {
     const casestudyId = result.dataValues.id;
     console.log('The case study ID', casestudyId);
     db.session.findAll({
-      attributes: ['id', 'duration', 'socketID', 'createdAt'],
+      attributes: ['id', 'duration', 'socketID', 'createdAt', 'recording'],
       where: {
         casestudyId,
       },
