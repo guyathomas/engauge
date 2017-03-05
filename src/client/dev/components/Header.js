@@ -3,17 +3,17 @@ import { Link } from 'react-router';
 
 
 const Links = () => (
-  <nav className="primary-nav">
+  <nav className="landing-nav">
     <div><Link to="/">Home</Link></div>
     <div><Link to="/watch">Watch</Link></div>
     <div><Link to="/review">Review</Link></div>
   </nav>
   );
 
-const Header = () => (
-  <div className="header">
+const LandingHeader = () => (
+  <div>
     <Links />
   </div>
   );
 
-module.exports = Header;
+module.exports = LandingHeader;
