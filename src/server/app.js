@@ -104,8 +104,9 @@ app.get('/api/sessions/:shortCode', (req, res) => {
       sessions.forEach((session) => {
         reducedStats.push(session.dataValues);
       });
-
-      res.status(200).json(reducedStats);
+      const jsonStats = {data: reducedStats};
+      console.log('jsonStats', jsonStats)
+      res.status(200).json(jsonStats);
     });
   });
 });

@@ -19,7 +19,7 @@ class ReviewList extends React.Component {
     })
     .then(response => response.json())
     .then((sessions) => {
-      this.setState({ sessions });
+      this.setState({ sessions: sessions.data });
     });
   }
 

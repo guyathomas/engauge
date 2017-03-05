@@ -38,7 +38,8 @@ class Review extends React.Component {
       radius: 50,
     });
 
-    this.props.activeSession.recording.forEach((item) => {
+    this.props.activeSession.recording.forEach((item, i) => {
+      console.log('Item number', i, 'with ', item)
       this.heatmap.addData(item.x, item.y);
     });
 
@@ -50,7 +51,8 @@ class Review extends React.Component {
   //   this.heatmap.addData(newPoint);
   // }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    console.log('this.props.activeSession.recording', this.props.activeSession.recording)
     //Re render heatmap
     this.heatmap = this.createHeatmap();
 
