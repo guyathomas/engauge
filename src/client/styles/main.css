@@ -10,6 +10,9 @@
 #heatmapContainer { 
 	width:100%; 
 	height:100%;
+		background-image: url("../assets/images/hero.jpg");
+	background-repeat:   no-repeat;
+	background-size: contain;  
 }
 /*.heatmap-canvas {
 	height: 500px;
