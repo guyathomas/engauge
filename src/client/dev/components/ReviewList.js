@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -28,11 +29,14 @@ class ReviewList extends React.Component {
 
   render() {
     const sessions = this.state.sessions;
-    const url = window.location.pathname;
+    const url = this.props.location.pathname;
     console.log('The sessions', sessions);
+    console.log('props', this.props)
+    console.log(this.props.params.shortCode + "/" + 'item.id')
     return (
       <div className="sessions-list">
-        {sessions.map(item => (<a href={`${url}/${item.socketID}`}><div>{item.socketID}</div></a>))}
+        {sessions.map(item => (<li key={item.id} ><Link to={`/review/${this.props.params.shortCode}/${item.socketID}`}>{item.socketID}</Link></li>))}
+        {this.props.children}
       </div>
     );
   }

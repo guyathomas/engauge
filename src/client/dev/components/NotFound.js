@@ -12,7 +12,10 @@ class NotFound extends React.Component {
   render() {
   	console.log(this.props)
     return (
-		<div>Not Found</div>
+      <div>
+    		<div>Not Found</div>
+        <div>{JSON.stringify(this.props)}</div>
+      </div>
     );
   }
 }

@@ -26,6 +26,10 @@ class Review extends React.Component {
   //   });
   // }
 
+  fetchSession() {
+    
+  }
+
   render() {
     console.log('The review page!', this.props);
     return (
