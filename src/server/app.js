@@ -112,6 +112,20 @@ app.get('/api/sessions/:shortCode', (req, res) => {
   });
 });
 
+app.get('/api/caseStudys', (req, res) => {
+  db.casestudy.findAll()
+  .then((result) => {
+    const dataValues = [];
+    result.forEach((caseStudy) => {
+      dataValues.push(caseStudy.dataValues);
+    });
+
+    return dataValues;
+  }).then((caseStudys) => {
+    res.status(200).send(caseStudys);
+  });
+});
+
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));

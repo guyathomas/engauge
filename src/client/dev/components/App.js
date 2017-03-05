@@ -23,9 +23,9 @@ class App extends React.Component {
         <Route component={PrimaryHeader}>
           <Route path="/watch/:shortCode" component={Watch} />
           <Route path="/watch" component={WatchList} />
-        </Route>
-        <Route path="/review/:shortCode" component={ReviewList} >
-          <Route path="/review/:shortCode/:sessionID" component={Review} />
+          <Route path="/review/:shortCode" component={ReviewList} >
+            <Route path="/review/:shortCode/:sessionID" component={Review} />
+          </Route>
         </Route>
         <Route path="*" component={NotFound} />
       </Router>
