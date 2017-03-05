@@ -6,6 +6,7 @@ class Review extends React.Component {
     this.state = {
       imageURL: '',
       hasTrained: false,
+      heatmap: '',
     };
   }
 
@@ -27,6 +28,33 @@ class Review extends React.Component {
   //   });
   // }
 
+  componentDidMount() {
+    
+  }
+
+  createHeatmap() {
+    const heatmap = h337.create({
+      container: document.getElementById('heatmapContainer'),
+      radius: 50,
+    });
+
+    this.props.activeSession.recording.forEach((item) => {
+      this.heatmap.addData(item.x, item.y);
+    });
+
+    return heatmap;
+  }
+
+  // addHeat(x, y) {
+  //   const newPoint = { x, y, value: 1 };
+  //   this.heatmap.addData(newPoint);
+  // }
+
+  componentDidUpdate() {
+    //Re render heatmap
+    this.heatmap = this.createHeatmap();
+
+  }
 
 
   render() {
@@ -34,7 +62,7 @@ class Review extends React.Component {
     return (
       <div>
         <div>Review</div>
-        <div>{this.state.imageURL}</div>
+        <div id={'heatmapContainer'}></div>
         <div>{JSON.stringify(this.props.activeSession)}</div>
       </div>
     );

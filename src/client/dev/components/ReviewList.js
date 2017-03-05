@@ -23,6 +23,10 @@ class ReviewList extends React.Component {
     });
   }
 
+  updateSession(i) {
+    this.setState({ activeSession: i });
+  }
+
   componentDidMount() {
     const shortCode = this.state.shortCode;
     this.getSessions(shortCode);
@@ -36,7 +40,7 @@ class ReviewList extends React.Component {
     // this.props.children.props.test = 'test'
     return (
       <div className="sessions-list">
-        {sessions.map((item, i) => (<li key={item.id} index={i} ><Link to={`/review/${this.props.params.shortCode}/${item.socketID}`}>{item.socketID}</Link></li>))}
+        {sessions.map((item, i) => (<li key={item.id} index={i} onClick={this.updateSession.bind(this, i)} ><Link to={`/review/${this.props.params.shortCode}/${item.socketID}`}>{item.socketID}</Link></li>))}
         {this.props.children && React.cloneElement(this.props.children, {
               activeSession: this.state.sessions[this.state.activeSession],
             })}
