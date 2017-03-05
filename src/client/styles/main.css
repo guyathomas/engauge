@@ -7,6 +7,9 @@
 	background-image: url("../assets/images/hero.jpg");
 }
 
+/*==============================
+========Landing Navigation======
+==============================*/
 .landing-nav {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 600;
@@ -42,6 +45,10 @@
 	color: #FFFFFF;
 }
 
+/*==============================
+===========Hero Text============
+==============================*/
+
 .hero {
 	font-family: 'Raleway', sans-serif;
 	margin-top: 8%;
@@ -67,6 +74,10 @@
 .herotext.sub {
 	font-size: 1.5em;
 }
+
+/*==============================
+=======New CaseStudy Form=======
+==============================*/
 
 .tracknew {
 	width: 30%;
