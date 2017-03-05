@@ -17,11 +17,15 @@ class Hero extends React.Component {
     const stateObj = {};
     stateObj[target] = e.target.value;
     this.setState(stateObj, () => {
-      this.setState({ hasCompletedForm: !!(this.state.url && this.state.email) });
+      console.log(this.state);
+      this.setState({
+        hasCompletedForm: !!(this.state.url && this.state.email),
+      });
     });
   }
 
   render() {
+    console.log('this.props.watchURL', this.props.watchURL)
     return (
       <div className="hero">
         <div className="herotext-parent">
@@ -31,11 +35,10 @@ class Hero extends React.Component {
         <form className="tracknew">
           <input onKeyUp={_.bind(this.handleChange, this, _, 'url')} id="url" className="input"type="text" placeholder={'URL to track'} />
           <input onKeyUp={_.bind(this.handleChange, this, _, 'email')} id="email" className="input" type="text" placeholder={'Your email'} />
-          <div className="button-cta inactive">Generate Link</div>
-          <div className="button-cta" onClick={this.props.createLink.bind(this, this.state.url, this.state.email)}>Generate Link</div>
-          <div className="copy-container">
+          <div className={this.state.hasCompletedForm ? 'button-cta' : 'button-cta inactive'} onClick={this.props.createLink.bind(this, this.state.url, this.state.email)}>Generate Link</div>
+          <div className={this.props.watchURL ? 'copy-container' : 'hidden'}>
             <div className="button-cta copy">Copy</div>
-            <div className="copy-text">engauge.com/xyz</div>
+            <div className="copy-text">{this.props.watchURL}</div>
           </div>
         </form>
       </div>

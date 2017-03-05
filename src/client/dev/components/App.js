@@ -11,12 +11,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      dummy: '',
+      watchURL: '',
     };
   }
 
   createLink(urlInput, emailInput) {
-    console.log('urlInput', urlInput, 'emailInput', emailInput);
     const formFields = {
       email: emailInput,
       url: urlInput };
@@ -30,18 +29,18 @@ class App extends React.Component {
     })
     .then((response) => {
       console.log('The raw response is ', response, typeof response);
-      return response;
+      return response.json();
     })
-    .then((shortCode) => {
-      console.log('The shortCode is ', shortCode);
-      this.setState({ shortCode });
+    .then((result) => {
+      console.log('The shortCode is ', (window.location.href + 'watch/' + result.shortCode), result);
+      this.setState({ watchURL: (window.location.href + 'watch/' + result.shortCode) }, () => {console.log('this.state.watchURL in app', this.state.watchURL)});
     });
   }
 
   render() {
     return (
       <Router history={browserHistory}>
-        <Route path="/" component={Landing} createLink={this.createLink} />
+        <Route path="/" component={Landing} createLink={this.createLink} watchURL={this.state.watchURL} />
         <Route path="/watch/:shortCode" component={Watch} />
         <Route path="/review/:shortCode" component={ReviewList} >
           <Route path="/review/:shortCode/:caseID" component={Review} />

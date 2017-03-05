@@ -25,7 +25,7 @@ db.sequelize.sync()
 app.post('/api/caseStudy', (req, res) => {
   const url = req.body.url;
   const email = req.body.email;
-  const shortID = utils.createSha(url);
+  const shortCode = utils.createSha(url);
   let didExist = false;
 
   db.user.findOrCreate({
@@ -47,10 +47,11 @@ app.post('/api/caseStudy', (req, res) => {
       where: {
         userId,
         url,
-        shortID,
+        shortCode,
       },
     }).then((result) => {
       const record = result[0];
+      console.log('record', record);
       didExist = result[1]; // boolean stating if it was created or not
       if (didExist) {
         console.log('casestudy already exists for this user');
@@ -59,7 +60,7 @@ app.post('/api/caseStudy', (req, res) => {
       }
     });
   });
-  res.status.send({ didExist });
+  res.status(200).send({ didExist, shortCode });
 });
 
 // app.get('/api/longURL', (req, res) => {
