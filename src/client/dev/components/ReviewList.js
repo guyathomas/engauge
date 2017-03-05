@@ -40,7 +40,7 @@ class ReviewList extends React.Component {
     // this.props.children.props.test = 'test'
     return (
       <div className="sessions-list">
-        {sessions.map((item, i) => (<li key={item.id} onClick={this.updateSession.bind(this, i)} ><Link to={`/review/${this.props.params.shortCode}/${item.socketID}`}>{item.socketID}</Link></li>))}
+        {sessions.map((item, i) => (<li key={item.id} onClick={this.updateSession.bind(this, i)} ><Link to={`/review/${this.props.params.shortCode}/${item.id}`}>{item.id}</Link></li>))}
         {/*TODO: Have the active session come from the URL rather than props*/}
         {this.props.children && React.cloneElement(this.props.children, {
               activeSession: this.state.sessions[this.state.activeSession],

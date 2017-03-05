@@ -21,7 +21,7 @@ class App extends React.Component {
         <Route path="/" component={Landing} createLink={this.createLink} watchURL={this.state.watchURL} />
         <Route path="/watch/:shortCode" component={Watch} />
         <Route path="/review/:shortCode" component={ReviewList} >
-          <Route path="/review/:shortCode/:caseID" component={Review} />
+          <Route path="/review/:shortCode/:sessionID" component={Review} />
         </Route>
         <Route path="blog" component={Blog} />
         <Route path="*" component={NotFound} />

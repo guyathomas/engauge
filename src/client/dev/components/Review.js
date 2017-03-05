@@ -10,24 +10,6 @@ class Review extends React.Component {
     };
   }
 
-  // fetchImage(shortCode) {
-  //   fetch('/api/longURL', {
-  //     method: 'get',
-  //     headers: {
-  //       'Content-Type': 'application/JSON',
-  //     },
-  //     body: JSON.stringify({ shortCode }),
-  //   })
-  //   .then((response) => {
-  //     console.log('The raw response from the fetch is ', response, typeof response);
-  //     return response.json();
-  //   })
-  //   .then((imageURL) => {
-  //     console.log('The shortCode is ', shortCode);
-  //     // this.setState({ imageURL });
-  //   });
-  // }
-
   createHeatmap() {
     const heatmap = h337.create({
       container: document.getElementById('heatmapContainer'),
@@ -68,13 +50,11 @@ class Review extends React.Component {
 
 
   render() {
-    console.log('The review page!', this.props);
     return (
       <div>
         <div>Review</div>
         <div>{JSON.stringify(this.props.activeSession)}</div>
         <div id="heatmapContainerWrapper">
-          heatmap goes here
           <div id="heatmapContainer" />
         </div>
       </div>
