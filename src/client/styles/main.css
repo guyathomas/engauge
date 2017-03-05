@@ -72,6 +72,7 @@
 	width: 30%;
 	flex: 1;
 	align-items: : center;
+	padding-top: 3%;
 }
 
 .tracknew .input {
@@ -122,6 +123,7 @@
 }
 
 .copy-container {
+	justify-content: center;
 	display: flex;
 	flex: 1;
 }
@@ -137,11 +139,12 @@
 	background: rgba(255,255,255,0.75);
 	color: #0D1321;
 	flex: 3;
-	border-radius: 0px 3px 3px 0px;
+	border-radius: 3px 3px 3px 3px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1.5em;
+	margin-top: 1% 
 }
 
 .hidden {

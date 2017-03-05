@@ -11,30 +11,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      watchURL: '',
+      dummy: '',
     };
-  }
-
-  createLink(urlInput, emailInput) {
-    const formFields = {
-      email: emailInput,
-      url: urlInput };
-
-    fetch('/api/caseStudy', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify(formFields),
-    })
-    .then((response) => {
-      console.log('The raw response is ', response, typeof response);
-      return response.json();
-    })
-    .then((result) => {
-      console.log('The shortCode is ', (window.location.href + 'watch/' + result.shortCode), result);
-      this.setState({ watchURL: (window.location.href + 'watch/' + result.shortCode) }, () => {console.log('this.state.watchURL in app', this.state.watchURL)});
-    });
   }
 
   render() {
