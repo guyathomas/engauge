@@ -27,15 +27,15 @@ class Watch extends React.Component {
         return;
       }
 
-      if (counter % 20 === 0) {
-        console.log('x, y', data.x, data.y, `\n Seconds:${elapsedTime}`);
+      // if (counter % 20 === 0) {
+        // console.log('x, y', data.x, data.y, `\n Seconds:${elapsedTime}`);
         this.state.socket.emit('data', {
           time: Math.floor(elapsedTime),
           x: data.x,
           y: data.y,
         });
-      }
-      counter++;
+      // }
+      // counter++;
     }).begin();
   }
 
