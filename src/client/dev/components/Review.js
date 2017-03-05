@@ -28,35 +28,43 @@ class Review extends React.Component {
   //   });
   // }
 
-  componentDidMount() {
-    
-  }
-
   createHeatmap() {
     const heatmap = h337.create({
       container: document.getElementById('heatmapContainer'),
       radius: 50,
     });
-
-    this.props.activeSession.recording.forEach((item, i) => {
-      console.log('Item number', i, 'with ', item)
-      this.heatmap.addData(item.x, item.y);
-    });
-
     return heatmap;
   }
 
-  // addHeat(x, y) {
-  //   const newPoint = { x, y, value: 1 };
-  //   this.heatmap.addData(newPoint);
-  // }
+  addHeatData(activeSession) {
+    if (activeSession) {
+      console.log('this.props.activeSession', this.props.activeSession)
+      const heatMapData = {
+        max: 2,
+        min: 0,
+        // data: [{x:25,y:25},{x:36,y:36},{x:47,y:47},{x:58,y:58}],
+        data: this.props.activeSession.recording,
+      };
+      this.state.heatmap.setData(heatMapData);
+    }
+  }
 
   componentDidMount() {
-    console.log('this.props.activeSession.recording', this.props.activeSession.recording)
-    //Re render heatmap
-    this.heatmap = this.createHeatmap();
-
+    console.log('componentDidMount');
+    const context = this;
+    this.setState({heatmap: context.createHeatmap()})
   }
+
+  componentDidUpdate() {
+    this.addHeatData(this.props.activeSession);
+  }
+
+  // componentDidMount() {
+  //   this.props.activeSession.forEach((item) => {
+  //     const newPoint = { x, y, value: 1 };
+  //     this.state.heatmap.addData(newPoint);
+  //   })
+  // }
 
 
   render() {
@@ -64,8 +72,11 @@ class Review extends React.Component {
     return (
       <div>
         <div>Review</div>
-        <div id={'heatmapContainer'}></div>
         <div>{JSON.stringify(this.props.activeSession)}</div>
+        <div id="heatmapContainerWrapper">
+          heatmap goes here
+          <div id="heatmapContainer" />
+        </div>
       </div>
     );
   }
