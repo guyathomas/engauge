@@ -12,10 +12,10 @@ const config = {
     port: 3000,
     db: {
       database: 'engauge',
-      user: 'guy',
-      password: 'tangl3w00d',
+      // user: 'guy',
+      // password: 'tangl3w00d',
       options: {
-        host: 'localhost',
+        host: 'postgres',
         dialect: 'postgres',
         pool: {
           max: 100,
