@@ -1,5 +1,5 @@
 const path = require('path');
-const dbDetails = require('../../../config').db;
+const dbDetails = require('../../config').db;
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
 const env = process.env.NODE_ENV || 'development';
