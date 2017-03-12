@@ -4,7 +4,7 @@ const dbDetails = require('../../config.js').db;
 console.log(`The environment is ${process.env.NODE_ENV}`);
 const env = process.env.NODE_ENV || 'development';
 const rootPath = path.normalize(`${__dirname}/..`);
-console.log('dbDetails', dbDetails)
+
 const config = {
   development: {
     root: rootPath,
@@ -49,5 +49,4 @@ const config = {
     },
   },
 };
-
 module.exports = config[env];
