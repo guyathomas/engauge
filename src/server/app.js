@@ -6,7 +6,7 @@ const db = require('../db/models');
 const utils = require('./utils.js');
 
 const app = express();
-
+console.log('PG_DATABASE', PG_DATABASE)
 
 require('../../config');// Import global environment variables
 
