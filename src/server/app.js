@@ -26,7 +26,7 @@ db.sequelize.sync()
 app.post('/api/caseStudy', (req, res) => {
   const url = req.body.url;
   const email = req.body.email;
-  const shortCode = utils.createSha(url);
+  const shortCode = utils.createSha(url + email);
   let didExist = false;
 
   db.user.findOrCreate({
