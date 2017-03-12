@@ -12,9 +12,9 @@ const config = {
     },
     port: 5432,
     db: {
-      database: process.env.PG_DATABASE,
-      user: process.env.PG_USER,
-      password: process.env.PG_PASSWORD,
+      database: 'engauge',
+      user: 'guy',
+      password: 'tangl3w00d',
       options: {
         host: 'database',
         dialect: 'postgres',
