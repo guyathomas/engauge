@@ -2,18 +2,20 @@ version: '2' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
-  database: # name of the third service
-    image: postgres # specify image to build container from
-    ports:
-      - "5432:5432" # specify port forewarding
   web: # name of the first service
     build: . # specify the directory of the Dockerfile
     ports:
       - "3000:3000" # specify port forewarding
     links:
       - database
+  database: # name of the third service
+    image: postgres # specify image to build container from
+    ports:
+      - "5432:5432" # specify port forewarding
     environment:
-         - POSTGRES_USER:'guy'
-         - POSTGRES_PASSWORD:'tangl3w00d'
-         - POSTGRES_DB:'engauge'
-         # - POSTGRES_DB=engauge
+      - POSTGRES_USER=guy
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=engauge
+      # - POSTGRES_USER:'guy'
+      # - POSTGRES_PASSWORD:'password'
+      # - POSTGRES_DB:'engauge'

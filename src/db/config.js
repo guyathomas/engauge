@@ -9,13 +9,13 @@ const config = {
     app: {
       name: 'engauge',
     },
-    port: 3000,
+    port: 5432,
     db: {
       database: 'engauge',
-      // user: 'guy',
-      // password: 'tangl3w00d',
+      user: 'guy',
+      password: 'password',
       options: {
-        host: 'postgres',
+        host: '0.0.0.0',
         dialect: 'postgres',
         pool: {
           max: 100,
