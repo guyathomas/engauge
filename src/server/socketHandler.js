@@ -16,7 +16,6 @@ function socketHandler(socket) {
   });
 
   socket.on('disconnect', () => {
-    console.log('recording on dc', recording);
     if (recording.length === 0) { return; }
     // const recordKeys = Object.keys(recording);
     const endTime = recording[recording.length - 1].time;
@@ -30,7 +29,6 @@ function socketHandler(socket) {
       // const isNewRecord = response[1];
       return data.id;
     }).then((casestudyId) => {
-      console.log('recording before save', recording)
       db.session.create({ casestudyId, socketID, duration, recording });
     });
     console.log('Source URL has disconnected', shortCode);

@@ -15,12 +15,14 @@ class WatchList extends React.Component {
   }
 
   getCaseStudys() {
-    console.log('get caseStudys run');
-    fetch('/api/caseStudys')
+    fetch('/api/casestudys')
     .then(results => (results.json()))
     .then((caseStudys) => {
       console.log('caseStudys', caseStudys);
       this.setState({ caseStudys });
+    })
+    .catch((err) => {
+      console.log('The error was', err);
     });
   }
 

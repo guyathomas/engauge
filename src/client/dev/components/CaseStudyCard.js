@@ -12,6 +12,7 @@ class CaseStudyCard extends React.Component {
     return (
       <div className="case-studys">
         <div>{this.props.caseStudy.url}</div>
+        <img src={this.props.caseStudy.url} />
         <div>{this.props.caseStudy.createdAt}</div>
       </div>
     );

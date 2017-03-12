@@ -113,9 +113,10 @@ app.get('/api/sessions/:shortCode', (req, res) => {
   });
 });
 
-app.get('/api/caseStudys', (req, res) => {
-  db.casestudy.findAll()
+app.get('/api/casestudys', (req, res) => {
+  db.casestudy.findAll({})
   .then((result) => {
+    console.log('Result of casestudies query is', result);
     const dataValues = [];
     result.forEach((caseStudy) => {
       dataValues.push(caseStudy.dataValues);
@@ -123,6 +124,7 @@ app.get('/api/caseStudys', (req, res) => {
 
     return dataValues;
   }).then((caseStudys) => {
+    console.log('caseStudys just before sending', caseStudys);
     res.status(200).send(caseStudys);
   });
 });
