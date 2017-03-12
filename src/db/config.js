@@ -15,7 +15,7 @@ const config = {
       user: 'guy',
       password: 'password',
       options: {
-        host: '0.0.0.0',
+        host: 'database',
         dialect: 'postgres',
         pool: {
           max: 100,
