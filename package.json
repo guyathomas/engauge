@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Track where users are looking on your designs",
   "main": "index.js",
+  "engines": {
+    "node": "6.1.0"
+  },
   "scripts": {
     "start": "nodemon ./src/server/index.js",
     "build": "webpack -d",
