@@ -9,13 +9,14 @@ services:
     links:
       - database
   database: # name of the third service
-    image: postgres # specify image to build container from
+    image: postgres:latest # specify image to build container from
     ports:
       - "5432:5432" # specify port forewarding
-    environment:
-      - POSTGRES_USER=guy
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=engauge
+    env_file: .env
+    # environment:
+    #   - POSTGRES_USER=guy
+    #   - POSTGRES_PASSWORD=password
+    #   - POSTGRES_DB=engauge
       # - POSTGRES_USER:'guy'
       # - POSTGRES_PASSWORD:'password'
       # - POSTGRES_DB:'engauge'

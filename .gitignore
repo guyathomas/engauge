@@ -2,3 +2,6 @@
 node_modules
 designs
 src/client/build
+
+#docker-compose env file
+.env
