@@ -1,5 +1,4 @@
 const path = require('path');
-const dbDetails = require('../../config.js').db;
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
 const env = process.env.NODE_ENV || 'development';
@@ -13,9 +12,9 @@ const config = {
     },
     port: 5432,
     db: {
-      database: dbDetails.database,
-      user: dbDetails.user,
-      password: dbDetails.password,
+      database: process.env.PG_DATABASE,
+      user: process.env.PG_USER,
+      password: process.env.PG_PASSWORD,
       options: {
         host: 'database',
         dialect: 'postgres',
