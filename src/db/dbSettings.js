@@ -1,7 +1,9 @@
 const path = require('path');
+const dbDetails = require('../.././config').db;
 
-const rootPath = path.normalize(`${__dirname}/..`);
+console.log(`The environment is ${process.env.NODE_ENV}`);
 const env = process.env.NODE_ENV || 'development';
+const rootPath = path.normalize(`${__dirname}/..`);
 
 const config = {
   development: {
@@ -11,9 +13,9 @@ const config = {
     },
     port: 5432,
     db: {
-      database: 'engauge',
-      user: 'guy',
-      password: 'password',
+      database: dbDetails.database,
+      user: dbDetails.user,
+      password: dbDetails.password,
       options: {
         host: 'database',
         dialect: 'postgres',

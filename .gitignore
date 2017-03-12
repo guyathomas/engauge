@@ -5,3 +5,6 @@ src/client/build
 
 #docker-compose env file
 .env
+
+#config file for keys and database info
+config.js
