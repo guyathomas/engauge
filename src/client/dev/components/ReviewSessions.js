@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class ReviewList extends React.Component {
+class ReviewSessions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,4 +50,4 @@ class ReviewList extends React.Component {
   }
 }
 
-module.exports = ReviewList;
+module.exports = ReviewSessions;
