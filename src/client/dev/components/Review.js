@@ -53,7 +53,6 @@ class Review extends React.Component {
     return (
       <div>
         <div>Review</div>
-        <div>{JSON.stringify(this.props.activeSession)}</div>
         <div id="heatmapContainerWrapper">
           <div id="heatmapContainer" />
         </div>

@@ -46,6 +46,26 @@
 }
 
 /*==============================
+=======Primary Navigation=======
+==============================*/
+.primary-nav {
+	display: flex;
+    flex-direction: row-reverse;
+    background-color: #3F4D5F;
+    padding: 1em;
+    color: white;
+}
+
+.primary-nav a {
+	text-decoration:none;
+	font-family: Raleway-Medium;
+	font-size: 1em;
+	color: #FFFFFF;
+	letter-spacing: 0;
+	margin: 0 0.5em
+}
+
+/*==============================
 ===========Hero Text============
 ==============================*/
 
@@ -161,6 +181,8 @@
 .hidden {
    display:none;
 }
+
+
 /* Rectangle 2: */
 /* Copy: */
 /* Rectangle: */
