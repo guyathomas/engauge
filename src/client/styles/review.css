@@ -63,5 +63,5 @@
 	height:100%;
 	background-image: url("../assets/images/hero.jpg");
 	background-repeat:   no-repeat;
-	background-size: contain;  
+	background-size: cover;  
 }
