@@ -1,8 +1,12 @@
 /*==============================
 =============Sidebar============
 ==============================*/
-.sessions-list li{
-	display: inline;
+.sessions-view {
+	display: flex;
+}
+
+.sessions-view li{
+	display: block;
 }
 
 /*==============================
