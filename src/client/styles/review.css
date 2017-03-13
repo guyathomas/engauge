@@ -41,9 +41,34 @@
 	padding: 0.5em;
 }
 
-.sessions-sidebar a, .sessions-sidebar a:visited, .sessions-sidebar a:hover, .sessions-sidebar a:active {
+a, a:visited, a:hover, a:active {
 	  color: inherit;
 	  text-decoration: none;
+}
+
+/*Casestudies view*/
+.casestudies {
+	background-color: #F5F6F8;
+	column-count: 4;
+	column-gap: 0;
+}
+
+.casestudies .case-study {
+	float: left;
+    break-inside: avoid;
+    background-color: white;
+    margin: 5% 2.5% 0 2.5%;
+    padding: 2%;
+    background: #FEFEFE;
+}
+
+.casestudies .case-study img {
+	width:100%;
+}
+
+.casestudies .title {
+	display:block;
+	font-size: 1.5em;
 }
 
 /*==============================

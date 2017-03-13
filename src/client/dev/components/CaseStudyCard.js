@@ -18,7 +18,7 @@ class CaseStudyCard extends React.Component {
 
   render() {
     return (
-      <div className="case-study" xs={1} sm={2} md={4} lg={5} >
+      <div className="case-study" >
         <div>{this.props.caseStudy.url}</div>
         <div className="imgwrapper">
           <img src={this.props.caseStudy.url} />

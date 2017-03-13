@@ -1,6 +1,6 @@
 import React from 'react';
 import CaseStudyCard from './CaseStudyCard';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Link } from 'react-router';
 
 class ReviewCaseStudies extends React.Component {
   constructor(props) {
@@ -47,19 +47,26 @@ class ReviewCaseStudies extends React.Component {
     .then(response => response.json())
     .then((caseStudies) => {
       console.log(caseStudies);
-      this.setState({ caseStudies: caseStudies.data });
+      this.setState({ caseStudies: caseStudies });
     });
   }
 
   componentDidMount() {
-    // this.getCaseStudies();
+    this.getCaseStudies();
   }
 
   render() {
     return (
-      <div className="casestudies">
-      casestudies
-      {this.state.caseStudies.map((caseStudy) => (<CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />))}
+      <div>
+        <div className="title">casestudies</div>
+        <div className="casestudies">
+        {this.state.caseStudies.map((caseStudy) => (
+            <Link to={'/review/' + caseStudy.shortCode}>
+          <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy}>
+          </CaseStudyCard>
+            </Link>
+        ))}
+        </div>
       </div>
     );
   }
