@@ -7,6 +7,10 @@
 	background-image: url("../assets/images/hero.jpg");
 }
 
+body {
+	margin: 0;
+}
+
 /*==============================
 ========Landing Navigation======
 ==============================*/
@@ -49,6 +53,7 @@
 =======Primary Navigation=======
 ==============================*/
 .primary-nav {
+    height: 2vh;
 	display: flex;
     flex-direction: row-reverse;
     background-color: #3F4D5F;

@@ -1,5 +1,7 @@
 import React from 'react';
 import CaseStudyCard from './CaseStudyCard';
+import { Link } from 'react-router';
+
 
 class WatchList extends React.Component {
   constructor(props) {
@@ -31,9 +33,11 @@ class WatchList extends React.Component {
       <div>
         <div>WatchList</div>
         <div className="case-studys-container" >
-          {this.state.caseStudys.map((caseStudy) => {
-            return (<CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />);
-          })}
+          {this.state.caseStudys.map(caseStudy => (
+            <Link to={`/watch/${caseStudy.shortCode}`}>
+              <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
+            </Link>
+          ))}
         </div>
       </div>
     );

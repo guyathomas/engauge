@@ -11,10 +11,11 @@
 
 .sessions-sidebar {
     font-family: 'Raleway', sans-serif;
-	height: 100vh;
     background-color: #3F4D5F;
     color: #FFFFFF;
     text-align: center;
+    width: 15vw;
+    height: 98vh;
 }
 
 .sessions-sidebar .info {
@@ -33,6 +34,7 @@
     font-size: 1em;
     font-style: italic;
     margin: 0 1em;
+    word-wrap: break-word;
 }
 
 .sessions-sidebar .session {
@@ -81,7 +83,9 @@ a, a:visited, a:hover, a:active {
 #heatmapContainerWrapper { 
 	width:100%; 
 	height:100%; 
-	position:absolute; 
+	position:absolute;
+	width: 85vw;
+	height: 98vh;
 }
 #heatmapContainer { 
 	width:100%; 

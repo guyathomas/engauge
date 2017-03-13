@@ -1,6 +1,6 @@
 import React from 'react';
-import CaseStudyCard from './CaseStudyCard';
 import { Link } from 'react-router';
+import CaseStudyCard from './CaseStudyCard';
 
 class ReviewCaseStudies extends React.Component {
   constructor(props) {
