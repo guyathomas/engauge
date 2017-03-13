@@ -41,18 +41,9 @@ class Review extends React.Component {
     this.addHeatData(this.props.activeSession);
   }
 
-  // componentDidMount() {
-  //   this.props.activeSession.forEach((item) => {
-  //     const newPoint = { x, y, value: 1 };
-  //     this.state.heatmap.addData(newPoint);
-  //   })
-  // }
-
-
   render() {
     return (
-      <div>
-        <div>Review</div>
+      <div className="review-page">
         <div id="heatmapContainerWrapper">
           <div id="heatmapContainer" />
         </div>
