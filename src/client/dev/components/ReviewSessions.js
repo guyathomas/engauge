@@ -44,9 +44,11 @@ class ReviewSessions extends React.Component {
     return (
       <div className="sessions-view">
         <div className="sessions-sidebar">
-          Sessions
-          {}
-          {sessions.map((item, i) => (<li key={item.id} onClick={this.updateSession.bind(this, i)} ><Link to={`/review/${this.props.params.shortCode}/${item.id}`}>{item.id}</Link></li>))}
+          <div className="info">
+            <div className="title">Sessions</div>
+            <div className="location">{window.location.host + url}</div>
+          </div>
+          {sessions.map((item, i) => (<div className="session" key={item.id} onClick={this.updateSession.bind(this, i)}><Link to={`/review/${this.props.params.shortCode}/${item.id}`}>{item.id}</Link></div>))}
         </div>
         {/*TODO: Have the active session come from the URL rather than props*/}
         {this.props.children && React.cloneElement(this.props.children, {
