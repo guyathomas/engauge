@@ -8,6 +8,14 @@ class CaseStudyCard extends React.Component {
     };
   }
 
+  // {
+  //         createdAt:"2017-03-12T09:15:03.396Z",
+  //         id:2,
+  //         shortCode:"b6cba",
+  //         updatedAt:"2017-03-12T09:15:03.396Z",
+  //         url:"http://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg",
+  //         userId:"a5cbf201-a975-4a96-ac41-79c671fd1910"}
+
   render() {
     return (
       <div className="case-study" xs={1} sm={2} md={4} lg={5} >
