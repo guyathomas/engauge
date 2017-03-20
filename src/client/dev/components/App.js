@@ -19,7 +19,7 @@ const App = () => (
       <Route path="/watch" component={WatchList} />
       <Route path="/review" component={ReviewList} />
       <Route path="/review/:shortCode" component={ReviewSidebar} >
-        <Route path="/review/:shortCode/:sessionID" component={Review} />
+        <Route path="/review/:shortCode(/:sessionID)" component={Review} />
       </Route>
     </Route>
     <Route path="*" component={NotFound} />

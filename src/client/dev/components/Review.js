@@ -30,23 +30,8 @@ class Review extends React.Component {
     }
   }
 
-  getSessions(shortCode) {
-    //TODO: MOdularise. This was copied from watch
-    fetch(`/api/caseStudies/${shortCode}`, {
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
-    })
-    .then(response => response.json())
-    .then((session) => {
-      console.log('sessions after getSessions', session)
-      this.setState({ session });
-    })
-  }
-
   componentDidMount() {
-    const shortCode = this.props.routeParams.shortCode;
-    this.getSessions(shortCode);
+    console.log('This in review', this)
     const context = this;
     this.setState({heatmap: context.createHeatmap()})
   }
@@ -60,7 +45,7 @@ class Review extends React.Component {
       <div className="review-page">
         <div id="heatmapContainerWrapper">
           <div id="heatmapContainer">
-            <img src={this.state.session.url} /> 
+            <img src={this.props.caseStudyURL} /> 
           </div>
         </div>
       </div>
