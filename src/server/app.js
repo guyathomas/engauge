@@ -26,63 +26,38 @@ app.post('/api/caseStudies', (req, res) => {
   const url = req.body.url;
   const email = req.body.email;
   const shortCode = utils.createSha(url + email);
-  let didExist = false;
 
   db.user.findOrCreate({
     where: { email },
   }).then((result) => {
     const record = result[0];
-    const doesExist = result[1]; // boolean stating if it was created or not
+    const doesExist = result[1];
+    if (doesExist) { console.log('User already exists'); }
 
-    if (doesExist) {
-      console.log('User already exists');
-    } else {
-      console.log('New user created');
-    }
     return record.id;
-  })
-  .then((userId) => {
+  }).then((userId) => {
     // TODO: Find a way of not having nested promises
     db.casestudy.findOrCreate({
-      where: {
-        userId,
-        url,
-        shortCode,
-      },
-    }).then((result) => {
-      const record = result[0];
-      console.log('record', record);
-      didExist = result[1]; // boolean stating if it was created or not
-      if (didExist) {
-        console.log('casestudy already exists for this user');
-      } else {
-        console.log('A new case study was created');
-      }
+      where: { userId, url, shortCode },
     });
   });
-  res.status(200).send({ didExist, shortCode });
+  res.status(200).send({ shortCode });
 });
 
-// app.get('/api/longURL', (req, res) => {
-//   console.log('The post req was recieved - req.data', req.body);
-//   const shortCode = req.body.shortCode;
+app.get('/api/caseStudies', (req, res) => {
+  db.casestudy.findAll({})
+  .then((caseStudys) => {
+    res.status(200).send(caseStudys.dataValues);
+  });
+});
 
-//   db.user.findAll({
-//     where: {
-//       shortCode,
-//     },
-//   })
-//   .then((result) => {
-//     const record = result[0];
-//     const doesExist = result[1]; // boolean stating if it was created or not
-//     if (doesExist) {
-//       console.log('User already exists');
-//     } else {
-//       console.log('New user created');
-//     }
-//     res.status(200).send(record.longURL);
-//   });
-// });
+app.get('/api/caseStudies/:shortCode', (req, res) => {
+  const shortCode = req.params.shortCode;
+  db.casestudy.findOne({ where: { shortCode } })
+  .then((caseStudys) => {
+    res.status(200).send(caseStudys.dataValues);
+  });
+});
 
 app.get('/api/sessions/:shortCode', (req, res) => {
   console.log('The get req was recieved for sessions');
@@ -128,17 +103,7 @@ app.get('/api/caseStudies', (req, res) => {
   });
 });
 
-app.get('/api/caseStudies/:shortCode', (req, res) => {
-  const shortCode = req.params.shortCode;
-  db.casestudy.findOne({
-    where: {
-      shortCode,
-    },
-  }).then((caseStudys) => {
-    console.log('caseStudys just before sending2222', caseStudys.dataValues);
-    res.status(200).send(caseStudys.dataValues);
-  });
-});
+
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
