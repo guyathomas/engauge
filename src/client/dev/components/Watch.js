@@ -5,10 +5,11 @@ class Watch extends React.Component {
     super(props);
     this.state = {
       socket: {},
+      sessions: {},
     };
   }
 
-  openConnection() {
+  openSocket() {
    const socket = io.connect('http://localhost:3000');
     socket.on('connect', () => {
        console.log('Client has opened the connection');
@@ -19,13 +20,8 @@ class Watch extends React.Component {
   }
 
   startGazeListener() {
-    let counter = 0;
     webgazer.setGazeListener((data, elapsedTime) => {
-      
-      if (data == null) {
-        console.log('Null data');
-        return;
-      }
+      if (data == null) { return; }
 
       this.state.socket.emit('data', {
         time: Math.floor(elapsedTime),
@@ -35,8 +31,27 @@ class Watch extends React.Component {
     }).begin();
   }
 
+  getSessions(shortCode) {
+    fetch(`/api/caseStudys/${shortCode}`, {
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+    })
+    .then(response => response.json())
+    .then((sessions) => {
+      console.log('sessions after getSessions', sessions)
+      this.setState({ sessions });
+    })
+    .then(() => {
+      //Testing promise
+      console.log(this.state);
+    });
+  }
+
   componentDidMount() {
-    this.openConnection();
+    const shortCode = this.props.routeParams.shortCode;
+    this.openSocket();
+    this.getSessions(shortCode);
     this.startGazeListener();
   }
 
@@ -47,9 +62,12 @@ class Watch extends React.Component {
 
 
   render() {
-    console.log('props are', this.props);
     return (
-      <div>Watch</div>
+      <div className="watch">
+        <div className="container">
+          <img src={this.state.sessions.url} /> 
+        </div>
+      </div>
     );
     }
   }

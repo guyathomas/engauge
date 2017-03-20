@@ -129,6 +129,18 @@ app.get('/api/casestudys', (req, res) => {
   });
 });
 
+app.get('/api/caseStudys/:shortCode', (req, res) => {
+  const shortCode = req.params.shortCode;
+  db.casestudy.findOne({
+    where: {
+      shortCode,
+    },
+  }).then((caseStudys) => {
+    console.log('caseStudys just before sending2222', caseStudys.dataValues);
+    res.status(200).send(caseStudys.dataValues);
+  });
+});
+
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
