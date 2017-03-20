@@ -13,6 +13,12 @@ class ReviewSidebar extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const shortCode = this.state.shortCode;
+    this.getCaseStudy(shortCode);
+    this.getSessions(shortCode);
+  }
+
   getSessions(shortCode) {
     fetch(`/api/sessions/${shortCode}`)
     .then(response => response.json())
@@ -34,12 +40,6 @@ class ReviewSidebar extends React.Component {
 
   updateSession(i) {
     this.setState({ activeSession: i });
-  }
-
-  componentDidMount() {
-    const shortCode = this.state.shortCode;
-    this.getCaseStudy(shortCode);
-    this.getSessions(shortCode);
   }
 
   render() {
