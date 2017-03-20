@@ -46,8 +46,15 @@ app.post('/api/caseStudies', (req, res) => {
 
 app.get('/api/caseStudies', (req, res) => {
   db.casestudy.findAll({})
-  .then((caseStudys) => {
-    res.status(200).send(caseStudys.dataValues);
+  .then((result) => {
+    const dataValues = [];
+    result.forEach((caseStudy) => {
+      dataValues.push(caseStudy.dataValues);
+    });
+
+    return dataValues;
+  }).then((caseStudys) => {
+    res.status(200).send(caseStudys);
   });
 });
 
@@ -59,17 +66,15 @@ app.get('/api/caseStudies/:shortCode', (req, res) => {
   });
 });
 
+
+// app.get('/api/sessions', (req, res) => {
+// });
+
 app.get('/api/sessions/:shortCode', (req, res) => {
-  console.log('The get req was recieved for sessions');
   const shortCode = req.params.shortCode;
-  console.log('shortCode', shortCode);
-  db.casestudy.findOne({
-    where: {
-      shortCode,
-    },
-  }).then((result) => {
+  db.casestudy.findOne({ where: { shortCode } })
+  .then((result) => {
     const casestudyId = result.dataValues.id;
-    console.log('The case study ID', casestudyId);
     db.session.findAll({
       attributes: ['id', 'duration', 'socketID', 'createdAt', 'recording'],
       where: {
@@ -81,27 +86,12 @@ app.get('/api/sessions/:shortCode', (req, res) => {
         reducedStats.push(session.dataValues);
       });
       const jsonStats = {data: reducedStats};
-      console.log('jsonStats', jsonStats)
       res.status(200).json(jsonStats);
     });
   });
 });
 
-app.get('/api/caseStudies', (req, res) => {
-  db.casestudy.findAll({})
-  .then((result) => {
-    console.log('Result of casestudies query is', result);
-    const dataValues = [];
-    result.forEach((caseStudy) => {
-      dataValues.push(caseStudy.dataValues);
-    });
 
-    return dataValues;
-  }).then((caseStudys) => {
-    console.log('caseStudys just before sending', caseStudys);
-    res.status(200).send(caseStudys);
-  });
-});
 
 
 
