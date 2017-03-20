@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        Session.belongsTo(models.casestudy);
+        Session.belongsTo(models.study);
       },
     },
     tableName: 'Sessions',
