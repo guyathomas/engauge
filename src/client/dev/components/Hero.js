@@ -24,11 +24,9 @@ class Hero extends React.Component {
       body: JSON.stringify(formFields),
     })
     .then((response) => {
-      console.log('The raw response is ', response, typeof response);
       return response.json();
     })
     .then((result) => {
-      console.log('The shortCode is ', (window.location.href + 'watch/' + result.shortCode), result);
       this.setState({ watchURL: (window.location.href + 'watch/' + result.shortCode) }, () => {console.log('this.state.watchURL in app', this.state.watchURL)});
     });
   }
@@ -36,12 +34,10 @@ class Hero extends React.Component {
   // Update state to have key as the value of the field ID that was changed
   // and the value as the text input
   handleChange(e) {
-    console.log();
     const stateObj = {};
     const field = e.target.id;
     stateObj[field] = e.target.value;
     this.setState(stateObj, () => {
-      console.log(this.state);
       this.setState({
         hasCompletedForm: !!(this.state.url && this.state.email),
       });
@@ -49,7 +45,6 @@ class Hero extends React.Component {
   }
 
   render() {
-    console.log('this.props.watchURL', this.state.watchURL);
     return (
       <div className="hero">
         <div className="herotext-parent">

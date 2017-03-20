@@ -2,10 +2,10 @@ import React from 'react';
 import LandingHeader from './LandingHeader';
 import Hero from './Hero';
 
-const Landing = props => (
+const Landing = () => (
   <div className="landing">
     <LandingHeader />
-    <Hero createLink={props.route.createLink} />
+    <Hero />
   </div>
 );
 
