@@ -1,13 +1,12 @@
 import React from 'react';
-import CaseStudyCard from './CaseStudyCard';
 import { Link } from 'react-router';
-
+import CaseStudyCard from './CaseStudyCard';
 
 class WatchList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      caseStudys: [],
+      caseStudies: [],
     };
   }
 
@@ -19,9 +18,8 @@ class WatchList extends React.Component {
   getCaseStudys() {
     fetch('/api/casestudys')
     .then(results => (results.json()))
-    .then((caseStudys) => {
-      console.log('caseStudys', caseStudys);
-      this.setState({ caseStudys });
+    .then((caseStudies) => {
+      this.setState({ caseStudies });
     })
     .catch((err) => {
       console.log('The error was', err);
@@ -31,13 +29,13 @@ class WatchList extends React.Component {
   render() {
     return (
       <div>
-        <div>WatchList</div>
-        <div className="case-studys-container" >
-          {this.state.caseStudys.map(caseStudy => (
+        <div className="title">casestudies</div>
+        <div className="casestudies">
+          {this.state.caseStudies.map(caseStudy => (
             <Link to={`/watch/${caseStudy.shortCode}`}>
               <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
             </Link>
-          ))}
+        ))}
         </div>
       </div>
     );

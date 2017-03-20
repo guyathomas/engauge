@@ -10,6 +10,9 @@ class ReviewCaseStudies extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getCaseStudies();
+  }
 
   getCaseStudies() {
     fetch('/api/casestudys', {
@@ -20,23 +23,22 @@ class ReviewCaseStudies extends React.Component {
     .then(response => response.json())
     .then((caseStudies) => {
       console.log(caseStudies);
-      this.setState({ caseStudies: caseStudies });
+      this.setState({ caseStudies });
+    })
+    .catch((err) => {
+      console.log('Error in fetching case studies', err);
     });
   }
 
-  componentDidMount() {
-    this.getCaseStudies();
-  }
 
   render() {
     return (
       <div>
         <div className="title">casestudies</div>
         <div className="casestudies">
-        {this.state.caseStudies.map((caseStudy) => (
-            <Link to={'/review/' + caseStudy.shortCode}>
-          <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy}>
-          </CaseStudyCard>
+          {this.state.caseStudies.map(caseStudy => (
+            <Link to={`/review/${caseStudy.shortCode}`}>
+              <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
             </Link>
         ))}
         </div>
