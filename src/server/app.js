@@ -46,14 +46,14 @@ app.post('/api/caseStudies', (req, res) => {
 
 app.get('/api/caseStudies', (req, res) => {
   db.casestudy.findAll({})
-  .then((result) => {
+  .then((results) => {
     const dataValues = [];
-    result.forEach((caseStudy) => {
-      dataValues.push(caseStudy.dataValues);
+    results.forEach((result) => {
+      dataValues.push(result.dataValues);
     });
-
     return dataValues;
-  }).then((caseStudys) => {
+  })
+  .then((caseStudys) => {
     res.status(200).send(caseStudys);
   });
 });
@@ -67,33 +67,39 @@ app.get('/api/caseStudies/:shortCode', (req, res) => {
 });
 
 
-// app.get('/api/sessions', (req, res) => {
-// });
-
 app.get('/api/sessions/:shortCode', (req, res) => {
   const shortCode = req.params.shortCode;
   db.casestudy.findOne({ where: { shortCode } })
   .then((result) => {
     const casestudyId = result.dataValues.id;
+
     db.session.findAll({
       attributes: ['id', 'duration', 'socketID', 'createdAt', 'recording'],
-      where: {
-        casestudyId,
-      },
-    }).then((sessions) => {
+      where: { casestudyId } })
+    .then((sessions) => {
       const reducedStats = [];
       sessions.forEach((session) => {
         reducedStats.push(session.dataValues);
       });
-      const jsonStats = {data: reducedStats};
+      const jsonStats = { data: reducedStats };
       res.status(200).json(jsonStats);
     });
   });
 });
 
-
-
-
+app.get('/api/sessions', (req, res) => {
+  db.session.findAll({})
+  .then((results) => {
+    const dataValues = [];
+    results.forEach((result) => {
+      dataValues.push(result.dataValues);
+    });
+    return dataValues;
+  })
+  .then((caseStudys) => {
+    res.status(200).send(caseStudys);
+  });
+});
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
