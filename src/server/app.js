@@ -1,4 +1,3 @@
-'use strict'
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -17,14 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 
 db.sequelize.sync()
-    .catch((e) => {
-      throw new Error(e);
-    });
+  .catch((e) => {
+    throw new Error(e);
+  });
 
 // TODO: Move the handlers into their own files
 app.post('/api/caseStudies', (req, res) => {
-  const url = req.body.url;
-  const email = req.body.email;
+  const url = req.body.formUrl;
+  const email = req.body.formEmail;
   const shortCode = utils.createSha(url + email);
   db.user.findOrCreate({
     where: { email },

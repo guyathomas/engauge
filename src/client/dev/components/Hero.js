@@ -4,8 +4,8 @@ class Hero extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: '',
-      email: '',
+      formUrl: '',
+      formEmail: '',
       hasCompletedForm: false,
       watchURL: '',
     };
@@ -13,9 +13,8 @@ class Hero extends React.Component {
 
   createLink() {
     const formFields = {
-      email: this.state.email,
-      url: this.state.url };
-
+      formEmail: this.state.formEmail,
+      formUrl: this.state.formUrl };
     fetch('/api/caseStudies', {
       method: 'post',
       headers: {
@@ -23,11 +22,9 @@ class Hero extends React.Component {
       },
       body: JSON.stringify(formFields),
     })
-    .then((response) => {
-      return response.json();
-    })
+    .then(response => response.json())
     .then((result) => {
-      this.setState({ watchURL: (window.location.href + 'watch/' + result.shortCode) }, () => {console.log('this.state.watchURL in app', this.state.watchURL)});
+      this.setState({ watchURL: (window.location.href + 'watch/' + result.shortCode) });
     });
   }
 
@@ -39,7 +36,7 @@ class Hero extends React.Component {
     stateObj[field] = e.target.value;
     this.setState(stateObj, () => {
       this.setState({
-        hasCompletedForm: !!(this.state.url && this.state.email),
+        hasCompletedForm: !!(this.state.formUrl && this.state.formEmail),
       });
     });
   }
@@ -52,11 +49,10 @@ class Hero extends React.Component {
           <div className="herotext sub">Get started to see what your customers pay attention to on your website</div>
         </div>
         <form className="tracknew">
-          <input onKeyUp={this.handleChange.bind(this)} id="url" className="input"type="text" placeholder={'URL to track'} />
-          <input onKeyUp={this.handleChange.bind(this)} id="email" className="input" type="text" placeholder={'Your email'} />
+          <input onKeyUp={this.handleChange.bind(this)} id="formUrl" className="input"type="text" placeholder={'URL to track'} />
+          <input onKeyUp={this.handleChange.bind(this)} id="formEmail" className="input" type="text" placeholder={'Your email'} />
           <div className={this.state.hasCompletedForm ? 'button-cta' : 'button-cta inactive'} onClick={this.createLink.bind(this, this.state.url, this.state.email)}>Generate Link</div>
           <div className={this.state.watchURL ? 'copy-container' : 'hidden'}>
-            {/*<div className="button-cta copy">Copy</div>*/}
             <div className="copy-text">{this.state.watchURL}</div>
           </div>
         </form>
