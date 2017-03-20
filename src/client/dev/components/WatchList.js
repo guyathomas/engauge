@@ -11,16 +11,13 @@ class WatchList extends React.Component {
   }
 
   componentWillMount() {
-    console.log('componentDidMount');
     this.getCaseStudys();
   }
 
   getCaseStudys() {
     fetch('/api/caseStudies')
     .then(results => (results.json()))
-    .then((caseStudies) => {
-      this.setState({ caseStudies });
-    })
+    .then(caseStudies => (this.setState({ caseStudies })))
     .catch((err) => {
       console.log('The error was', err);
     });
