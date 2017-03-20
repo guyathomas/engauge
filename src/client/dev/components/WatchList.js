@@ -26,7 +26,6 @@ class WatchList extends React.Component {
   render() {
     return (
       <div>
-        <div className="title">casestudies</div>
         <div className="casestudies">
           {this.state.caseStudies.map(caseStudy => (
             <Link to={`/watch/${caseStudy.shortCode}`}>
