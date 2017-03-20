@@ -19,13 +19,12 @@ function socketHandler(socket) {
     const endTime = recording[recording.length - 1].time;
     const startTime = recording[0].time;
     const duration = endTime - startTime;
-    
+
     db.casestudy.findAll({ where: { shortCode } })
-    .then( response => (response[0].id)
-    .then((casestudyId) => {
-      db.session.create({ casestudyId, socketID, duration, recording });
-    })
-    console.log('Source URL has disconnected', shortCode);
+    .then(response => (response[0].id))
+    .then(casestudyId => (
+      db.session.create({ casestudyId, socketID, duration, recording })
+    ));
   });
 }
 

@@ -10,13 +10,11 @@ class Watch extends React.Component {
   }
 
   openSocket() {
-   const socket = io.connect('http://localhost:3000');
+    const socket = io.connect('http://localhost:3000');
     socket.on('connect', () => {
-       console.log('Client has opened the connection');
+      console.log('Client has opened the connection');
     });
-    this.setState({
-      socket,
-    });
+    this.setState({ socket });
   }
 
   startGazeListener() {
@@ -38,14 +36,7 @@ class Watch extends React.Component {
       },
     })
     .then(response => response.json())
-    .then((sessions) => {
-      console.log('sessions after getSessions', sessions)
-      this.setState({ sessions });
-    })
-    .then(() => {
-      //Testing promise
-      console.log(this.state);
-    });
+    .then(sessions => this.setState({ sessions }));
   }
 
   componentDidMount() {
@@ -56,7 +47,7 @@ class Watch extends React.Component {
   }
 
   componentWillUnmount() {
-    //TODO: Stop the webcam light being on
+    // TODO: Stop the webcam light being on
     this.state.socket.disconnect();
   }
 
@@ -64,12 +55,10 @@ class Watch extends React.Component {
   render() {
     return (
       <div className="watch">
-        <div className="container">
-          <img src={this.state.sessions.url} /> 
-        </div>
+          <img src={this.state.sessions.url} />
       </div>
     );
-    }
+  }
   }
 
 module.exports = Watch;

@@ -35,9 +35,7 @@ class ReviewSidebar extends React.Component {
   render() {
     const sessions = this.state.sessions;
     const url = this.props.location.pathname;
-    // console.log('The sessions', sessions);
-    // console.log('props', this.props.children);
-    // this.props.children.props.test = 'test'
+
     return (
       <div className="sessions-view">
         <div className="sessions-sidebar">

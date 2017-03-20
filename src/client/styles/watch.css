@@ -1,8 +1,9 @@
-.container {
+.watch {
 	width: 100vw;
+	height: 100vh;
 }
 
-.container img {
+.watch img {
 	width: 100%;
 	height: 100%;
 }
