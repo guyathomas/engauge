@@ -4,17 +4,19 @@ import Landing from './Landing';
 import Watch from './Watch';
 import Review from './Review';
 import ReviewSidebar from './ReviewSidebar';
-import WatchList from './WatchList';
 import NotFound from './NotFound';
 import PrimaryHeader from './PrimaryHeader';
-import ReviewList from './ReviewList';
+import CSList from './CSList';
+
+const WatchList = () => (<CSList action="watch" />);
+const ReviewList = () => (<CSList action="review" />);
 
 const App = () => (
   <Router history={browserHistory}>
     <Route path="/" component={Landing} />
     <Route component={PrimaryHeader}>
       <Route path="/watch/:shortCode" component={Watch} />
-      <Route path="/watch" component={WatchList} title={'Watch List'} />
+      <Route path="/watch" component={WatchList} />
       <Route path="/review" component={ReviewList} />
       <Route path="/review/:shortCode" component={ReviewSidebar} >
         <Route path="/review/:shortCode/:sessionID" component={Review} />

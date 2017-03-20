@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import CaseStudyCard from './CaseStudyCard';
 
-class ReviewList extends React.Component {
+class CSList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,40 +10,35 @@ class ReviewList extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getCaseStudies();
+  componentWillMount() {
+    this.getCaseStudys();
   }
 
-  getCaseStudies() {
-    fetch('/api/caseStudies', {
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
-    })
-    .then(response => response.json())
-    .then((caseStudies) => {
-      this.setState({ caseStudies });
-    })
+  getCaseStudys() {
+    fetch('/api/caseStudies')
+    .then(results => (results.json()))
+    .then(caseStudies => (this.setState({ caseStudies })))
     .catch((err) => {
       console.log('Error in fetching case studies', err);
     });
   }
 
-
   render() {
+    const action = this.props.action;
+    const title = (action === 'review' ? 'Review Case Studies' : 'Record Session');
     return (
-      <div className="casestudies-container">
-        <div className="title">Review Case Studies</div>
+      <div className="cs-container">
+        <div className="title">{title}</div>
         <div className="casestudies">
           {this.state.caseStudies.map(caseStudy => (
-            <Link to={`/review/${caseStudy.shortCode}`}>
+            <Link to={`/${action}/${caseStudy.shortCode}`}>
               <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
             </Link>
-        ))}
+          ))}
         </div>
       </div>
     );
   }
 }
 
-module.exports = ReviewList;
+module.exports = CSList;
