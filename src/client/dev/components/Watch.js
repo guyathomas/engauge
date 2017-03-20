@@ -32,7 +32,7 @@ class Watch extends React.Component {
   }
 
   getSessions(shortCode) {
-    fetch(`/api/caseStudys/${shortCode}`, {
+    fetch(`/api/caseStudies/${shortCode}`, {
       headers: {
         'Content-Type': 'application/JSON',
       },

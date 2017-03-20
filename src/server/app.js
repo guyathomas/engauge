@@ -22,8 +22,7 @@ db.sequelize.sync()
     });
 
 // TODO: Move the handlers into their own files
-//
-app.post('/api/caseStudy', (req, res) => {
+app.post('/api/caseStudies', (req, res) => {
   const url = req.body.url;
   const email = req.body.email;
   const shortCode = utils.createSha(url + email);
@@ -113,7 +112,7 @@ app.get('/api/sessions/:shortCode', (req, res) => {
   });
 });
 
-app.get('/api/casestudys', (req, res) => {
+app.get('/api/caseStudies', (req, res) => {
   db.casestudy.findAll({})
   .then((result) => {
     console.log('Result of casestudies query is', result);
@@ -129,7 +128,7 @@ app.get('/api/casestudys', (req, res) => {
   });
 });
 
-app.get('/api/caseStudys/:shortCode', (req, res) => {
+app.get('/api/caseStudies/:shortCode', (req, res) => {
   const shortCode = req.params.shortCode;
   db.casestudy.findOne({
     where: {

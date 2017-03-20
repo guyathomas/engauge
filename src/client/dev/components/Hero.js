@@ -16,7 +16,7 @@ class Hero extends React.Component {
       email: this.state.email,
       url: this.state.url };
 
-    fetch('/api/caseStudy', {
+    fetch('/api/caseStudies', {
       method: 'post',
       headers: {
         'Content-Type': 'application/JSON',

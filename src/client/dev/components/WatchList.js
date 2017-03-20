@@ -16,7 +16,7 @@ class WatchList extends React.Component {
   }
 
   getCaseStudys() {
-    fetch('/api/casestudys')
+    fetch('/api/caseStudies')
     .then(results => (results.json()))
     .then((caseStudies) => {
       this.setState({ caseStudies });

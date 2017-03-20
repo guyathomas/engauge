@@ -15,7 +15,7 @@ class ReviewCaseStudies extends React.Component {
   }
 
   getCaseStudies() {
-    fetch('/api/casestudys', {
+    fetch('/api/caseStudies', {
       headers: {
         'Content-Type': 'application/JSON',
       },

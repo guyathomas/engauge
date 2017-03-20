@@ -32,7 +32,7 @@ class Review extends React.Component {
 
   getSessions(shortCode) {
     //TODO: MOdularise. This was copied from watch
-    fetch(`/api/caseStudys/${shortCode}`, {
+    fetch(`/api/caseStudies/${shortCode}`, {
       headers: {
         'Content-Type': 'application/JSON',
       },
