@@ -7,7 +7,7 @@ import ReviewSessions from './ReviewSessions';
 import WatchList from './WatchList';
 import NotFound from './NotFound';
 import PrimaryHeader from './PrimaryHeader';
-import ReviewCaseStudies from './ReviewCaseStudies';
+import ReviewList from './ReviewList';
 
 class App extends React.Component {
   constructor() {
@@ -24,7 +24,7 @@ class App extends React.Component {
         <Route component={PrimaryHeader}>
           <Route path="/watch/:shortCode" component={Watch} />
           <Route path="/watch" component={WatchList} />
-          <Route path="/review" component={ReviewCaseStudies} />
+          <Route path="/review" component={ReviewList} />
           <Route path="/review/:shortCode" component={ReviewSessions} >
             <Route path="/review/:shortCode/:sessionID" component={Review} />
           </Route>

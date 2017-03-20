@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import CaseStudyCard from './CaseStudyCard';
 
-class ReviewCaseStudies extends React.Component {
+class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,4 +47,4 @@ class ReviewCaseStudies extends React.Component {
   }
 }
 
-module.exports = ReviewCaseStudies;
+module.exports = ReviewList;
