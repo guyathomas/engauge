@@ -26,7 +26,6 @@ app.post('/api/caseStudies', (req, res) => {
   const url = req.body.url;
   const email = req.body.email;
   const shortCode = utils.createSha(url + email);
-
   db.user.findOrCreate({
     where: { email },
   }).then((result) => {
