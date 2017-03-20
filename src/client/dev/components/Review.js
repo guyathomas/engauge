@@ -1,11 +1,11 @@
+//Working Review however sidebar not populating
 import React from 'react';
 
 class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: '',
-      hasTrained: false,
+      session: {},
       heatmap: '',
     };
   }
@@ -20,7 +20,6 @@ class Review extends React.Component {
 
   addHeatData(activeSession) {
     if (activeSession) {
-      console.log('this.props.activeSession', this.props.activeSession)
       const heatMapData = {
         max: 2,
         min: 0,
@@ -31,8 +30,23 @@ class Review extends React.Component {
     }
   }
 
+  getSessions(shortCode) {
+    //TODO: MOdularise. This was copied from watch
+    fetch(`/api/caseStudys/${shortCode}`, {
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+    })
+    .then(response => response.json())
+    .then((session) => {
+      console.log('sessions after getSessions', session)
+      this.setState({ session });
+    })
+  }
+
   componentDidMount() {
-    console.log('componentDidMount');
+    const shortCode = this.props.routeParams.shortCode;
+    this.getSessions(shortCode);
     const context = this;
     this.setState({heatmap: context.createHeatmap()})
   }
@@ -45,7 +59,9 @@ class Review extends React.Component {
     return (
       <div className="review-page">
         <div id="heatmapContainerWrapper">
-          <div id="heatmapContainer" />
+          <div id="heatmapContainer">
+            <img src={this.state.session.url} /> 
+          </div>
         </div>
       </div>
     );

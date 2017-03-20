@@ -35,9 +35,6 @@ class ReviewSessions extends React.Component {
   render() {
     const sessions = this.state.sessions;
     const url = this.props.location.pathname;
-    console.log('sessions', sessions)
-    console.log('location', this.props.location)
-    console.log('this.state.sessions',this.state.sessions)
     // console.log('The sessions', sessions);
     // console.log('props', this.props.children);
     // this.props.children.props.test = 'test'
