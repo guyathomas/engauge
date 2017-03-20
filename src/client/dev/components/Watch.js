@@ -41,6 +41,7 @@ class Watch extends React.Component {
   }
 
   componentWillUnmount() {
+    //TODO: Stop the webcam light being on
     this.state.socket.disconnect();
   }
 
