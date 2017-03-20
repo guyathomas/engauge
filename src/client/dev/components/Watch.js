@@ -40,6 +40,10 @@ class Watch extends React.Component {
     this.startGazeListener();
   }
 
+  componentWillUnmount() {
+    this.state.socket.disconnect();
+  }
+
 
   render() {
     console.log('props are', this.props);
