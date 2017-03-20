@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import EmptyReview from './EmptyReview';
 
 class ReviewSidebar extends React.Component {
   constructor(props) {
@@ -28,10 +29,7 @@ class ReviewSidebar extends React.Component {
       },
     })
     .then(response => response.json())
-    .then((caseStudy) => {
-      console.log('sessions after getSessions', caseStudy);
-      this.setState({ caseStudy });
-    });
+    .then((caseStudy) => { this.setState({ caseStudy }); });
   }
 
   updateSession(i) {
@@ -65,9 +63,11 @@ class ReviewSidebar extends React.Component {
         </div>
         {/*TODO: Have the active session come from the URL rather than props*/}
         {this.props.children && React.cloneElement(this.props.children, {
-              activeSession: this.state.sessions[this.state.activeSession],
-              caseStudyURL: this.state.caseStudy.url,
-            })}
+                activeSession: this.state.sessions[this.state.activeSession],
+                caseStudyURL: this.state.caseStudy.url,
+          })
+        }
+        {!this.props.children && <EmptyReview />}
       </div>
     );
   }
