@@ -3,7 +3,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import Landing from './Landing';
 import Watch from './Watch';
 import Review from './Review';
-import ReviewSessions from './ReviewSessions';
+import ReviewSidebar from './ReviewSidebar';
 import WatchList from './WatchList';
 import NotFound from './NotFound';
 import PrimaryHeader from './PrimaryHeader';
@@ -25,7 +25,7 @@ class App extends React.Component {
           <Route path="/watch/:shortCode" component={Watch} />
           <Route path="/watch" component={WatchList} />
           <Route path="/review" component={ReviewList} />
-          <Route path="/review/:shortCode" component={ReviewSessions} >
+          <Route path="/review/:shortCode" component={ReviewSidebar} >
             <Route path="/review/:shortCode/:sessionID" component={Review} />
           </Route>
         </Route>

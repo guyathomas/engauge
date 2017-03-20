@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class ReviewSessions extends React.Component {
+class ReviewSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,4 +56,4 @@ class ReviewSessions extends React.Component {
   }
 }
 
-module.exports = ReviewSessions;
+module.exports = ReviewSidebar;
