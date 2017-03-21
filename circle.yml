@@ -9,13 +9,8 @@ machine:
 dependencies:
     override:
         - pip install docker-compose
-test:
-  override:
-    - ufo docker build
-    - docker tag $(ufo docker image_name) engauge
-    - docker-compose
 deployment:
- staging:
-   branch: master
-   commands:
-     - ufo ship engauge --cluster stag --no-docker --no-wait
+  hub:
+    branch: master
+    commands:
+      - docker-compose up --build
