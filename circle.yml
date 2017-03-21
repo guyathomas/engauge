@@ -5,8 +5,9 @@ machine:
 dependencies:
   override: 
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-    - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
-    - docker push registry.heroku.com/stolemyusername/engauged:latest
+    - docker build -t stolemyusername/engauged:latest .
+    - docker push stolemyusername/engauged:latest
+
 
 # test:
 #   override:
@@ -18,4 +19,5 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
       - docker push registry.heroku.com/stolemyusername/engauged:latest
