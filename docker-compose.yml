@@ -13,10 +13,3 @@ services:
     ports:
       - "5432:5432" # specify port forewarding
     env_file: .env
-    # environment:
-    #   - POSTGRES_USER=guy
-    #   - POSTGRES_PASSWORD=password
-    #   - POSTGRES_DB=engauge
-      # - POSTGRES_USER:'guy'
-      # - POSTGRES_PASSWORD:'password'
-      # - POSTGRES_DB:'engauge'
