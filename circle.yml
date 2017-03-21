@@ -8,6 +8,7 @@ machine:
         version: 2.7.11
 dependencies:
     override:
+        - pip install docker
         - pip install docker-compose
         - docker build -t stolemyusername/engauge .
         - docker login -u $DOCKER_LOGIN_USER -p $DOCKER_LOGIN_PASSWORD
