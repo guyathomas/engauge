@@ -9,8 +9,9 @@ machine:
 dependencies:
     override:
         - pip install docker-compose
+        - docker-compose build
 deployment:
   hub:
     branch: master
     commands:
-      - docker-compose up --build
+      - docker-compose up
