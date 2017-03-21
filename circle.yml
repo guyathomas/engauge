@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build --rm=false -t stolemyusername/engauge .
+    - docker build --rm=false -t engauged:latest .
 
 # test:
 #   override:
