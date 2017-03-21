@@ -8,15 +8,4 @@ machine:
         version: 2.7.11
 dependencies:
     override:
-        - pip install docker
         - pip install docker-compose
-        - docker build -t stolemyusername/engauge .
-        - docker login -u $DOCKER_LOGIN_USER -p $DOCKER_LOGIN_PASSWORD
-        - docker push stolemyusername/engauge:latest
-deployment:
-  production:
-    branch: master
-    commands:
-      - docker pull stolemyusername/engauge:latest
-      - docker-compose -f engauge/docker-compose.yml up -d
-      - docker images --no-trunc | grep none | awk '{print $3}' | xargs docker rmi
