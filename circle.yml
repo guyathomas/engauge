@@ -22,4 +22,5 @@ deployment:
       # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
       - docker images
-      - docker push registry.heroku.com/stolemyusername/engauged:latest
+      - heroku container:push web
+      # - docker push registry.heroku.com/stolemyusername/engauged:latest
