@@ -19,18 +19,18 @@ deployment:
     branch: master
     heroku:
           appname: engauged
-    commands:
-      - |
-        cat >~/.netrc <<EOF
-        machine api.heroku.com
-          login $HEROKU_EMAIL
-          password $HEROKU_TOKEN
-        machine git.heroku.com
-          login $HEROKU_EMAIL
-          password $HEROKU_TOKEN
-      - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASS
-      # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
-      - docker images
-      # - heroku container:push web
-      - docker push registry.heroku.com/stolemyusername/engauged:latest
+    # commands:
+    #   - |
+    #     cat >~/.netrc <<EOF
+    #     machine api.heroku.com
+    #       login $HEROKU_EMAIL
+    #       password $HEROKU_TOKEN
+    #     machine git.heroku.com
+    #       login $HEROKU_EMAIL
+    #       password $HEROKU_TOKEN
+    #   - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASS
+    #   # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    #   - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
+    #   - docker images
+    #   # - heroku container:push web
+    #   - docker push registry.heroku.com/stolemyusername/engauged:latest
