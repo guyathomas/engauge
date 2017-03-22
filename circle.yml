@@ -18,7 +18,7 @@ deployment:
   production:
     branch: master
     commands:
-      - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$(heroku auth:token) registry.heroku.com
+      - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASS registry.heroku.com
       # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
       - docker images
