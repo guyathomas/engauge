@@ -1,12 +1,16 @@
 machine:
+  python:
+    version: 2.7.3
   services:
     - docker
 
 dependencies:
-  override: 
+  pre:
+    - pip install awscli
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-    - docker build -t stolemyusername/engauged:latest .
+    - docker build --rm=false -t stolemyusername/engauge:$CIRCLE_SHA1 .
     # - docker push stolemyusername/engauged:latest
+  override: 
 
 
 # test:
@@ -15,22 +19,8 @@ dependencies:
 #     - curl --retry 10 --retry-delay 5 -v http://localhost:9200
 
 deployment:
-  production:
+  elasticbeanstalk:
     branch: master
-    heroku:
-          appname: engauged
-    # commands:
-    #   - |
-    #     cat >~/.netrc <<EOF
-    #     machine api.heroku.com
-    #       login $HEROKU_EMAIL
-    #       password $HEROKU_TOKEN
-    #     machine git.heroku.com
-    #       login $HEROKU_EMAIL
-    #       password $HEROKU_TOKEN
-    #   - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASS
-    #   # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-    #   - docker tag stolemyusername/engauged:latest registry.heroku.com/stolemyusername/engauged:latest
-    #   - docker images
-    #   # - heroku container:push web
-    #   - docker push registry.heroku.com/stolemyusername/engauged:latest
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - ./deploy.sh $CIRCLE_SHA1

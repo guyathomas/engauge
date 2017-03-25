@@ -1,0 +1,16 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "engaugeapp",
+    "Key": "docker/dockercfg"
+  },
+  "Image": {
+    "Name": "stolemyusername/engauge:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ]
+}
