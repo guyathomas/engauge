@@ -1,4 +1,5 @@
 SHA1=$1
+ACCESS_ID=$2
 
 # Deploy image to Docker Hub
 docker push stolemyusername/engauge:$SHA1
@@ -9,6 +10,8 @@ DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
 
 sed "s/<TAG>/$SHA1/" < Dockerrun.aws.json.template > $DOCKERRUN_FILE
 aws configure set default.region us-west-1
+aws configure set aws_access_key_id $ACCESS_ID
+# aws configure set aws_secret_access_key default_secret_key
 
 aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
 aws elasticbeanstalk create-application-version --application-name engauge \
