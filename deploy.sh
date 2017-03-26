@@ -3,8 +3,8 @@ ACCESS_ID=$2
 SECRET=$3
 
 # Deploy image to Docker Hub
-# docker push stolemyusername/engauge:$SHA1
-docker push stolemyusername/engauge:latest
+docker push stolemyusername/engauge:$SHA1
+# docker push stolemyusername/engauge:latest
 
 # Create new Elastic Beanstalk version
 EB_BUCKET=engaugeapp
