@@ -56,11 +56,11 @@ const config = {
     },
     port: 5432,
     db: {
-      database: process.env.POSTGRES_DB,
-      user: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASS,
+      database: process.env.RDS_DB_NAME,
+      user: process.env.RDS_USERNAME,
+      password: process.env.RDS_DB_PASSWORD,
       options: {
-        host: process.env.POSTGRES_HOST,
+        host: process.env.RDS_HOSTNAME,
         dialect: 'postgres',
         pool: {
           max: 100,
