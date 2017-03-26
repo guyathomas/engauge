@@ -5,7 +5,7 @@
     "Key": "docker/dockercfg"
   },
   "Image": {
-    "Name": "stolemyusername/engauge:<TAG>",
+    "Name": "stolemyusername/engauge:latest",
     "Update": "true"
   },
   "Ports": [

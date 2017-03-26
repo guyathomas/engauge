@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
-const db = require('../db/models');
+// const db = require('../db/models');
 const utils = require('./utils.js');
 
 const app = express();
@@ -14,11 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
-
-db.sequelize.sync()
-  .catch((e) => {
-    throw new Error(e);
-  });
+// db.sequelize.sync()
+//   .catch((e) => {
+//     throw new Error(e);
+//   });
 
 // TODO: Move the handlers into their own files
 app.post('/api/caseStudies', (req, res) => {
