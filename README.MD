@@ -1,5 +1,4 @@
 # Engauge - See where your customers look first
-![alt text](http://res.cloudinary.com/dqvlfpaev/image/upload/c_scale,w_2916/v1490566913/Screen_Shot_2017-03-27_at_9.18.53_am_x
 Engauge is a web app that allows you to track where people are looking on a website. The workflow is
   - Create a shareable link on the home page
     - When navigating to that link, a recording session will resume. Click a few times to train the eye tracker.
