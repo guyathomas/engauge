@@ -56,11 +56,11 @@ const config = {
     },
     port: 5432,
     db: {
-      database: 'ebdb',
-      user: 'guy',
-      password: 'password',
+      database: process.env.POSTGRES_DB,
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASS,
       options: {
-        host: 'aa1rvrrcabppvg1.c1cvbfuy6thf.us-west-1.rds.amazonaws.com',
+        host: process.env.POSTGRES_HOST,
         dialect: 'postgres',
         pool: {
           max: 100,
