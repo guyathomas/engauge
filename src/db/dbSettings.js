@@ -2,7 +2,6 @@ const path = require('path');
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
 console.log(`The environment variables are ${JSON.stringify(process.env)}`);
-console.log('POSTGRES_PASSWORD', POSTGRES_PASSWORD)
 const env = process.env.NODE_ENV || 'development';
 const rootPath = path.normalize(`${__dirname}/..`);
 
@@ -59,7 +58,7 @@ const config = {
     db: {
       database: 'ebdb',
       user: 'guy',
-      password: 'tangl3w00d',
+      password: 'password',
       options: {
         host: 'aa1rvrrcabppvg1.c1cvbfuy6thf.us-west-1.rds.amazonaws.com',
         dialect: 'postgres',
@@ -72,5 +71,5 @@ const config = {
     },
   },
 };
-console.log('The DB settings in the export are', config[env]);
+console.log('The DB settings in the export are2', config[env]);
 module.exports = config[env];
