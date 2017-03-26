@@ -1,16 +1,46 @@
 {
-  "AWSEBDockerrunVersion": "1",
-  "Authentication": {
-    "Bucket": "engaugeapp",
-    "Key": "docker/dockercfg"
-  },
-  "Image": {
-    "Name": "stolemyusername/engauge:<TAG>",
-    "Update": "true"
-  },
-  "Ports": [
-    {
-      "ContainerPort": "80"
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [{
+    "name": "web-app",
+    "host": {
+      "sourcePath": "/var/app/current/web-app"
     }
-  ]
+  }, {
+    "name": "postgres-db",
+    "host": {
+      "sourcePath": "/var/app/current/db"
+    }
+  }],
+  "containerDefinitions": [{
+    "name": "web-app",
+    "image": "stolemyusername/engauge:<TAG>",
+    "essential": true,
+    "memory": 128,
+    "mountPoints": [{
+      "sourceVolume": "web-app",
+      "containerPath": "/var/www/html",
+      "readOnly": true
+    }],
+    "links": [
+      "postgres-db"
+    ]
+  }, {
+    "name": "postgres-db",
+    "image": "postgres:latest",
+    "essential": true,
+    "memory": 128,
+    "portMappings": [{
+      "hostPort": 5432,
+      "containerPort": 5432
+    }],
+    "mountPoints": [{
+      "sourceVolume": "postgres-db",
+      "containerPath": "/etc/postgres-db",
+      "readOnly": true
+    }, {
+      "sourceVolume": "web-app",
+      "containerPath": "/var/www/html",
+      "readOnly": true
+    }]
+  }]
 }
