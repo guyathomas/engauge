@@ -21,6 +21,6 @@ aws elasticbeanstalk create-application-version --application-name engaugeapp \
   --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
 
 # Update Elastic Beanstalk environment to new version
-aws elasticbeanstalk update-environment --environment-name engauge \
+aws elasticbeanstalk update-environment --environment-name engauge-env \
     --version-label $SHA1
 
