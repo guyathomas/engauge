@@ -1,6 +1,8 @@
 const path = require('path');
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
+console.log(`The environment variables are ${process.env}`);
+console.log('The POSTGRES_PASSWORD is ', POSTGRES_PASSWORD)
 const env = process.env.NODE_ENV || 'development';
 const rootPath = path.normalize(`${__dirname}/..`);
 
@@ -55,11 +57,11 @@ const config = {
     },
     port: 5432,
     db: {
-      database: 'postgres-db',
+      database: 'ebdb',
       user: 'guy',
       password: 'password',
       options: {
-        host: '0.0.0.0',
+        host: 'aa1rvrrcabppvg1.c1cvbfuy6thf.us-west-1.rds.amazonaws.com',
         dialect: 'postgres',
         pool: {
           max: 100,
