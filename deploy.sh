@@ -17,10 +17,10 @@ aws configure set aws_secret_access_key $SECRET
 # aws configure set aws_secret_access_key default_secret_key
 echo $ACCESS_ID $SECRET
 aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
-aws elasticbeanstalk create-application-version --application-name engauge \
+aws elasticbeanstalk create-application-version --application-name engaugeapp \
   --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
 
 # Update Elastic Beanstalk environment to new version
-aws elasticbeanstalk update-environment --environment-name engaugeapp-env \
+aws elasticbeanstalk update-environment --environment-name engauge \
     --version-label $SHA1
 
