@@ -7,8 +7,8 @@ POSTGRES_DB=database
 const config = {
   db: {
     user: 'guy',
-    database: 'engauge',
-    password: 'tangl3w00d',
+    database: 'db',
+    password: 'pass',
   },
 };
 
