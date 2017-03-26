@@ -58,7 +58,7 @@ const config = {
     db: {
       database: process.env.RDS_DB_NAME,
       user: process.env.RDS_USERNAME,
-      password: process.env.RDS_DB_PASSWORD,
+      password: process.env.RDS_PASSWORD,
       options: {
         host: process.env.RDS_HOSTNAME,
         dialect: 'postgres',
