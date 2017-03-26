@@ -23,4 +23,4 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - sh ./deploy.sh $CIRCLE_SHA1 $AWS_ACCESS_KEY_ID
+      - sh ./deploy.sh $CIRCLE_SHA1 $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
