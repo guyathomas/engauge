@@ -55,11 +55,11 @@ const config = {
     },
     port: 5432,
     db: {
-      database: 'engauge',
+      database: 'postgres-db',
       user: 'guy',
       password: 'password',
       options: {
-        host: 'postgres-db.engaugeapp.us-west-1.elasticbeanstalk.com',
+        host: '0.0.0.0',
         dialect: 'postgres',
         pool: {
           max: 100,
