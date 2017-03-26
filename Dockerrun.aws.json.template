@@ -1,5 +1,9 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "Authentication": {
+    "Bucket": "engaugeapp",
+    "Key": "docker/dockercfg"
+  },
   "volumes": [{
     "name": "web-app",
     "host": {
