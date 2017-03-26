@@ -22,9 +22,9 @@ deployment:
   elasticbeanstalk:
     branch: master
     environment:
-        POSTGRES_PASSWORD: 
-        POSTGRES_USER:
-        POSTGRES_DATABASE: 
+        POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+        POSTGRES_USER: $POSTGRES_USER
+        POSTGRES_DB: $POSTGRES_DB
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - sh ./deploy.sh $CIRCLE_SHA1 $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY

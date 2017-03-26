@@ -2,6 +2,7 @@ const path = require('path');
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
 console.log(`The environment variables are ${JSON.stringify(process.env)}`);
+console.log('POSTGRES_PASSWORD', POSTGRES_PASSWORD)
 const env = process.env.NODE_ENV || 'development';
 const rootPath = path.normalize(`${__dirname}/..`);
 
