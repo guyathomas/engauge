@@ -59,7 +59,7 @@ const config = {
       user: 'guy',
       password: 'password',
       options: {
-        host: 'postgres-db.engaugeapp.us-west-2.elasticbeanstalk.com',
+        host: 'postgres-db.engaugeapp.us-west-1.elasticbeanstalk.com',
         dialect: 'postgres',
         pool: {
           max: 100,
