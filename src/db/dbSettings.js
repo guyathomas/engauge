@@ -58,7 +58,7 @@ const config = {
     db: {
       database: 'ebdb',
       user: 'guy',
-      password: 'password',
+      password: 'tangl3w00d',
       options: {
         host: 'aa1rvrrcabppvg1.c1cvbfuy6thf.us-west-1.rds.amazonaws.com',
         dialect: 'postgres',
