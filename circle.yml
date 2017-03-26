@@ -9,7 +9,7 @@ dependencies:
     - pip install awscli
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     - docker build --rm=false -t stolemyusername/engauge:$CIRCLE_SHA1 .
-    # - docker push stolemyusername/engauged:latest
+    - docker push stolemyusername/engauge:$CIRCLE_SHA1
   override: 
 
 
