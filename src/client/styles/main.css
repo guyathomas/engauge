@@ -55,10 +55,11 @@ body {
 .primary-nav {
     height: 2vh;
 	display: flex;
-    flex-direction: row-reverse;
     background-color: #3F4D5F;
     padding: 1em;
     color: white;
+    flex-direction: row;
+    align-items: center;
 }
 
 .primary-nav a {
@@ -70,6 +71,12 @@ body {
 	margin: 0 0.5em
 }
 
+/*.primary-nav .logo {
+}*/
+
+.primary-nav.first-item {
+	margin-left: auto;
+}
 /*==============================
 ===========Hero Text============
 ==============================*/
