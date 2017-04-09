@@ -1,3 +1,4 @@
+'use strict';
 const path = require('path');
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
