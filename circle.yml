@@ -12,7 +12,6 @@ dependencies:
     - docker push stolemyusername/engauge:$CIRCLE_SHA1
   # override: 
 
-
 # test:
 #   override:
 #     - docker run -d -p 9200:9200 stolemyusername/engauge; sleep 10
