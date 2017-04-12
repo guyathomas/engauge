@@ -10,3 +10,4 @@ src/client/build
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+EC2TaskDefinition.JSON
