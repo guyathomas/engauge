@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Authentication": {
-    "Bucket": "engaugeapp",
+    "Bucket": "engauge-bucket",
     "Key": "docker/dockercfg"
   },
   "Image": {
@@ -10,7 +10,7 @@
   },
   "Ports": [
     {
-      "ContainerPort": "3000"
+      "ContainerPort": "80"
     }
   ]
 }

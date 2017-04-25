@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": 2,
   "Authentication": {
-    "Bucket": "engaugeapp",
+    "Bucket": "engauge-bucket",
     "Key": "docker/dockercfg"
   },
   "volumes": [{
@@ -20,6 +20,10 @@
     "image": "stolemyusername/engauge:<TAG>",
     "essential": true,
     "memory": 128,
+    "portMappings": [{
+      "hostPort": 80,
+      "containerPort": 80
+    }],
     "mountPoints": [{
       "sourceVolume": "web-app",
       "containerPath": "/var/www/html",

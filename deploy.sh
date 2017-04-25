@@ -3,14 +3,14 @@ ACCESS_ID=$2
 SECRET=$3
 
 # Deploy image to Docker Hub
-docker push stolemyusername/engauge:$SHA1
+# docker push stolemyusername/engauge:$SHA1  (this is being covered in the previous steps)
 # docker push stolemyusername/engauge:latest
 
 # Create new Elastic Beanstalk version
-EB_BUCKET=engaugeapp
+EB_BUCKET=engauge-bucket
 DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
 
-sed "s/<TAG>/$SHA1/" < Dockerrun.aws.json.template.single > $DOCKERRUN_FILE
+sed "s/<TAG>/$SHA1/" < Dockerrun.aws.json.template > $DOCKERRUN_FILE
 aws configure set default.region us-west-1
 aws configure set aws_access_key_id $ACCESS_ID
 aws configure set aws_secret_access_key $SECRET

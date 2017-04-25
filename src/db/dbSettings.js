@@ -10,7 +10,7 @@ if (process.env.NODE_ENV) {
   // TODO: This is kind of hacky. Instead just set the prod environment variable in AWS
   env = 'production';
 } else {
-  env = 'development';
+  env = 'production';
 }
 
 const rootPath = path.normalize(`${__dirname}/..`);
