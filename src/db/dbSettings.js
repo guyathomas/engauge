@@ -6,11 +6,8 @@ console.log(`The environment variables are ${JSON.stringify(process.env)}`);
 let env;
 if (process.env.NODE_ENV) {
   env = process.env.NODE_ENV;
-} else if (process.env.RDS_USERNAME) {
-  // TODO: This is kind of hacky. Instead just set the prod environment variable in AWS
-  env = 'production';
 } else {
-  env = 'production';
+  env = 'development';
 }
 
 const rootPath = path.normalize(`${__dirname}/..`);
