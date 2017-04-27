@@ -4,7 +4,7 @@ designs
 src/client/build
 
 #docker-compose env file
-#.env not needed anymore because it's just keys for local development
+*.env not needed anymore because it's just keys for local development
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

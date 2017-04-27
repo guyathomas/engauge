@@ -63,7 +63,7 @@ const config = {
     },
     port: 5432,
     db: {
-      database: process.env.PGDATABASE,
+      database: process.env.POSTGRES_DB,
       user: process.env.PGUSER,
       password: process.env.PGPASSWORD,
       options: {

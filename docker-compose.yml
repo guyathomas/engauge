@@ -12,4 +12,4 @@ services:
     image: postgres:latest # specify image to build container from
     ports:
       - "5432:5432" # specify port forewarding
-    env_file: .env
+    env_file: docker-compose.env
