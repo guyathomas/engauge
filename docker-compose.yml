@@ -2,6 +2,12 @@ version: '2' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    links:
+      - web
   web: # name of the first service
     build: . # specify the directory of the Dockerfile
     ports:
