@@ -17,6 +17,12 @@
       "image": "stolemyusername/engauge:<TAG>",
       "essential": true,
       "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ],
       "mountPoints": [
       ]
     },
