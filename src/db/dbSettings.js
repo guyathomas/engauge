@@ -3,12 +3,7 @@ const path = require('path');
 
 console.log(`The environment is ${process.env.NODE_ENV}`);
 console.log(`The environment variables are ${JSON.stringify(process.env)}`);
-let env;
-if (process.env.NODE_ENV) {
-  env = process.env.NODE_ENV;
-} else {
-  env = 'development';
-}
+const env = process.env.NODE_ENV || 'development';
 
 const rootPath = path.normalize(`${__dirname}/..`);
 
@@ -63,7 +58,7 @@ const config = {
     },
     port: 5432,
     db: {
-      database: process.env.POSTGRES_DB,
+      database: process.env.PGDATABASE,
       user: process.env.PGUSER,
       password: process.env.PGPASSWORD,
       options: {
@@ -78,5 +73,5 @@ const config = {
     },
   },
 };
-console.log('The DB settings in the export are2', config[env]);
+console.log('The DB settings exported are', config[env]);
 module.exports = config[env];
