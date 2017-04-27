@@ -8,8 +8,12 @@ dependencies:
   pre:
     - pip install awscli
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    #Push new web image to dockerhub
     - docker build --rm=false -t stolemyusername/engauge:$CIRCLE_SHA1 .
     - docker push stolemyusername/engauge:$CIRCLE_SHA1
+    #Push new ngnix proxy
+    - docker build --rm=false -t stolemyusername/nginx:latest ./nginx
+    - docker push stolemyusername/nginx:latest
   # override:
 
 # test:

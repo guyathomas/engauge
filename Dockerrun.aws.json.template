@@ -1,5 +1,13 @@
 {
   "AWSEBDockerrunVersion": 2,
+    "volumes": [
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/proxy/conf.d"
+      }
+    }
+  ],
   "Authentication": {
     "Bucket": "engauge-bucket",
     "Key": "docker/dockercfg"
@@ -9,13 +17,33 @@
       "image": "stolemyusername/engauge:<TAG>",
       "essential": true,
       "memory": 128,
+      "mountPoints": [
+      ]
+    },
+    {
+      "name": "nginx-proxy",
+      "image": "stolemyusername/nginx:latest",
+      "essential": true,
+      "memory": 128,
       "portMappings": [
         {
           "hostPort": 80,
-          "containerPort": 3000
+          "containerPort": 80
         }
       ],
+      "links": [
+        "web"
+      ],
       "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
+        },
+        {
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx/conf.d",
+          "readOnly": true
+        }
       ]
     }]
 }
