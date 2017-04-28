@@ -1,4 +1,5 @@
 import React from 'react';
+import FormFeedback from './FormFeedback';
 
 class Hero extends React.Component {
   constructor(props) {
@@ -9,6 +10,10 @@ class Hero extends React.Component {
       hasCompletedForm: false,
       watchURL: '',
     };
+  }
+
+  validURL(isValid) {
+    console.log(isValid ? 'URL is Valid' : 'URL is not valid')
   }
 
   createLink() {
@@ -24,10 +29,18 @@ class Hero extends React.Component {
     })
     .then(response => response.json())
     .then((result) => {
-      this.setState({ watchURL: (window.location.href + 'watch/' + result.shortCode) });
+      this.setState({ watchURL: (`${window.location.href}watch/${result.shortCode}`) });
     });
   }
 
+  componentWillMount() {
+    this.urlValidations = [
+      {
+        condition: fieldText => fieldText.match(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i),
+        message: 'This Dev version of the app requires an image URL input.',
+      },
+    ];
+  }
   // Update state to have key as the value of the field ID that was changed
   // and the value as the text input
   handleChange(e) {
@@ -42,6 +55,7 @@ class Hero extends React.Component {
   }
 
   render() {
+    console.log(this.urlValidations);
     return (
       <div className="hero">
         <div className="herotext-parent">
@@ -50,10 +64,11 @@ class Hero extends React.Component {
         </div>
         <form className="tracknew">
           <input onKeyUp={this.handleChange.bind(this)} id="formUrl" className="input"type="text" placeholder={'URL to track'} />
+          <FormFeedback fieldText={this.state.formUrl} validations={this.urlValidations}/>
           <input onKeyUp={this.handleChange.bind(this)} id="formEmail" className="input" type="text" placeholder={'Your email'} />
           <div className={this.state.hasCompletedForm ? 'button-cta' : 'button-cta inactive'} onClick={this.createLink.bind(this, this.state.url, this.state.email)}>Generate Link</div>
-          <div className={this.state.watchURL ? 'copy-container' : 'hidden'}>
-            <div className="copy-text">{this.state.watchURL}</div>
+          <div className={this.state.watchURL ? 'form-message' : 'hidden'}>
+            <div className="text-box">{this.state.watchURL}</div>
           </div>
         </form>
       </div>
