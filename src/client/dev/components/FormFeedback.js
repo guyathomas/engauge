@@ -1,25 +1,30 @@
 import React from 'react';
 
 const FormFeedback = (props) => {
+  const {
+    validations, fieldText, callback,
+  } = props;
   let isValid = true;
   let errorMessage = '';
-  // console.log('props, props.validations', props, props.validations);
-  for (let i = 0; i < props.validations.length; i++) {
-    if (!props.validations[i].condition(props.fieldText)) {
-      errorMessage = props.validations[i].message;
+  // console.log('props, validations', props, props.validations);
+  for (let i = 0; i < validations.length; i++) {
+    if (!validations[i].condition(fieldText)) {
+      errorMessage = validations[i].message;
       isValid = false;
       break;
     }
   }
 
+
+  callback(isValid);
   if (isValid) {
-    return (<div className="hidden"/>);
+    return (<div className="hidden" />);
   } else {
     return (<div className="form-message">
-              <div className="text-box">
-                {errorMessage}
-              </div>
-            </div>);
+      <div className="text-box">
+        {errorMessage}
+      </div>
+    </div>);
   }
 };
 
