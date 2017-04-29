@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormFeedback = (props) => {
   const {
-    validations, fieldText, callback,
+    validations, fieldText,
   } = props;
   let isValid = true;
   let errorMessage = '';
@@ -16,7 +16,6 @@ const FormFeedback = (props) => {
   }
 
 
-  callback(isValid);
   if (isValid) {
     return (<div className="hidden" />);
   } else {
