@@ -10,14 +10,17 @@ Engauge is a web app that allows you to track where people are looking on a webs
 - #### New
   - Allow tracking of web hosted images
   - View any case study (even those that have been created by other people!)
-- #### In Development
   - Validate URL & email for a new case study
   - Add back button & logo
+  - Continuous integration with CI to deploy to AWS EB
+- #### In Development
+  - Add support for 
   - Refactor to SASS
   - Scrub through session timeline so people can view a progressive heatmap
   - Improve information that comes through on the cards in the review/watch pages (Such as watch count, title)
   - Add 'clear' button to remove heatmap layer altogether
   - Allow selecting of multiple sessions to view a merged heatmap
+  - Allow uploading of links that are not images
 - #### Bug Fixes In Progress
   - Stop webcam session after navigating from a 'watch' page
   - Heat map overlay loads incorrectly if the window is resized when navigating to the page
