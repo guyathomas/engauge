@@ -4,10 +4,15 @@ version: '2' # specify docker-compose version
 services:
   nginx:
     build: ./nginx
+    container_name: nginx
     ports:
       - "80:80"
+      - "443:443"
     links:
       - web
+    volumes:
+      - certs:/etc/letsencrypt
+      - certs-data:/data/letsencrypt
   web: # name of the first service
     build: . # specify the directory of the Dockerfile
     ports:

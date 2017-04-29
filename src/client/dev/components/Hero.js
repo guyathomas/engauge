@@ -12,10 +12,6 @@ class Hero extends React.Component {
     };
   }
 
-  validURL(isValid) {
-    console.log(isValid ? 'URL is Valid' : 'URL is not valid')
-  }
-
   createLink() {
     const formFields = {
       formEmail: this.state.formEmail,
@@ -63,7 +59,7 @@ class Hero extends React.Component {
         </div>
         <form className="tracknew">
           <input onKeyUp={this.handleChange.bind(this)} id="formUrl" className="input"type="text" placeholder={'URL to track'} />
-          <FormFeedback fieldText={this.state.formUrl} validations={this.urlValidations}}/>
+          <FormFeedback fieldText={this.state.formUrl} validations={this.urlValidations} />
           <input onKeyUp={this.handleChange.bind(this)} id="formEmail" className="input" type="text" placeholder={'Your email'} />
           <div className={this.state.hasCompletedForm ? 'button-cta' : 'button-cta inactive'} onClick={this.createLink.bind(this, this.state.url, this.state.email)}>Generate Link</div>
           <div className={this.state.watchURL ? 'form-message' : 'hidden'}>
