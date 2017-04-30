@@ -14,8 +14,6 @@ dependencies:
     #Push new ngnix proxy
     - docker build --rm=false -t stolemyusername/nginx:latest ./nginx
     - docker push stolemyusername/nginx:latest
-  # override:
-
 # test:
 #   override:
 #     - docker run -d -p 9200:9200 stolemyusername/engauge; sleep 10
