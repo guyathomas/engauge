@@ -2,10 +2,6 @@ SHA1=$1
 ACCESS_ID=$2
 SECRET=$3
 
-# Deploy image to Docker Hub
-# docker push stolemyusername/engauge:$SHA1  (this is being covered in the previous steps)
-# docker push stolemyusername/engauge:latest
-
 # Create new Elastic Beanstalk version
 EB_BUCKET=engauge-bucket
 DOCKERRUN_FILE=Dockerrun.aws.json
@@ -26,4 +22,3 @@ aws elasticbeanstalk create-application-version --application-name engauge-app \
 # Update Elastic Beanstalk environment to new version
 aws elasticbeanstalk update-environment --environment-name engauge-prod \
     --version-label $SHA1
-
