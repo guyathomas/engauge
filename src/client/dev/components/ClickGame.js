@@ -23,6 +23,8 @@ class ClickGame extends React.Component {
         width: window.innerWidth,
       },
       circleR: 40,
+      targetGames: 5,
+      currGame: 1,
     };
   }
 
@@ -42,23 +44,31 @@ class ClickGame extends React.Component {
     return ((planeSize - objSize) * locPerc);
   }
 
-  updateLocation() {
-    this.props.nextGame();
+  nextGame() {
     this.setState({
       loc: {
         leftPerc: Math.random(),
         topPerc: Math.random(),
       },
+      currGame: this.state.currGame + 1,
     });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.currGame < nextState.targetGames) {
+      return true;
+    } else {
+      this.props.completeTraining();
+      return false;
+    }
+  }
 
   render() {
     const left = this.posInBounds(this.state.loc.leftPerc, this.state.windowSize.width, this.state.circleR * 2);
     const top = this.posInBounds(this.state.loc.topPerc, this.state.windowSize.height, this.state.circleR * 2);
     return (
       <Cirlce
-        nextGame={this.updateLocation.bind(this)}
+        nextGame={this.nextGame.bind(this)}
         left={left}
         top={top}
         circleR={this.state.circleR}
