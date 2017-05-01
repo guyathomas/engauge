@@ -22,3 +22,7 @@ svg,
 cicle {
   transform: translateZ(0);
 }
+
+.instructions {
+	text-align: center;
+}

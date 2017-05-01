@@ -2,7 +2,7 @@ import React from 'react';
 
 const Cirlce = (props) => {
   console.log('Nextgame passed', props.nextGame)
-  const containerSize = (props.circle.r + props.circle.pad) * 2;
+  const containerSize = (props.circle.r) * 2;
   const circleR = props.circle.r;
   return (
     <svg
@@ -28,7 +28,6 @@ class ClickGame extends React.Component {
       },
       circle: {
         r: 40,
-        pad: 10,
       },
       targetGames: 5,
       currGame: 1,
@@ -74,13 +73,18 @@ class ClickGame extends React.Component {
   render() {
     const left = this.posInBounds(this.state.loc.leftPerc, this.state.windowSize.width, this.state.circle.r * 2);
     const top = this.posInBounds(this.state.loc.topPerc, this.state.windowSize.height, this.state.circle.r * 2);
+    const gamesLeft = this.state.targetGames - this.state.currGame;
+    const statusText = `Click the circle ${gamesLeft} time${gamesLeft > 1 ? 's' : ''} to train your Webcam`;
     return (
-      <Cirlce
-        nextGame={this.nextGame.bind(this)}
-        left={left}
-        top={top}
-        circle={this.state.circle}
-      />
+      <div>
+        <div className="instructions">{statusText}</div>
+        <Cirlce
+          nextGame={this.nextGame.bind(this)}
+          left={left}
+          top={top}
+          circle={this.state.circle}
+        />
+      </div>
     );
   }
 }

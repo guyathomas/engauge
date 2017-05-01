@@ -110,8 +110,9 @@ a, a:visited, a:hover, a:active {
 	height: 100%;
 }
 
-.empty-review {
+.instructions {
 	margin: auto;
 	font-family: Raleway-Medium;
 	font-size: 2em;
+	text-align: center;
 }

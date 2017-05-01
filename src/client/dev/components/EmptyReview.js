@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EmptyReview = () => (
-  <div className="empty-review" >
+  <div className="instructions" >
  	Please select a session to review
   </div>
 );
