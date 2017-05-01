@@ -1,4 +1,5 @@
 import React from 'react';
+import ClickGame from './ClickGame';
 
 class Watch extends React.Component {
   constructor(props) {
@@ -6,6 +7,12 @@ class Watch extends React.Component {
     this.state = {
       socket: {},
       sessions: {},
+      targetGames: 5,
+      training: {
+        active: true,
+        currentGame: 0,
+      },
+      recStartMs: 0,
     };
   }
 
@@ -19,13 +26,18 @@ class Watch extends React.Component {
 
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
-      if (data == null) { return; }
+      //Don't send the data if there is no coordinates or is currently in training
+      if (data == null || this.state.training.active) { return; }
 
-      this.state.socket.emit('data', {
-        time: Math.floor(elapsedTime),
-        x: data.x,
-        y: data.y,
-      });
+      if (!this.state.recStartMs) {
+        this.setState({ recStartMs: elapsedTime });
+      } else {
+        this.state.socket.emit('data', {
+          time: Math.floor(elapsedTime - this.state.recStartMs),
+          x: data.x,
+          y: data.y,
+        });
+      }
     }).begin();
   }
 
@@ -51,13 +63,35 @@ class Watch extends React.Component {
     this.state.socket.disconnect();
   }
 
+  nextGame() {
+    if (this.state.training.currentGame >= this.state.targetGames ) {
+      this.setState({
+        training: {
+          active: false,
+          currentGame: 1,
+        },
+      });
+    } else {
+      const nextGameNum = this.state.training.currentGame + 1;
+      this.setState({
+        training: {
+          active: true,
+          currentGame: nextGameNum,
+        },
+      });
+    }
+  }
 
   render() {
-    return (
-      <div className="watch">
-          <img src={this.state.sessions.url} />
-      </div>
-    );
+    if (this.state.training.active) {
+      return (<ClickGame nextGame={this.nextGame.bind(this)} />)
+    } else {
+      return (
+        <div className="watch">
+            <img src={this.state.sessions.url} />
+        </div>
+      );
+    }
   }
   }
 
