@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Cirlce = (props) => {
-  console.log('Nextgame passed', props.nextGame)
   const containerSize = (props.circle.r) * 2;
   const circleR = props.circle.r;
   return (
@@ -51,7 +50,6 @@ class ClickGame extends React.Component {
   }
 
   nextGame() {
-    console.log('nextGame run', this.state);
     this.setState({
       loc: {
         leftPerc: Math.random(),

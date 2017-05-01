@@ -1,12 +1,6 @@
 'use strict';
 const path = require('path');
-
-console.log(`The environment is ${process.env.NODE_ENV}`);
-console.log(`The environment variables are ${JSON.stringify(process.env)}`);
-console.log(`DB details at: ${new Date()}!`);
-
 const env = process.env.NODE_ENV || 'development';
-
 const rootPath = path.normalize(`${__dirname}/..`);
 
 const config = {
@@ -75,5 +69,4 @@ const config = {
     },
   },
 };
-console.log('The DB settings exported are', config[env]);
 module.exports = config[env];

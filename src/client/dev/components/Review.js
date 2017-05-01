@@ -31,7 +31,6 @@ class Review extends React.Component {
   }
 
   componentDidMount() {
-    console.log('This in review', this)
     const context = this;
     this.setState({heatmap: context.createHeatmap()})
   }
