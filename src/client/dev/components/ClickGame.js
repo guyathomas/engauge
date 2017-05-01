@@ -1,13 +1,17 @@
 import React from 'react';
 
 const Cirlce = (props) => {
-  const containerSize = props.circleR * 2;
+  console.log('Nextgame passed', props.nextGame)
+  const containerSize = (props.circle.r + props.circle.pad) * 2;
+  const circleR = props.circle.r;
   return (
-      <svg height={containerSize} width={containerSize} style={{ position: 'relative', left: `${props.left}px`, top: `${props.top}px` }}>
-        <circle cx={props.circleR} cy={props.circleR} r={props.circleR} fill="red" onClick={props.nextGame} />
-        Sorry, your browser does not support inline SVG.
-      </svg>
-      );
+    <svg
+      onClick={props.nextGame}
+      style={{ position: 'relative', left: `${props.left}px`, top: `${props.top}px`, width: containerSize, height: containerSize }} >
+      <circle cx={circleR} cy={circleR} r={circleR - 4} fill="black" stroke="black" strokeWidth="2" ></circle>
+      <circle transform="rotate(-90 40 40)" cx={circleR} cy={circleR} r={circleR - 4} fill="transparent" stroke="black" strokeWidth="5" className="circle-overlay"></circle>
+    </svg>
+    );
 };
 
 class ClickGame extends React.Component {
@@ -22,7 +26,10 @@ class ClickGame extends React.Component {
         height: window.innerHeight,
         width: window.innerWidth,
       },
-      circleR: 40,
+      circle: {
+        r: 40,
+        pad: 10,
+      },
       targetGames: 5,
       currGame: 1,
     };
@@ -45,6 +52,7 @@ class ClickGame extends React.Component {
   }
 
   nextGame() {
+    console.log('nextGame run', this.state);
     this.setState({
       loc: {
         leftPerc: Math.random(),
@@ -64,14 +72,14 @@ class ClickGame extends React.Component {
   }
 
   render() {
-    const left = this.posInBounds(this.state.loc.leftPerc, this.state.windowSize.width, this.state.circleR * 2);
-    const top = this.posInBounds(this.state.loc.topPerc, this.state.windowSize.height, this.state.circleR * 2);
+    const left = this.posInBounds(this.state.loc.leftPerc, this.state.windowSize.width, this.state.circle.r * 2);
+    const top = this.posInBounds(this.state.loc.topPerc, this.state.windowSize.height, this.state.circle.r * 2);
     return (
       <Cirlce
         nextGame={this.nextGame.bind(this)}
         left={left}
         top={top}
-        circleR={this.state.circleR}
+        circle={this.state.circle}
       />
     );
   }
