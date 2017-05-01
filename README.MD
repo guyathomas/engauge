@@ -8,13 +8,13 @@ Engauge is a web app that allows you to track where people are looking on a webs
 
 ### Features
 - #### New
+  - Add a 'game' page to the watch route that walks users through the process of training the webcam
   - Allow tracking of web hosted images
   - View any case study (even those that have been created by other people!)
   - Validate URL & email for a new case study
   - Add back button & logo
   - Continuous integration with CI to deploy to AWS EB
 - #### In Development
-  - Add support for 
   - Refactor to SASS
   - Scrub through session timeline so people can view a progressive heatmap
   - Improve information that comes through on the cards in the review/watch pages (Such as watch count, title)
@@ -38,6 +38,7 @@ Engauge uses a number of projects to work properly:
   - [Docker] to enable the microservice architecture
   - [AWS Elastic Beanstalk] to host containers
   - [CircleCI] to build, run tests, upload to Dockerhub & deploy to AWS
+  - [Nginx] to terminate the SSL, load balance and serve static assets
 
 ### Installation
 
@@ -86,3 +87,4 @@ MIT
    [CircleCI]: <https://circleci.com/>
    [Docker]: <https://www.docker.com/>
    [AWS Elastic Beanstalk]: <https://aws.amazon.com/elasticbeanstalk>
+   [Nginx]: <https://nginx.org/en>
