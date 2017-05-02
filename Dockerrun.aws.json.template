@@ -37,6 +37,20 @@
         "web"
       ],
       "mountPoints": [
-      ]
+      ],
+      "volumes": [
+          {
+            "name": "certs",
+            "host": {
+              "sourcePath": "/etc/letsencrypt"
+            }
+          },
+          {
+            "name": "certs-data",
+            "host": {
+              "sourcePath": "/data/letsencrypt"
+            }
+          }
+        ],
     }]
 }
