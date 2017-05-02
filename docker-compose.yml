@@ -24,3 +24,6 @@ services:
     ports:
       - "5432:5432" # specify port forewarding
     env_file: docker-compose.env
+volumes:
+  certs:
+  certs-data:
