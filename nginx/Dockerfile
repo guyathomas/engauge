@@ -1,2 +1,4 @@
-FROM nginx
-COPY default.conf /etc/nginx/conf.d
+FROM nginx:latest
+RUN rm -rf /etc/nginx
+COPY ./conf /etc/nginx
+EXPOSE 80 443
