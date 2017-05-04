@@ -4,6 +4,20 @@
     "Bucket": "engauge-bucket",
     "Key": "docker/dockercfg"
   },
+  "volumes": [
+      {
+        "name": "certs",
+        "host": {
+          "sourcePath": "/etc/letsencrypt"
+        }
+      },
+      {
+        "name": "certs-data",
+        "host": {
+          "sourcePath": "/data/letsencrypt"
+        }
+      }
+    ],
   "containerDefinitions": [{
       "name": "web",
       "image": "stolemyusername/engauge:<TAG>",
@@ -37,20 +51,16 @@
         "web"
       ],
       "mountPoints": [
-      ],
-      "volumes": [
-          {
-            "name": "certs",
-            "host": {
-              "sourcePath": "/etc/letsencrypt"
-            }
-          },
-          {
-            "name": "certs-data",
-            "host": {
-              "sourcePath": "/data/letsencrypt"
-            }
-          }
-        ]
+      {
+        "sourceVolume": "certs",
+        "containerPath": "/etc/letsencrypt",
+        "readOnly": true
+      },
+      {
+        "sourceVolume": "certs-data",
+        "containerPath": "/etc/letsencrypt",
+        "readOnly": true
+      }
+      ]
     }]
 }
