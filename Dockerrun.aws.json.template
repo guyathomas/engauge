@@ -8,13 +8,19 @@
       {
         "name": "certs",
         "host": {
-          "sourcePath": "/etc/letsencrypt"
+          "sourcePath": "/etc/letsencrypt/"
         }
       },
       {
         "name": "certs-data",
         "host": {
-          "sourcePath": "/data/letsencrypt"
+          "sourcePath": "/data/letsencrypt/"
+        }
+      },
+      {
+        "name": "cert-logs",
+        "host": {
+          "sourcePath": "/var/log/letsencrypt"
         }
       }
     ],
@@ -53,11 +59,11 @@
       "mountPoints": [
       {
         "sourceVolume": "certs",
-        "containerPath": "/etc/letsencrypt"
+        "containerPath": "/etc/letsencrypt/"
       },
       {
         "sourceVolume": "certs-data",
-        "containerPath": "/data/letsencrypt"
+        "containerPath": "/data/letsencrypt/"
       }
       ]
     }]
