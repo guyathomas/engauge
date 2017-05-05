@@ -20,7 +20,7 @@
       {
         "name": "cert-logs",
         "host": {
-          "sourcePath": "/var/log/letsencrypt"
+          "sourcePath": "/var/log/letsencrypt/"
         }
       }
     ],
