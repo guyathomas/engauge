@@ -8,13 +8,13 @@
       {
         "name": "certs",
         "host": {
-          "sourcePath": "/var/app/current/certs"
+          "sourcePath": "/etc/letsencrypt"
         }
       },
       {
         "name": "certs-data",
         "host": {
-          "sourcePath": "/var/app/current/certs-data"
+          "sourcePath": "/data/letsencrypt"
         }
       }
     ],
