@@ -28,7 +28,7 @@ class ClickGame extends React.Component {
       circle: {
         r: 40,
       },
-      targetGames: 5,
+      targetGames: 2,
       currGame: 1,
     };
   }
