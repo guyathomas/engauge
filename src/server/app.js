@@ -1,4 +1,4 @@
-'use strict';
+
 
 const express = require('express');
 const morgan = require('morgan');
@@ -23,27 +23,31 @@ db.sequelize.sync()
 
 // TODO: Move the handlers into their own files
 app.post('/api/caseStudies', (req, res) => {
+  console.log('req.body', req.body);
   const url = req.body.formUrl;
   const email = req.body.formEmail;
   const shortCode = utils.createSha(url + email);
-
+  let isNewEmail;
   db.user.findOrCreate({
     where: { email },
   }).then((result) => {
     const record = result[0];
-    const doesExist = result[1];
-    if (doesExist) { console.log('User already exists'); }
+    isNewEmail = result[1];
+    if (isNewEmail) { console.log('User already exists'); }
 
     return record.id;
-  }).then((userId) => {
+  }).then(userId =>
     // TODO: Find a way of not having nested promises
-    return db.casestudy.findOrCreate({
-      where: { userId, url, shortCode },
-    });
-  })
+     db.casestudy.findOrCreate({
+       where: { userId, url, shortCode },
+     }))
   .then((record) => {
     console.log('The record after posting', record);
-    res.status(200).send({ shortCode });
+    res.status(200).send({
+      shortCode,
+      updated: { shortCode, url, email },
+      isNewEmail,
+    });
   })
   .catch((err) => {
     console.log('Error posting to DB', err);
