@@ -1,4 +1,0 @@
-process.env.POSTGRES_DB = 'engauge'
-process.env.POSTGRES_USER = 'guy'
-process.env.POSTGRES_PASS = 'tangl3w00d'
-process.env.POSTGRES_HOST = '0.0.0.0'

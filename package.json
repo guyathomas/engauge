@@ -8,9 +8,11 @@
   },
   "scripts": {
     "start": "nodemon ./src/server/index.js",
-    "build": "webpack -d",
+    "build": "webpack -d;",
     "dev": "concurrently \"webpack -d --watch\" \"npm start\"",
-    "test": "mocha test"
+    "pretest": "docker-compose rm --force; docker-compose up --build",
+    "test:nobuild": "mocha test",
+    "test": "npm run pretest; npm run test:nobuild"
   },
   "author": "Guy Thomas",
   "license": "ISC",
@@ -40,6 +42,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",

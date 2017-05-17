@@ -12,3 +12,6 @@ src/client/build
 !.elasticbeanstalk/*.global.yml
 EC2TaskDefinition.JSON
 EC2TaskDefinition-Single.JSON
+
+# Logs
+*.log

@@ -1,29 +1,30 @@
-version: '2' # specify docker-compose version
+version: '3' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
-  nginx:
-    build: ./nginx
-    container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - certs:/etc/letsencrypt
-      - certs-data:/data/letsencrypt
-    links:
-      - web
+  # nginx:
+  #   build: ./nginx
+  #   container_name: nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - certs:/etc/letsencrypt
+  #     - certs-data:/data/letsencrypt
+  #   links:
+  #     - web
   web: # name of the first service
     build: . # specify the directory of the Dockerfile
     ports:
       - "3000:3000" # specify port forewarding
     links:
       - database
+    env_file: .env
   database: # name of the third service
     image: postgres:latest # specify image to build container from
     ports:
       - "5432:5432" # specify port forewarding
-    env_file: docker-compose.env
-volumes:
-  certs:
-  certs-data:
+    env_file: .env
+# volumes:
+#   certs:
+#   certs-data:

@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 db.sequelize.sync()
-  .catch((e) => {
-    throw new Error(e);
+  .catch((err) => {
+    console.log('Error in syncing', err);
   });
 
 // TODO: Move the handlers into their own files
@@ -26,6 +26,7 @@ app.post('/api/caseStudies', (req, res) => {
   const url = req.body.formUrl;
   const email = req.body.formEmail;
   const shortCode = utils.createSha(url + email);
+
   db.user.findOrCreate({
     where: { email },
   }).then((result) => {
@@ -36,11 +37,18 @@ app.post('/api/caseStudies', (req, res) => {
     return record.id;
   }).then((userId) => {
     // TODO: Find a way of not having nested promises
-    db.casestudy.findOrCreate({
+    return db.casestudy.findOrCreate({
       where: { userId, url, shortCode },
     });
+  })
+  .then((record) => {
+    console.log('The record after posting', record);
+    res.status(200).send({ shortCode });
+  })
+  .catch((err) => {
+    console.log('Error posting to DB', err);
+    res.status(400).send('Error posting to DB');
   });
-  res.status(200).send({ shortCode });
 });
 
 app.get('/api/caseStudies', (req, res) => {
