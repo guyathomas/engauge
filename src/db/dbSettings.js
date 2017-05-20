@@ -1,5 +1,6 @@
 const path = require('path');
 const rootPath = path.normalize(`${__dirname}/..`);
+
 const config = {
   root: rootPath,
   app: {
@@ -7,11 +8,11 @@ const config = {
   },
   port: 5432,
   db: {
-    database: process.env.POSTGRES_DB,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB || 'engauge',
+    user: process.env.POSTGRES_USER || 'guy',
+    password: process.env.POSTGRES_PASSWORD || 'password',
     options: {
-      host: process.env.POSTGRES_HOST,
+      host: process.env.POSTGRES_HOST || 'localhost',
       dialect: 'postgres',
       pool: {
         max: 100,

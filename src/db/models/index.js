@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
     config.db.user,
     config.db.password,
     config.db.options);
-
+console.log('DB config', config.db);
 const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

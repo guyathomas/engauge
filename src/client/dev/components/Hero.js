@@ -5,8 +5,8 @@ class Hero extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formUrl: '',
-      formEmail: '',
+      url: '',
+      email: '',
       hasCompletedForm: false,
       watchURL: '',
     };
@@ -14,8 +14,8 @@ class Hero extends React.Component {
 
   createLink() {
     const formFields = {
-      formEmail: this.state.formEmail,
-      formUrl: this.state.formUrl };
+      email: this.state.email,
+      url: this.state.url };
     fetch('/api/caseStudies', {
       method: 'post',
       headers: {
@@ -45,7 +45,7 @@ class Hero extends React.Component {
     stateObj[field] = e.target.value;
     this.setState(stateObj, () => {
       this.setState({
-        hasCompletedForm: !!(this.state.formUrl && this.state.formEmail),
+        hasCompletedForm: !!(this.state.url && this.state.email),
       });
     });
   }
@@ -58,9 +58,9 @@ class Hero extends React.Component {
           <div className="herotext sub">Get started to see what your customers pay attention to on your website</div>
         </div>
         <form className="tracknew">
-          <input onKeyUp={this.handleChange.bind(this)} id="formUrl" className="input"type="text" placeholder={'URL to track'} />
-          <FormFeedback fieldText={this.state.formUrl} validations={this.urlValidations} />
-          <input onKeyUp={this.handleChange.bind(this)} id="formEmail" className="input" type="text" placeholder={'Your email'} />
+          <input onKeyUp={this.handleChange.bind(this)} id="url" className="input"type="text" placeholder={'URL to track'} />
+          <FormFeedback fieldText={this.state.url} validations={this.urlValidations} />
+          <input onKeyUp={this.handleChange.bind(this)} id="email" className="input" type="text" placeholder={'Your email'} />
           <div className={this.state.hasCompletedForm ? 'button-cta' : 'button-cta inactive'} onClick={this.createLink.bind(this, this.state.url, this.state.email)}>Generate Link</div>
           <div className={this.state.watchURL ? 'form-message' : 'hidden'}>
             <div className="text-box">{this.state.watchURL}</div>

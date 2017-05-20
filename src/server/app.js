@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -23,11 +21,12 @@ db.sequelize.sync()
 
 // TODO: Move the handlers into their own files
 app.post('/api/caseStudies', (req, res) => {
-  console.log('req.body', req.body);
-  const url = req.body.formUrl;
-  const email = req.body.formEmail;
+  const { url, email } = req.body;
   const shortCode = utils.createSha(url + email);
   let isNewEmail;
+
+  console.log('DB Keys', Object.keys(db));
+
   db.user.findOrCreate({
     where: { email },
   }).then((result) => {
