@@ -16,6 +16,7 @@ dependencies:
     - docker push stolemyusername/nginx:latest
 test:
   override:
+    - echo "test"
 #     - docker run -d -p 9200:9200 stolemyusername/engauge; sleep 10
 #     - curl --retry 10 --retry-delay 5 -v http://localhost:9200
 
