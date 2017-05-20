@@ -13,7 +13,7 @@ class Watch extends React.Component {
   }
 
   openSocket() {
-    console.log('A connection will bne opened with')
+    console.log('A connection will bne opened with', window.location.origin)
     const socket = io.connect(window.location.origin, { secure: true, port: 433 });
     socket.on('connect', () => {
       console.log('Client has opened the connection');
