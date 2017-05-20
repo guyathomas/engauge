@@ -12,7 +12,11 @@
     "dev": "concurrently \"webpack -d --watch\" \"npm start\"",
     "pretest": "docker-compose rm --force; docker-compose up --build",
     "test:nobuild": "mocha test",
-    "test": "npm run pretest; npm run test:nobuild"
+    "test": "npm run pretest; npm run test:nobuild",
+    "old-pretest": "docker-compose rm --force; docker-compose up --build -d",
+    "old-.test:integration": "mocha test './test/integration/*.spec.js'",
+    "old-test:integration": "npm run pretest; npm run .test:integration",
+    "old-test:unit": "mocha test './test/unit/**/*.spec.js'"
   },
   "author": "Guy Thomas",
   "license": "ISC",

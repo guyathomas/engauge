@@ -2,17 +2,18 @@ version: '3' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
-  # nginx:
-  #   build: ./nginx
-  #   container_name: nginx
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - certs:/etc/letsencrypt
-  #     - certs-data:/data/letsencrypt
-  #   links:
-  #     - web
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Generate the keys locally with:
+      # openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout privkey.pem -out fullchain.pem
+      - ~/.localhost/:/etc/letsencrypt/live/ebcert/
+    links:
+      - web
   web: # name of the first service
     build: . # specify the directory of the Dockerfile
     ports:
@@ -20,6 +21,8 @@ services:
     links:
       - database
     env_file: .env
+    depends_on:
+      - 'database'
   database: # name of the third service
     image: postgres:latest # specify image to build container from
     ports:
@@ -29,5 +32,3 @@ services:
       - studies:/var/lib/postgresql
 volumes:
   studies:
-#   certs:
-#   certs-data:
