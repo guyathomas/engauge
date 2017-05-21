@@ -14,3 +14,5 @@ const socketHandler = require('./socketHandler');
 const io = require('socket.io')(server);
 
 io.on('connection', socketHandler);
+
+module.exports = server;

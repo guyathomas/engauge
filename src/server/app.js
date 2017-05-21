@@ -25,25 +25,19 @@ app.post('/api/caseStudies', (req, res) => {
   const shortCode = utils.createSha(url + email);
   let isNewEmail;
 
-  console.log('DB Keys', Object.keys(db));
-
   db.user.findOrCreate({
     where: { email },
-  }).then((result) => {
+  })
+  .then((result) => {
     const record = result[0];
     isNewEmail = result[1];
     if (isNewEmail) { console.log('User already exists'); }
 
     return record.id;
-  }).then(userId =>
-    // TODO: Find a way of not having nested promises
-     db.casestudy.findOrCreate({
-       where: { userId, url, shortCode },
-     }))
+  })
   .then((record) => {
-    console.log('The record after posting', record);
+    console.log('The record',  record);
     res.status(200).send({
-      shortCode,
       updated: { shortCode, url, email },
       isNewEmail,
     });
@@ -65,19 +59,23 @@ app.get('/api/caseStudies', (req, res) => {
   })
   .then((caseStudys) => {
     res.status(200).send(caseStudys);
-  });
+  })
+  .catch(err => console.log('Error getting the case studies', err));
 });
 
 app.get('/api/caseStudies/:shortCode', (req, res) => {
+  console.log('TEST1:req', req.params);
   const shortCode = req.params.shortCode;
   db.casestudy.findOne({ where: { shortCode } })
   .then((caseStudys) => {
+    console.log('TEST1:', caseStudys.dataValues);
     res.status(200).send(caseStudys.dataValues);
   });
 });
 
 
 app.get('/api/sessions/:shortCode', (req, res) => {
+  console.log('TEST2:req', req.params);
   const shortCode = req.params.shortCode;
   db.casestudy.findOne({ where: { shortCode } })
   .then((result) => {
@@ -92,6 +90,7 @@ app.get('/api/sessions/:shortCode', (req, res) => {
         reducedStats.push(session.dataValues);
       });
       const jsonStats = { data: reducedStats };
+      console.log('TEST2:', jsonStats);
       res.status(200).json(jsonStats);
     });
   });
@@ -107,6 +106,7 @@ app.get('/api/sessions', (req, res) => {
     return dataValues;
   })
   .then((caseStudys) => {
+    console.log('TEST3:', caseStudys);
     res.status(200).send(caseStudys);
   });
 });

@@ -22,5 +22,4 @@ const config = {
     },
   },
 };
-console.log('Connection settings',  config);
 module.exports = config;
