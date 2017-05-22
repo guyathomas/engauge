@@ -57,7 +57,14 @@ const Session = new GraphQLObjectType({
       resolve(session) {
         return session.studyId;
       },
-    },
+    }/*,
+    study: {
+      type: new GraphQLList(Study),
+      resolve(session) {
+    	console.log(Object.keys(session.ProtoType));
+        return session.getStudies();
+      },
+    },*/
   }),
 });
 
@@ -102,14 +109,19 @@ const Study = new GraphQLObjectType({
       },
     },
     session: {
-      type: Session,
+      type: new GraphQLList(Session),
       resolve(study) {
-        return study.getSession();
+        return study.getSessions();
       },
-    },
+    }/*,
+    user: {
+      type: new GraphQLList(User),
+      resolve(study) {
+        return study.getUser();
+      },
+    },*/
   }),
 });
-
 
 const User = new GraphQLObjectType({
   name: 'User',
@@ -127,12 +139,6 @@ const User = new GraphQLObjectType({
         return user.email;
       },
     },
-    studies: {
-      type: Study,
-      resolve(user) {
-        return user.getStudy();
-      },
-    },
     createdAt: {
       type: GraphQLDate,
       resolve(user) {
@@ -146,15 +152,14 @@ const User = new GraphQLObjectType({
       },
     },
     study: {
-      type: Study,
+      type: new GraphQLList(Study),
       resolve(user) {
-        return user.getStudy();
+        return user.getStudies();
       },
     },
   }),
 });
 
-console.log('The models', Object.keys(db.sequelize.models));
 const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This is a root query',

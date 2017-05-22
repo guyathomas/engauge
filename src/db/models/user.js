@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        User.hasMany(models.study, { as: 'owner' });
+        User.hasMany(models.study);
       },
     },
     tableName: 'Users',
