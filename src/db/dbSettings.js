@@ -22,4 +22,6 @@ const config = {
     },
   },
 };
+console.log('DB settings', config);
+console.log('Nodeenv', process.env.NODE_ENV);
 module.exports = config;
