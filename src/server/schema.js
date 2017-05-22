@@ -1,10 +1,12 @@
+const GraphQLJSON = require('graphql-type-json');
+const GraphQLDate = require('graphql-date');
 const {
 	GraphQLObjectType,
 	GraphQLList,
 	GraphQLSchema,
 	GraphQLString,
 	GraphQLID,
-	GraphQLInt
+	GraphQLInt,
 } = require('graphql');
 const db = require('../db/models/index.js');
 // console.log('Models', Object.keys())
@@ -25,31 +27,31 @@ const Session = new GraphQLObjectType({
         return session.duration;
       },
     },
-    // recording: {
-    //   type: GraphQLObjectType,
-    //   resolve(session) {
-    //     return session.recording;
-    //   },
-    // },
-    socketID: {
+    recording: {
+      type: GraphQLJSON,
+      resolve(session) {
+        return session.recording;
+      },
+    },
+    socketId: {
       type: GraphQLString,
       resolve(session) {
         return session.socketId;
       },
     },
 
-    // createdAt: {
-    //   type: GraphQLObjectType,
-    //   resolve(session) {
-    //     return session.createdAt;
-    //   },
-    // },
-    // updatedAt: {
-    //   type: GraphQLObjectType,
-    //   resolve(session) {
-    //     return session.updatedAt;
-    //   },
-    // },
+    createdAt: {
+      type: GraphQLDate,
+      resolve(session) {
+        return session.createdAt;
+      },
+    },
+    updatedAt: {
+      type: GraphQLDate,
+      resolve(session) {
+        return session.updatedAt;
+      },
+    },
     studyId: {
       type: GraphQLInt,
       resolve(session) {
@@ -81,18 +83,18 @@ const Study = new GraphQLObjectType({
         return study.shortCode;
       },
     },
-    // createdAt: {
-    //   type: GraphQLObjectType,
-    //   resolve(study) {
-    //     return study.createdAt;
-    //   },
-    // },
-    // updatedAt: {
-    //   type: GraphQLObjectType,
-    //   resolve(study) {
-    //     return study.updatedAt;
-    //   },
-    // },
+    createdAt: {
+      type: GraphQLDate,
+      resolve(study) {
+        return study.createdAt;
+      },
+    },
+    updatedAt: {
+      type: GraphQLDate,
+      resolve(study) {
+        return study.updatedAt;
+      },
+    },
     userId: {
       type: GraphQLInt,
       resolve(study) {
@@ -131,19 +133,18 @@ const User = new GraphQLObjectType({
         return user.getStudy();
       },
     },
-    /* ,
     createdAt: {
-      type: GraphQLObjectType,
+      type: GraphQLDate,
       resolve(user) {
         return user.createdAt;
       },
     },
     updatedAt: {
-      type: GraphQLObjectType,
+      type: GraphQLDate,
       resolve(user) {
         return user.updatedAt;
       },
-    },*/
+    },
     study: {
       type: Study,
       resolve(user) {
@@ -153,7 +154,7 @@ const User = new GraphQLObjectType({
   }),
 });
 
-console.log('The models', Object.keys(db.sequelize.models))
+console.log('The models', Object.keys(db.sequelize.models));
 const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This is a root query',
@@ -168,6 +169,12 @@ const Query = new GraphQLObjectType({
       type: new GraphQLList(Study),
       resolve(root, args) {
         return db.sequelize.models.study.findAll({ where: args });
+      },
+    },
+    session: {
+      type: new GraphQLList(Session),
+      resolve(root, args) {
+        return db.sequelize.models.session.findAll({ where: args });
       },
     },
   }),
