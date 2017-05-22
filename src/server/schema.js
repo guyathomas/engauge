@@ -1,3 +1,4 @@
+// https://www.youtube.com/watch?v=DNPVqK_woRQ
 const GraphQLJSON = require('graphql-type-json');
 const GraphQLDate = require('graphql-date');
 const {
@@ -7,6 +8,7 @@ const {
 	GraphQLString,
 	GraphQLID,
 	GraphQLInt,
+	GraphQLNonNull,
 } = require('graphql');
 const db = require('../db/models/index.js');
 // console.log('Models', Object.keys())
@@ -39,7 +41,6 @@ const Session = new GraphQLObjectType({
         return session.socketId;
       },
     },
-
     createdAt: {
       type: GraphQLDate,
       resolve(session) {
@@ -184,8 +185,70 @@ const Query = new GraphQLObjectType({
   }),
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutations',
+  description: 'Functions to set stuff',
+  fields() {
+    return {
+      addUser: {
+        type: User,
+        args: {
+          email: {
+            type: new GraphQLNonNull(GraphQLString),
+          },
+        },
+        resolve(source, args) {
+          return db.sequelize.models.user.create({
+            email: args.email.toLowerCase(),
+          });
+        },
+      },
+      addStudy: {
+        type: Study,
+        args: {
+          shortCode: {
+            type: new GraphQLNonNull(GraphQLString),
+          },
+          url: {
+            type: new GraphQLNonNull(GraphQLString),
+          },
+        },
+        resolve(source, args) {
+          return db.sequelize.models.study.create({
+            shortCode: args.shortCode,
+            url: args.url,
+          });
+        },
+      },
+      addSession: {
+        type: Session,
+        args: {
+          duration: {
+            type: new GraphQLNonNull(GraphQLInt),
+          },
+          recording: {
+            type: new GraphQLNonNull(GraphQLJSON),
+          },
+          socketId: {
+            type: new GraphQLNonNull(GraphQLString),
+          },
+        },
+        resolve(source, args) {
+          return db.sequelize.models.session.create({
+            duration: args.duration,
+            recording: args.recording,
+            // socketId: args.socketId,
+          });
+        },
+      },
+    };
+  },
+});
+
 const Schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation,
 });
+
 
 module.exports = Schema;
