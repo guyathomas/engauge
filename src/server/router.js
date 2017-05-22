@@ -4,7 +4,6 @@ const db = require('../db/models');
 
 
 router.post('/caseStudies', (req, res) => {
-	console.log('post /caseStudies')
   const { url, email } = req.body;
   const shortCode = utils.createSha(url + email);
   let isNewEmail;
@@ -33,7 +32,6 @@ router.post('/caseStudies', (req, res) => {
 });
 
 router.get('/caseStudies', (req, res) => {
-	console.log('get /caseStudies')
   db.casestudy.findAll({})
   .then((results) => {
     const dataValues = [];
@@ -43,14 +41,12 @@ router.get('/caseStudies', (req, res) => {
     return dataValues;
   })
   .then((caseStudys) => {
-  	console.log('The case studies after querying the db', caseStudys);
     res.status(200).send(caseStudys);
   })
   .catch(err => console.log('Error getting the case studies', err));
 });
 
 router.get('/caseStudies/:shortCode', (req, res) => {
-  console.log('/caseStudies/:shortCode', req.params);
   const shortCode = req.params.shortCode;
   db.casestudy.findOne({ where: { shortCode } })
   .then((caseStudys) => {
@@ -61,7 +57,6 @@ router.get('/caseStudies/:shortCode', (req, res) => {
 
 
 router.get('/sessions/:shortCode', (req, res) => {
-  console.log('TEST2:req', req.params);
   const shortCode = req.params.shortCode;
   db.casestudy.findOne({ where: { shortCode } })
   .then((result) => {
@@ -76,7 +71,6 @@ router.get('/sessions/:shortCode', (req, res) => {
         reducedStats.push(session.dataValues);
       });
       const jsonStats = { data: reducedStats };
-      console.log('TEST2:', jsonStats);
       res.status(200).json(jsonStats);
     });
   });
@@ -92,9 +86,7 @@ router.get('/sessions', (req, res) => {
     return dataValues;
   })
   .then((caseStudys) => {
-    console.log('TEST3:', caseStudys);
     res.status(200).send(caseStudys);
   });
 });
-console.log('The router', router)
 module.exports = router;
