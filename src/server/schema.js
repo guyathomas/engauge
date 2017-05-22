@@ -57,14 +57,13 @@ const Session = new GraphQLObjectType({
       resolve(session) {
         return session.studyId;
       },
-    }/*,
+    },
     study: {
-      type: new GraphQLList(Study),
+      type: Study,
       resolve(session) {
-    	console.log(Object.keys(session.ProtoType));
-        return session.getStudies();
+        return session.getStudy();
       },
-    },*/
+    },
   }),
 });
 
@@ -103,7 +102,7 @@ const Study = new GraphQLObjectType({
       },
     },
     userId: {
-      type: GraphQLInt,
+      type: GraphQLString,
       resolve(study) {
         return study.userId;
       },
@@ -113,13 +112,13 @@ const Study = new GraphQLObjectType({
       resolve(study) {
         return study.getSessions();
       },
-    }/*,
+    },
     user: {
-      type: new GraphQLList(User),
+      type: User,
       resolve(study) {
         return study.getUser();
       },
-    },*/
+    },
   }),
 });
 
