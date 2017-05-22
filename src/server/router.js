@@ -4,6 +4,7 @@ const db = require('../db/models');
 
 
 router.post('/caseStudies', (req, res) => {
+  console.log('req.body', req.body)
   const { url, email } = req.body;
   const shortCode = utils.createSha(url + email);
   let isNewEmail;
@@ -18,7 +19,7 @@ router.post('/caseStudies', (req, res) => {
     return userId;
   })
   .then((userId) => {
-    db.casestudy.findOrCreate({
+    db.study.findOrCreate({
       where: { userId, url, shortCode },
     })
     .catch(() => {console.log('Error creating caseStudy')})
@@ -32,7 +33,7 @@ router.post('/caseStudies', (req, res) => {
 });
 
 router.get('/caseStudies', (req, res) => {
-  db.casestudy.findAll({})
+  db.study.findAll({})
   .then((results) => {
     const dataValues = [];
     results.forEach((result) => {
@@ -48,7 +49,7 @@ router.get('/caseStudies', (req, res) => {
 
 router.get('/caseStudies/:shortCode', (req, res) => {
   const shortCode = req.params.shortCode;
-  db.casestudy.findOne({ where: { shortCode } })
+  db.study.findOne({ where: { shortCode } })
   .then((caseStudys) => {
     console.log('TEST1:', caseStudys.dataValues);
     res.status(200).send(caseStudys.dataValues);
@@ -58,13 +59,13 @@ router.get('/caseStudies/:shortCode', (req, res) => {
 
 router.get('/sessions/:shortCode', (req, res) => {
   const shortCode = req.params.shortCode;
-  db.casestudy.findOne({ where: { shortCode } })
+  db.study.findOne({ where: { shortCode } })
   .then((result) => {
-    const casestudyId = result.dataValues.id;
+    const studyId = result.dataValues.id;
 
     db.session.findAll({
-      attributes: ['id', 'duration', 'socketID', 'createdAt', 'recording'],
-      where: { casestudyId } })
+      attributes: ['id', 'duration', 'socketId', 'createdAt', 'recording'],
+      where: { studyId } })
     .then((sessions) => {
       const reducedStats = [];
       sessions.forEach((session) => {

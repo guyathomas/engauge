@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-  const CaseStudy = sequelize.define('casestudy', {
+  const Study = sequelize.define('study', {
     url: DataTypes.STRING,
     shortCode: DataTypes.STRING,
   }, {
     classMethods: {
       associate: (models) => {
-        CaseStudy.belongsTo(models.user);
-        CaseStudy.hasMany(models.session);
+        Study.belongsTo(models.user);
+        Study.hasMany(models.session);
       },
     },
-    tableName: 'CaseStudies',
+    tableName: 'Studies',
   });
 
-  return CaseStudy;
+  return Study;
 };

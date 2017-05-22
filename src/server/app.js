@@ -4,6 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../db/models');
 const router = require('./router');
+const GraphHTTP = require('express-graphql');
+const Schema = require('./schema.js');
 
 const app = express();
 
@@ -20,6 +22,11 @@ db.sequelize.sync()
   });
 
 app.use('/api', router);
+app.use('/graphql', GraphHTTP({
+  schema: Schema,
+  pretty: true,
+  graphiql: true,
+}));
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {

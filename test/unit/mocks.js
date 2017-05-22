@@ -43,7 +43,7 @@ module.exports = {
           res: [{
             id: 1,
             duration: '8202',
-            socketID: 'TqRzdSMZzoAsS1nyAAAA',
+            socketId: 'TqRzdSMZzoAsS1nyAAAA',
             createdAt: '2017-05-20T12:38:57.463Z',
             recording: [{ x: 600, y: 596, time: 47 }, { x: 1307, y: -395, time: 62 }, { x: 645, y: 250, time: 90 }, { x: 193, y: 736, time: 104 }, { x: 579, y: 186, time: 119 }, { x: 478, y: 76, time: 141 }, { x: 687, y: 167, time: 155 }, { x: 935, y: -14, time: 167 }, { x: 329, y: 437, time: 179 }, { x: 230, y: 551, time: 194 }, { x: 174, y: 545, time: 212 }, { x: 241, y: 547, time: 227 }, { x: 267, y: 529, time: 244 }, { x: 280, y: 484, time: 260 }, { x: 424, y: 390, time: 277 }, { x: 322, y: 420, time: 294 }],
           }],
