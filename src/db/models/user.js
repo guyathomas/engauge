@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: DataTypes.STRING,
   }, {
+    // schema: 'engauge',
     classMethods: {
       associate: (models) => {
         User.hasMany(models.study);
@@ -14,6 +15,5 @@ module.exports = (sequelize, DataTypes) => {
     },
     tableName: 'Users',
   });
-
   return User;
 };

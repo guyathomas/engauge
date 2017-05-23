@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     recording: DataTypes.JSON,
     socketId: DataTypes.STRING,
   }, {
+    // schema: 'engauge',
     classMethods: {
       associate: (models) => {
         Session.belongsTo(models.study);
@@ -11,5 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     tableName: 'Sessions',
   });
+  Session.schema('engauge');
   return Session;
 };
+
