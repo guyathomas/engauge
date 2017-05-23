@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Study = sequelize.define('study', {
-    url: DataTypes.STRING,
-    shortCode: DataTypes.STRING,
+    url: { type: DataTypes.STRING, allowNull: false },
+    shortCode: { type: DataTypes.STRING, allowNull: false },
   }, {
     // schema: 'engauge',
     classMethods: {
@@ -12,6 +12,5 @@ module.exports = (sequelize, DataTypes) => {
     },
     tableName: 'Studies',
   });
-  Study.schema('engauge');
   return Study;
 };

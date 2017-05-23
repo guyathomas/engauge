@@ -15,6 +15,17 @@ const { resolver, attributeFields, defaultListArgs } = require('graphql-sequeliz
 const _ = require('lodash');
 // console.log('Models', Object.keys())
 
+// const makeAllMandatory = (model) => {
+//   const fields = _.assign(attributeFields(model));
+
+//   for (const key in fields) {
+//     const type = fields[key].type;
+//     fields[key].type = new GraphQLNonNull(type);
+//     console.log(fields[key]);
+//   }
+//   return fields;
+// };
+
 const Session = new GraphQLObjectType({
   name: 'Session',
   description: 'A session of a particular image',
@@ -26,6 +37,7 @@ const Session = new GraphQLObjectType({
       },
     },
   })),
+
 });
 
 const Study = new GraphQLObjectType({

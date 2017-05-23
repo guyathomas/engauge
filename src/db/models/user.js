@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    email: DataTypes.STRING,
+    email: { type: DataTypes.STRING, allowNull: false },
   }, {
     // schema: 'engauge',
     classMethods: {

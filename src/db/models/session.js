@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Session = sequelize.define('session', {
-    duration: DataTypes.STRING,
-    recording: DataTypes.JSON,
-    socketId: DataTypes.STRING,
+    duration: { type: DataTypes.STRING, allowNull: false },
+    recording: { type: DataTypes.JSON, allowNull: false },
+    socketId: { type: DataTypes.STRING, allowNull: false },
   }, {
     // schema: 'engauge',
     classMethods: {
@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     tableName: 'Sessions',
   });
-  Session.schema('engauge');
   return Session;
 };
 
