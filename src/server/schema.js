@@ -76,19 +76,46 @@ const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This is a root query',
   fields: () => ({
-    user: {
+    users: {
       type: new GraphQLList(User),
       args: _.assign(defaultListArgs(), {}),
       resolve: resolver(db.sequelize.models.user),
     },
-    study: {
+    user: {
+      type: User,
+      args: _.assign(defaultListArgs(), {
+        email: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      }),
+      resolve: resolver(db.sequelize.models.user),
+    },
+    studies: {
       type: new GraphQLList(Study),
       args: _.assign(defaultListArgs(), {}),
       resolve: resolver(db.sequelize.models.study),
     },
-    session: {
+    study: {
+      type: Study,
+      args: _.assign(defaultListArgs(), {
+        shortCode: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      }),
+      resolve: resolver(db.sequelize.models.study),
+    },
+    sessions: {
       type: new GraphQLList(Session),
       args: _.assign(defaultListArgs(), {}),
+      resolve: resolver(db.sequelize.models.session),
+    },
+    session: {
+      type: Session,
+      args: _.assign(defaultListArgs(), {
+        id: {
+          type: new GraphQLNonNull(GraphQLInt),
+        },
+      }),
       resolve: resolver(db.sequelize.models.session),
     },
   }),
