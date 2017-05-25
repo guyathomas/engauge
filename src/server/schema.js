@@ -188,3 +188,48 @@ const Schema = new GraphQLSchema({
 
 
 module.exports = Schema;
+
+//OLD(More verbose method without using graphql-sequelize)
+// const User = new GraphQLObjectType({
+//   name: 'User',
+//   description: 'A user that has created a study',
+//   fields: () => ({
+//     id: {
+//       type: GraphQLID,
+//       resolve(user) {
+//         return user.id;
+//       },
+//     },
+//     email: {
+//       type: GraphQLString,
+//       resolve(user) {
+//         return user.email;
+//       },
+//     },
+//   }),
+// });
+
+// const Query = new GraphQLObjectType({
+//   name: 'Query',
+//   description: 'This is a root query',
+//   fields: () => ({
+//     users: {
+//       type: new GraphQLList(User),
+//       resolve(root, args) {
+//         return db.sequelize.models.user.findAll({ where: args });
+//       },
+//     },
+//     study: {
+//       type: new GraphQLList(Study),
+//       resolve(root, args) {
+//         return db.sequelize.models.study.findAll({ where: args });
+//       },
+//     },
+//     session: {
+//       type: new GraphQLList(Session),
+//       resolve(root, args) {
+//         return db.sequelize.models.session.findAll({ where: args });
+//       },
+//     },
+//   }),
+// });

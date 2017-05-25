@@ -7,7 +7,7 @@ function socketHandler(socket) {
   const lastSlashIndex = sourceURL.lastIndexOf('/') + 1;
   const shortCode = sourceURL.substr(lastSlashIndex);
 
-  const socketID = socket.id;
+  const socketId = socket.id;
   const recording = [];
 
   socket.on('data', (data) => {
