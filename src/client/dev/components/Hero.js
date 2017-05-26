@@ -16,6 +16,7 @@ class Hero extends React.Component {
     const formFields = {
       email: this.state.email,
       url: this.state.url };
+    //TODO: To use  relay I will have to using a function on the resolved response. Do this later
     fetch('/api/caseStudies', {
       method: 'post',
       headers: {

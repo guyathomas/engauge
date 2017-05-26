@@ -44,7 +44,7 @@ class Review extends React.Component {
       <div className="review-page">
         <div id="heatmapContainerWrapper">
           <div id="heatmapContainer">
-            <img src={this.props.caseStudyURL} /> 
+            <img src={this.props.studyURL} /> 
           </div>
         </div>
       </div>

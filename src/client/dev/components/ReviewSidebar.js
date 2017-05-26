@@ -9,14 +9,13 @@ class ReviewSidebar extends React.Component {
       sessions: [],
       shortCode: this.props.params.shortCode,
       activeSession: 0,
-      caseStudy: {},
+      studyURL: '',
     };
   }
 
   componentDidMount() {
     const shortCode = this.state.shortCode;
-    this.getCaseStudy(shortCode);
-    this.getSessions(shortCode);
+    this.getSessionData(shortCode);
   }
 
   getSessions(shortCode) {
@@ -27,15 +26,34 @@ class ReviewSidebar extends React.Component {
     });
   }
 
-  getCaseStudy(shortCode) {
-    //TODO: MOdularise. This was copied from watch
-    fetch(`/api/caseStudies/${shortCode}`, {
+  getSessionData(shortCode) {
+    fetch('/graphql', {
+      method: 'post',
       headers: {
         'Content-Type': 'application/JSON',
       },
+      body: JSON.stringify({
+        query: `query ($shortCode: String!){
+         study(shortCode: $shortCode) {
+           url,
+           session {
+             id,
+             recording,
+             duration
+           }
+         }
+       }`,
+        variables: { shortCode }, // GraphQL text from input
+      }),
     })
     .then(response => response.json())
-    .then((caseStudy) => { this.setState({ caseStudy }); });
+    .then(({ data }) => { 
+      console.log('testy', data)
+      this.setState({ 
+        sessions: data.study.session,
+        studyURL: data.study.url
+         }); 
+    });
   }
 
   updateSession(i) {
@@ -64,7 +82,7 @@ class ReviewSidebar extends React.Component {
         {/*TODO: Have the active session come from the URL rather than props*/}
         {this.props.children && React.cloneElement(this.props.children, {
                 activeSession: this.state.sessions[this.state.activeSession],
-                caseStudyURL: this.state.caseStudy.url,
+                studyURL: this.state.studyURL,
           })
         }
         {!this.props.children && <EmptyReview />}
