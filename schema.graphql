@@ -1,0 +1,105 @@
+schema {
+  query: Query
+  mutation: Mutations
+}
+
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
+
+# Functions to set stuff
+type Mutations {
+  addUser(email: String!): User
+  addStudy(shortCode: String!, url: String!): Study
+  addSession(duration: Int!, recording: JSON!, socketId: String!): Session
+}
+
+# This is a root query
+type Query {
+  users(
+    limit: Int
+    order: String
+
+    # A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/
+    where: SequelizeJSON
+    offset: Int
+  ): [User]
+  user(
+    limit: Int
+    order: String
+
+    # A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/
+    where: SequelizeJSON
+    offset: Int
+    email: String!
+  ): User
+  studies(
+    limit: Int
+    order: String
+
+    # A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/
+    where: SequelizeJSON
+    offset: Int
+  ): [Study]
+  study(
+    limit: Int
+    order: String
+
+    # A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/
+    where: SequelizeJSON
+    offset: Int
+    shortCode: String!
+  ): Study
+  sessions(
+    limit: Int
+    order: String
+
+    # A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/
+    where: SequelizeJSON
+    offset: Int
+  ): [Session]
+  session(
+    limit: Int
+    order: String
+
+    # A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/
+    where: SequelizeJSON
+    offset: Int
+    id: Int!
+  ): Session
+}
+
+# The `JSON` scalar type represents raw JSON as values.
+scalar SequelizeJSON
+
+# A session of a particular image
+type Session {
+  id: Int!
+  duration: String!
+  recording: SequelizeJSON!
+  socketId: String!
+  createdAt: String!
+  updatedAt: String!
+  studyId: Int
+  study: Study
+}
+
+# A study of a particular image
+type Study {
+  id: Int!
+  url: String!
+  shortCode: String!
+  createdAt: String!
+  updatedAt: String!
+  userId: String
+  session: [Session]
+  user: User
+}
+
+# A user that has created a study
+type User {
+  id: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
+  study: [Study]
+}
