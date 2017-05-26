@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CaseStudyCard = props => (
+const StudyCard = props => (
   <div className="study" >
     <div className="imgwrapper">
       <img src={props.study.url} />

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import CaseStudyCard from './CaseStudyCard';
+import StudyCard from './StudyCard';
 
 class CSList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      caseStudies: [],
+      studies: [],
     };
   }
 
@@ -15,11 +15,18 @@ class CSList extends React.Component {
   }
 
   getCaseStudys() {
-    fetch('/api/caseStudies')
-    .then(results => (results.json()))
-    .then(caseStudies => (this.setState({ caseStudies })))
-    .catch((err) => {
-      console.log('Error in fetching case studies', err);
+    fetch('/graphql', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+      body: JSON.stringify({
+        query: '{studies {id,url,shortCode,}}',
+      }),
+    })
+    .then(response => response.json())
+    .then(({ data }) => {
+      this.setState({ studies: data.studies });
     });
   }
 
@@ -30,9 +37,9 @@ class CSList extends React.Component {
       <div className="cs-container">
         <div className="title">{title}</div>
         <div className="casestudies">
-          {this.state.caseStudies.map(caseStudy => (
-            <Link to={`/${action}/${caseStudy.shortCode}`}>
-              <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
+          {this.state.studies.map(study => (
+            <Link to={`/${action}/${study.shortCode}`}>
+              <StudyCard key={study.id} study={study} />
             </Link>
           ))}
         </div>
