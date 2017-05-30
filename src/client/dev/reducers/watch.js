@@ -1,21 +1,20 @@
-// function postComments(state = [], action) {
-
-// }
-
 function watch(state = [], action) {
   // console.log('The state in reducer', state)
   // console.log('The action',  action)
+  let newState;
   switch (action.type) {
     // case 'ADD_COMMENT':
     // case 'REMOVE_COMMENT':
     case 'ADD_SESSION_POINT':
-      console.log(1);
     case 'CLEAR_SESSION':
-      console.log(2);
     case 'TOGGLE_TRAINING':
-      console.log(3);
+      newState = { ...state };
+      // newState.game.currGame = newState.game.currGame + 1;
+      return newState;
     case 'NEXT_CLICKGAME':
-      console.log(4);
+      newState = { ...state };
+      newState.game.currGame = newState.game.currGame + 1;
+      return newState;
     default:
       // console.log('In Watch reducer');
       // return state;

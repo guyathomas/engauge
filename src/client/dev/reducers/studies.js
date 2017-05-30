@@ -11,10 +11,9 @@ function studies(state = [], action) {
     case 'TOGGLE_TRAINING':
       console.log(3);
     case 'NEXT_CLICKGAME':
-      console.log(4);
     default:
       // console.log('In Studies reducer');
-      // return state;
+      return state;
   }
   return state;
 }

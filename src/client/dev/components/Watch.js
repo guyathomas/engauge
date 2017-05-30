@@ -43,7 +43,7 @@ class Watch extends React.Component {
   }
 
   componentDidMount() {
-    const shortCode = this.props.routeParams.shortCode;
+    const shortCode = this.props.params.shortCode;
     this.getSessions(shortCode);
     this.startGazeListener();
   }
@@ -53,17 +53,16 @@ class Watch extends React.Component {
     // TODO: Stop the webcam light being on
   }
 
-  completeTraining() {
-    this.setState({ isTraining: false });
-  }
-
   render() {
-    if (this.state.isTraining) {
-      return (<ClickGame completeTraining={this.completeTraining.bind(this)} />);
+    if (this.props.watch.game.currGame < this.props.watch.game.targetGames) {
+      return (
+        <ClickGame {...this.props} />);
     } else {
+      const i = this.props.watch.studyIndex;
+      const currStudy = this.props.studies[i]
       return (
         <div className="watch">
-          <img src={this.state.study.url} />
+          <img src={currStudy.url} />
         </div>
       );
     }

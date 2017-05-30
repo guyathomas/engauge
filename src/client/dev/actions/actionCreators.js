@@ -2,6 +2,7 @@
 
 // Watch
 export function nextClickgame(currentGame) {
+  console.log('Next nextClickgame ran', currentGame);
   return {
     type: 'NEXT_CLICKGAME',
     currentGame,
@@ -44,3 +45,9 @@ export function removeHeatmap() {
   };
 }
 
+// Sessions
+export function updateSessions() {
+  return {
+    type: 'UPDATE_SESSIONS',
+  };
+}

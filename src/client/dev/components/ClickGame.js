@@ -5,7 +5,7 @@ const Cirlce = (props) => {
   const circleR = props.circle.r;
   return (
     <svg
-      onClick={props.nextGame}
+      onClick={props.nextClickgame}
       style={{ position: 'relative', left: `${props.left}px`, top: `${props.top}px`, width: containerSize, height: containerSize }} >
       <circle cx={circleR} cy={circleR} r={circleR - 4} fill="black" stroke="black" strokeWidth="2" ></circle>
       <circle transform="rotate(-90 40 40)" cx={circleR} cy={circleR} r={circleR - 4} fill="transparent" stroke="black" strokeWidth="5" className="circle-overlay"></circle>
@@ -77,7 +77,7 @@ class ClickGame extends React.Component {
       <div>
         <div className="instructions">{statusText}</div>
         <Cirlce
-          nextGame={this.nextGame.bind(this)}
+          { ...this.props }
           left={left}
           top={top}
           circle={this.state.circle}
