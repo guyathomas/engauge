@@ -1,5 +1,6 @@
 import React from 'react';
 import FormFeedback from './FormFeedback';
+import queries from '../queries';
 
 class Hero extends React.Component {
   constructor(props) {
@@ -12,23 +13,6 @@ class Hero extends React.Component {
     };
   }
 
-  createLink() {
-    const formFields = {
-      email: this.state.email,
-      url: this.state.url };
-    //TODO: To use  relay I will have to using a function on the resolved response. Do this later
-    fetch('/api/caseStudies', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify(formFields),
-    })
-    .then(response => response.json())
-    .then((result) => {
-      this.setState({ watchURL: (`${window.location.href}watch/${result.shortCode}`) });
-    });
-  }
 
   componentWillMount() {
     this.urlValidations = [
@@ -37,6 +21,18 @@ class Hero extends React.Component {
         message: 'This Dev version of the app requires an image URL input.',
       },
     ];
+  }
+
+  createLink() {
+    const { url, email } = this.state;
+    fetch('/graphql', {
+      ...queries.headers,
+      ...queries.newUserStudy(url, email),
+    })
+    .then(response => response.json())
+    .then(({ data }) => {
+      this.setState({ watchURL: (`${window.location.href}watch/${data.newUserStudy.shortCode}`) });
+    });
   }
   // Update state to have key as the value of the field ID that was changed
   // and the value as the text input

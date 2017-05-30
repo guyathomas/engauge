@@ -9,22 +9,12 @@ const {
 	GraphQLID,
 	GraphQLInt,
 	GraphQLNonNull,
+  GraphQLOutputType,
 } = require('graphql');
 const db = require('../db/models/index.js');
 const { resolver, attributeFields, defaultListArgs } = require('graphql-sequelize');
 const _ = require('lodash');
-// console.log('Models', Object.keys())
-
-// const makeAllMandatory = (model) => {
-//   const fields = _.assign(attributeFields(model));
-
-//   for (const key in fields) {
-//     const type = fields[key].type;
-//     fields[key].type = new GraphQLNonNull(type);
-//     console.log(fields[key]);
-//   }
-//   return fields;
-// };
+const utils = require('./utils');
 
 const Session = new GraphQLObjectType({
   name: 'Session',
@@ -66,6 +56,7 @@ const User = new GraphQLObjectType({
     study: {
       type: new GraphQLList(Study),
       resolve(user) {
+        console.log('The user model', user)
         return user.getStudies();
       },
     },
@@ -121,11 +112,35 @@ const Query = new GraphQLObjectType({
   }),
 });
 
+
 const Mutation = new GraphQLObjectType({
   name: 'Mutations',
   description: 'Functions to set stuff',
   fields() {
     return {
+      newUserStudy: {
+        type: Study,
+        args: {
+          email: {
+            type: new GraphQLNonNull(GraphQLString),
+          },
+          url: {
+            type: new GraphQLNonNull(GraphQLString),
+          },
+        },
+        resolve(source, args) {
+          const { url, email } = args;
+          const shortCode = utils.createSha(url + email);
+          return db.sequelize.models.user.findOrCreate({ where: { email } })
+          .then(res => (
+            db.sequelize.models.study.create({
+              shortCode,
+              url,
+              userId: res[0].dataValues.id,
+            })
+          ));
+        },
+      },
       addUser: {
         type: User,
         args: {

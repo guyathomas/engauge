@@ -3,7 +3,6 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../db/models');
-const router = require('./router');
 const GraphHTTP = require('express-graphql');
 const Schema = require('./schema.js');
 
@@ -16,12 +15,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
-db.sequelize.sync()
+db.sequelize.sync(/*{ force: true }*/)
   .catch((err) => {
     console.log('Error in syncing', err);
   });
 
-app.use('/api', router);
 app.use('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
