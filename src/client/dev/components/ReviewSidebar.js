@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import EmptyReview from './EmptyReview';
 import queries from '../queries';
+
+const EmptyReview = () => (
+  <div className="instructions" >
+  Please select a session to review
+  </div>
+);
 
 class ReviewSidebar extends React.Component {
   constructor(props) {
