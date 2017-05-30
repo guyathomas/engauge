@@ -24,7 +24,6 @@ class Hero extends React.Component {
   }
 
   createLink() {
-    console.log(this.refs)
     const url = this.refs.url.value;
     const email = this.refs.email.value;
     fetch('/graphql', {
