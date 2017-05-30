@@ -1,6 +1,19 @@
 // Watch & review shared
 
 // Watch
+export function nextClickgame(currentGame) {
+  return {
+    type: 'NEXT_CLICKGAME',
+    currentGame,
+  };
+}
+
+export function toggleTraining() {
+  return {
+    type: 'TOGGLE_TRAINING',
+  };
+}
+
 export function addSessionPoint(x, y, time) {
   return {
     type: 'ADD_SESSION_POINT',
@@ -16,18 +29,6 @@ export function clearSession() {
   };
 }
 
-export function toggleTraining() {
-  return {
-    type: 'TOGGLE_TRAINING',
-  };
-}
-
-export function nextClickgame(currentGame) {
-  return {
-    type: 'NEXT_CLICKGAME',
-    currentGame,
-  };
-}
 
 // Review
 export function renderHeatmap(sessionIndex) {

@@ -13,7 +13,7 @@ function review(state = [], action) {
     case 'NEXT_CLICKGAME':
       console.log(4);
     default:
-      console.log('In Review reducer');
+      // console.log('In Review reducer');
   }
   return state;
 }

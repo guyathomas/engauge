@@ -13,7 +13,7 @@ function studies(state = [], action) {
     case 'NEXT_CLICKGAME':
       console.log(4);
     default:
-      console.log('In Studies reducer');
+      // console.log('In Studies reducer');
       // return state;
   }
   return state;
