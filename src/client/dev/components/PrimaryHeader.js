@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderLinks from './HeaderLinks';
 
-const LandingHeader = props => (
+const PrimaryHeader = props => (
   <div>
     <HeaderLinks location={'primary-nav'} />
     {props.children}
@@ -10,4 +10,4 @@ const LandingHeader = props => (
 
 ;
 
-module.exports = LandingHeader;
+module.exports = PrimaryHeader;
