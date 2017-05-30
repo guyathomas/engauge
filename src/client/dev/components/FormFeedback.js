@@ -1,14 +1,15 @@
 import React from 'react';
 
 const FormFeedback = (props) => {
+  console.log(props.form);
   const {
-    validations, fieldText,
+    validations, field,
   } = props;
   let isValid = true;
   let errorMessage = '';
   // console.log('props, validations', props, props.validations);
   for (let i = 0; i < validations.length; i++) {
-    if (!validations[i].condition(fieldText)) {
+    if (!validations[i].condition(field)) {
       errorMessage = validations[i].message;
       isValid = false;
       break;
