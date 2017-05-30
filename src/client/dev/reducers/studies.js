@@ -5,11 +5,11 @@
 function studies(state = [], action) {
   switch (action.type) {
     case 'ADD_SESSION_POINT':
-      console.log(1);
+      // console.log(1);
     case 'CLEAR_SESSION':
-      console.log(2);
+      // console.log(2);
     case 'TOGGLE_TRAINING':
-      console.log(3);
+      // console.log(3);
     case 'NEXT_CLICKGAME':
     default:
       // console.log('In Studies reducer');

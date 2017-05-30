@@ -7,27 +7,19 @@ class Watch extends React.Component {
     this.state = {
       study: {},
       session: [],
-      isTraining: true,
     };
   }
 
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
       // Don't send the data if there is no coordinates or is currently in training
-      if (data == null || this.state.isTraining) { return; }
-
+      // TODO: Change this to be an implied reference in the redux store
+      if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
       if (!this.state.recStartMs) {
         this.setState({ recStartMs: elapsedTime });
       } else {
-        this.setState({
-          session: [...this.state.session, {
-            time: Math.floor(elapsedTime - this.state.recStartMs),
-            x: data.x,
-            y: data.y,
-          }],
-        });
+        this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.state.recStartMs))
       }
-
     }).begin();
   }
 

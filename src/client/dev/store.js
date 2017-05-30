@@ -22,6 +22,7 @@ const defaultState = {
       currGame: 1,
     },
     studyIndex: 0,
+    activeSession: [],
   },
   review: {
     studyIndex: 0,
