@@ -26,21 +26,22 @@ class Hero extends React.Component {
   createLink() {
     const url = this.refs.url.value;
     const email = this.refs.email.value;
+
     fetch('/graphql', {
       ...queries.headers,
       ...queries.newUserStudy(url, email),
     })
-    .then(response => response.json())
+    .then(rawResponse => rawResponse.json())
     .then(({ data }) => {
       this.setState({ watchURL: (`${window.location.href}watch/${data.newUserStudy.shortCode}`) });
-    });
+    })
+    .catch((error) => console.log('Error in creating link', error));
   }
 
 
   handleSubmit(event) {
     event.preventDefault();
     this.createLink();
-    // console.log(this.refs.new-study-form);
   }
 
   handleChange() {

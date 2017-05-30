@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FormFeedback = (props) => {
-  console.log(props.form);
   const {
     validations, field,
   } = props;

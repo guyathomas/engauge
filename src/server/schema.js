@@ -1,15 +1,12 @@
 // https://www.youtube.com/watch?v=DNPVqK_woRQ
 const GraphQLJSON = require('graphql-type-json');
-const GraphQLDate = require('graphql-date');
 const {
-	GraphQLObjectType,
-	GraphQLList,
-	GraphQLSchema,
-	GraphQLString,
-	GraphQLID,
-	GraphQLInt,
-	GraphQLNonNull,
-  GraphQLOutputType,
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLSchema,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLNonNull,
 } = require('graphql');
 const db = require('../db/models/index.js');
 const { resolver, attributeFields, defaultListArgs } = require('graphql-sequelize');
@@ -56,7 +53,7 @@ const User = new GraphQLObjectType({
     study: {
       type: new GraphQLList(Study),
       resolve(user) {
-        console.log('The user model', user)
+        console.log('The user model', user);
         return user.getStudies();
       },
     },
@@ -133,12 +130,13 @@ const Mutation = new GraphQLObjectType({
           const shortCode = utils.createSha(url + email);
           return db.sequelize.models.user.findOrCreate({ where: { email } })
           .then(res => (
-            db.sequelize.models.study.create({
+            db.sequelize.models.study.findOrCreate({ where: {
               shortCode,
               url,
               userId: res[0].dataValues.id,
-            })
-          ));
+            } })
+          ))
+          .then(res => res[0]);
         },
       },
       addUser: {
@@ -204,7 +202,7 @@ const Schema = new GraphQLSchema({
 
 module.exports = Schema;
 
-//OLD(More verbose method without using graphql-sequelize)
+// OLD(More verbose method without using graphql-sequelize)
 // const User = new GraphQLObjectType({
 //   name: 'User',
 //   description: 'A user that has created a study',

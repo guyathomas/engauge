@@ -45,7 +45,7 @@ module.exports = {
           }
         }
       }`,
-      variables: { url: url, email: email }, // GraphQL text from input
+      variables: { url, email }, // GraphQL text from input
     }),
   }),
 };
