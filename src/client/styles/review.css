@@ -49,7 +49,7 @@ a, a:visited, a:hover, a:active {
 }
 
 /*Casestudies view*/
-.cs-container .title {
+.studies-container .title {
 	display:block;
 	text-align: center;
 	font-size: 3em;
@@ -59,13 +59,13 @@ a, a:visited, a:hover, a:active {
 	font-family: Raleway-Medium;
 }
 
-.casestudies {
+.studies {
 	background-color: #F5F6F8;
 	column-count: 4;
 	column-gap: 0;
 }
 
-.casestudies .case-study {
+.studies .study {
 	float: left;
     break-inside: avoid;
     background-color: white;
@@ -74,7 +74,7 @@ a, a:visited, a:hover, a:active {
     background: #FEFEFE;
 }
 
-.casestudies .case-study img {
+.studies .study img {
 	width:100%;
 }
 

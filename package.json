@@ -7,7 +7,7 @@
     "node": "6.1.0"
   },
   "scripts": {
-    "start": "nodemon ./src/server/index.js",
+    "start": "node ./src/server/index.js",
     "relay": "relay-compiler --src ./src/client/dev --schema schema.graphql",
     "get-schema": "node ./scripts/getSchema.js",
     "build": "webpack -d;",

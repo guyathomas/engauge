@@ -47,12 +47,11 @@ class ReviewSidebar extends React.Component {
       }),
     })
     .then(response => response.json())
-    .then(({ data }) => { 
-      console.log('testy', data)
-      this.setState({ 
+    .then(({ data }) => {
+      this.setState({
         sessions: data.study.session,
-        studyURL: data.study.url
-         }); 
+        studyURL: data.study.url,
+      });
     });
   }
 
