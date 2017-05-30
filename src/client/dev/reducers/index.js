@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-/* import posts from './posts';
-import comments from './comments';*/
+import watch from './watch';
+import review from './review';
+import studies from './studies';
 
-const rootReducer = combineReducers({ /* posts, comments,*/ routing: routerReducer });
+
+const rootReducer = combineReducers({ watch, review, studies, routing: routerReducer });
 
 export default rootReducer;

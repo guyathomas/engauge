@@ -4,10 +4,12 @@ import * as actionCreators from '../actions/actionCreators';
 import PrimaryHeader from './PrimaryHeader';
 
 function mapStateToProps(state) {
-  return {
-    // posts: state.posts,
-    // comments: state.comments
-  }
+  console.log('I have no idea what is passed in here', state);
+  const { review, watch, studies } = state;
+  return { review, watch, studies };
+  // const { watch } = state;
+  // return { watch };
+
 }
 
 function mapDispachToProps(dispatch) {
