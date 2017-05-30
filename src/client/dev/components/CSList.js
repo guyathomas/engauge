@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import StudyCard from './StudyCard';
+import queries from '../queries';
 
 class CSList extends React.Component {
   constructor(props) {
@@ -11,18 +12,13 @@ class CSList extends React.Component {
   }
 
   componentWillMount() {
-    this.getCaseStudys();
+    this.getStudies();
   }
 
-  getCaseStudys() {
+  getStudies() {
     fetch('/graphql', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify({
-        query: '{studies {id,url,shortCode,}}',
-      }),
+      ...queries.headers,
+      ...queries.getStudies,
     })
     .then(response => response.json())
     .then(({ data }) => {

@@ -1,19 +1,19 @@
 import React from 'react';
 import ClickGame from './ClickGame';
-
+import queries from '../queries';
 class Watch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       socket: {},
-      sessions: {},
+      study: {},
       training: true,
       recStartMs: 0,
     };
   }
 
   openSocket() {
-    console.log('A connection will bne opened with', window.location.origin)
+    console.log('A connection will bne opened with', window.location.origin);
     const socket = io.connect(window.location.origin, { secure: true, port: 433 });
     socket.on('connect', () => {
       console.log('Client has opened the connection');
@@ -23,7 +23,7 @@ class Watch extends React.Component {
 
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
-      //Don't send the data if there is no coordinates or is currently in training
+      // Don't send the data if there is no coordinates or is currently in training
       if (data == null || this.state.training) { return; }
 
       if (!this.state.recStartMs) {
@@ -39,13 +39,15 @@ class Watch extends React.Component {
   }
 
   getSessions(shortCode) {
-    fetch(`/api/caseStudies/${shortCode}`, {
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
+    fetch('/graphql', {
+      ...queries.headers,
+      ...queries.getStudy(shortCode),
     })
     .then(response => response.json())
-    .then(sessions => this.setState({ sessions }));
+    .then(({ data }) => {
+      console.log('data', data);
+      this.setState({ study: data.study });
+    });
   }
 
   componentDidMount() {
@@ -70,7 +72,7 @@ class Watch extends React.Component {
     } else {
       return (
         <div className="watch">
-            <img src={this.state.sessions.url} />
+          <img src={this.state.study.url} />
         </div>
       );
     }

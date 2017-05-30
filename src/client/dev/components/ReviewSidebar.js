@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import EmptyReview from './EmptyReview';
+import queries from '../queries';
 
 class ReviewSidebar extends React.Component {
   constructor(props) {
@@ -18,33 +19,10 @@ class ReviewSidebar extends React.Component {
     this.getSessionData(shortCode);
   }
 
-  getSessions(shortCode) {
-    fetch(`/api/sessions/${shortCode}`)
-    .then(response => response.json())
-    .then((sessions) => {
-      this.setState({ sessions: sessions.data });
-    });
-  }
-
   getSessionData(shortCode) {
     fetch('/graphql', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify({
-        query: `query ($shortCode: String!){
-         study(shortCode: $shortCode) {
-           url,
-           session {
-             id,
-             recording,
-             duration
-           }
-         }
-       }`,
-        variables: { shortCode }, // GraphQL text from input
-      }),
+      ...queries.headers,
+      ...queries.getSessions(shortCode),
     })
     .then(response => response.json())
     .then(({ data }) => {
