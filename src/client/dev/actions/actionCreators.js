@@ -1,27 +1,45 @@
-// increment
-export function increment(index) {
+// Watch & review shared
+
+// Watch
+export function addSessionPoint(x, y, time) {
   return {
-    type: 'INCREMENT_LIKES',
-    index
-  }
+    type: 'ADD_SESSION_POINT',
+    x,
+    y,
+    time,
+  };
 }
 
-// add comment
-export function addComment(postId, author, comment) {
+export function clearSession() {
   return {
-    type: 'ADD_COMMENT',
-    postId,
-    author,
-    comment
-  }
+    type: 'CLEAR_SESSION',
+  };
 }
 
-// remove comment
-
-export function removeComment(postId, i) {
+export function toggleTraining() {
   return {
-    type: 'REMOVE_COMMENT',
-    i,
-    postId
-  }
+    type: 'TOGGLE_TRAINING',
+  };
 }
+
+export function nextClickgame(currentGame) {
+  return {
+    type: 'NEXT_CLICKGAME',
+    currentGame,
+  };
+}
+
+// Review
+export function renderHeatmap(sessionIndex) {
+  return {
+    type: 'RENDER_HEATMAP',
+    sessionIndex,
+  };
+}
+
+export function removeHeatmap() {
+  return {
+    type: 'REMOVE_HEATMAP',
+  };
+}
+
