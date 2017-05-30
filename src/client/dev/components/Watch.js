@@ -13,10 +13,12 @@ class Watch extends React.Component {
   }
 
   openSocket() {
-    console.log('A connection will bne opened with', window.location.origin);
     const socket = io.connect(window.location.origin, { secure: true, port: 433 });
     socket.on('connect', () => {
       console.log('Client has opened the connection');
+    });
+    socket.on('disconnect', () => {
+      console.log('about to terminate the socket connection');
     });
     this.setState({ socket });
   }
@@ -45,7 +47,6 @@ class Watch extends React.Component {
     })
     .then(response => response.json())
     .then(({ data }) => {
-      console.log('data', data);
       this.setState({ study: data.study });
     });
   }
