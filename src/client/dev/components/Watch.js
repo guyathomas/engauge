@@ -5,38 +5,29 @@ class Watch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: {},
       study: {},
-      training: true,
-      recStartMs: 0,
+      session: [],
+      isTraining: true,
     };
-  }
-
-  openSocket() {
-    const socket = io.connect(window.location.origin, { secure: true, port: 433 });
-    socket.on('connect', () => {
-      console.log('Client has opened the connection');
-    });
-    socket.on('disconnect', () => {
-      console.log('about to terminate the socket connection');
-    });
-    this.setState({ socket });
   }
 
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
       // Don't send the data if there is no coordinates or is currently in training
-      if (data == null || this.state.training) { return; }
+      if (data == null || this.state.isTraining) { return; }
 
       if (!this.state.recStartMs) {
         this.setState({ recStartMs: elapsedTime });
       } else {
-        this.state.socket.emit('data', {
-          time: Math.floor(elapsedTime - this.state.recStartMs),
-          x: data.x,
-          y: data.y,
+        this.setState({
+          session: [...this.state.session, {
+            time: Math.floor(elapsedTime - this.state.recStartMs),
+            x: data.x,
+            y: data.y,
+          }],
         });
       }
+
     }).begin();
   }
 
@@ -53,22 +44,21 @@ class Watch extends React.Component {
 
   componentDidMount() {
     const shortCode = this.props.routeParams.shortCode;
-    this.openSocket();
     this.getSessions(shortCode);
     this.startGazeListener();
   }
 
   componentWillUnmount() {
+    // TODO: Add a post request to create the session
     // TODO: Stop the webcam light being on
-    this.state.socket.disconnect();
   }
 
   completeTraining() {
-    this.setState({ training: false });
+    this.setState({ isTraining: false });
   }
 
   render() {
-    if (this.state.training) {
+    if (this.state.isTraining) {
       return (<ClickGame completeTraining={this.completeTraining.bind(this)} />);
     } else {
       return (
