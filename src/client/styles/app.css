@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	font-family: Raleway-Medium;
 }
 /*==============================
 =======Primary Navigation=======
@@ -11,7 +12,6 @@ body {
     padding: 1em;
     color: white;
     flex-direction: row;
-	font-family: Raleway-Medium;
 	font-weight: lighter;
     align-items: center;
 }
@@ -34,9 +34,36 @@ body {
 	padding: 8px 16px;
 }
 
-/*.primary-nav .logo {
-}*/
-
 .primary-nav .first-item {
 	margin-left: auto;
+}
+
+.stats-container {
+	position: relative;
+	background-color: #144052;
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.stats-container .message {
+	font-size: 1.5em;
+	color: white;
+	/*display: */
+}
+
+.stats-container .hideme {
+	position: absolute;
+	bottom: -10px;
+	background-color: #144052;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.stats-container .hideme:hover {
+    background-color: #375967;
 }

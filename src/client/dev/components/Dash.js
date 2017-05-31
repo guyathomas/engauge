@@ -1,11 +1,11 @@
 import React from 'react';
-import Stats from './Stats';
+import AccountStats from './AccountStats';
 import StudyList from './StudyList';
 import SessionView from './SessionView';
 
 const Dash = props => (
   <div clasName="dash">
-	<Stats />
+	<AccountStats />
     <StudyList />
     <SessionView {...props} />
   </div>
