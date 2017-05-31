@@ -92,7 +92,7 @@ a, a:visited, a:hover, a:active {
 .studies-container {
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	width: 580px;
 	overflow-y: scroll;
 	height: calc(100vh - 62px - 250px);
 	background-color: #f1f1f1; 
