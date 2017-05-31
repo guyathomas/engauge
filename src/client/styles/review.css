@@ -116,3 +116,9 @@ a, a:visited, a:hover, a:active {
 	font-size: 2em;
 	text-align: center;
 }
+
+/*new stuff */
+
+.dash {
+	height: 100vh;
+}

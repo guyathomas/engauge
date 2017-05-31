@@ -8,8 +8,8 @@ const Header = () => (
         <img src={'../../assets/images/brand.png'} />
       </Link>
     </div>
-    <div className="first-item">Create Study</div>
-    <div>=</div>
+    <div className="first-item button">Create Study</div>
+    <div className="hamburger">=</div>
   </nav>
 );
 

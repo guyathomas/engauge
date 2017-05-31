@@ -3,18 +3,8 @@ import Stats from './Stats';
 import StudyList from './StudyList';
 import SessionView from './SessionView';
 
-// const urlToComponentMappings = {
-//   summary: 'Summary',
-//   heatmaps: 'HeatMaps',
-//   recordings: 'Recordings',
-//   watchdetails: 'WatchDetails',
-//   studyoptions: 'StudyOptions',
-// };
-
-
 const Dash = props => (
-  <div>
-	The Dash
+  <div clasName="dash">
 	<Stats />
     <StudyList />
     <SessionView {...props} />

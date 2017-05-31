@@ -49,34 +49,7 @@ body {
 	color: #FFFFFF;
 }
 
-/*==============================
-=======Primary Navigation=======
-==============================*/
-.primary-nav {
-    height: 2vh;
-	display: flex;
-    background-color: #3F4D5F;
-    padding: 1em;
-    color: white;
-    flex-direction: row;
-    align-items: center;
-}
 
-.primary-nav a {
-	text-decoration:none;
-	font-family: Raleway-Medium;
-	font-size: 1em;
-	color: #FFFFFF;
-	letter-spacing: 0;
-	margin: 0 0.5em
-}
-
-/*.primary-nav .logo {
-}*/
-
-.primary-nav .first-item {
-	margin-left: auto;
-}
 /*==============================
 ===========Hero Text============
 ==============================*/
