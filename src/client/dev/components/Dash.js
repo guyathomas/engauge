@@ -4,7 +4,7 @@ import StudyList from './StudyList';
 import SessionView from './SessionView';
 
 const Dash = props => (
-  <div clasName="dash">
+  <div className="dash">
     <AccountStats />
     <div className="review-container">
       <StudyList />

@@ -27,19 +27,3 @@ const router = (
 );
 
 render(router, document.getElementById('app'));
-
-// const router = (
-//   <Provider store={store}>
-//     <Router history={history}>
-//       <Route path="/" component={App}>
-//         <Route path="/watch/:shortCode" component={Watch} />
-//         <Route path="/watch" component={WatchList} />
-//         <Route path="/review" component={ReviewList} />
-//         <Route path="/review/:shortCode" component={ReviewSidebar} >
-//           <Route path="/review/:shortCode/:sessionID" component={Review} />
-//         </Route>
-//       </Route>
-//       <Route path="*" component={NotFound} />
-//     </Router>
-//   </Provider>
-// );

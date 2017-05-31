@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import StudyCard from './StudyCard';
 import queries from '../queries';
+import Filters from './Filters';
 
 class StudyList extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class StudyList extends React.Component {
     const action = this.props.action;
     return (
       <div className="studies-container">
+        <Filters />
         {this.state.studies.map(study => (
           <Link to={`/dash/${study.shortCode}`}>
             <StudyCard key={study.id} study={study} />

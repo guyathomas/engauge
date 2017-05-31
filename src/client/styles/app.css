@@ -93,6 +93,9 @@ a, a:visited, a:hover, a:active {
 	display: flex;
 	flex-direction: column;
 	width: 30%;
+	overflow-y: scroll;
+	height: calc(100vh - 62px - 250px);
+	background-color: #f1f1f1; 
 }
 
 .studies-container .study {
@@ -103,6 +106,7 @@ a, a:visited, a:hover, a:active {
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid grey;
+    background-color: rgba(0,0,0,0)
 }
 
 .studies-container .study .imgwrapper {
@@ -129,4 +133,60 @@ a, a:visited, a:hover, a:active {
 
 .studies-container .study img {
 	width:100%;
+}
+
+.studies-container .filter-container .filters {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.studies-container .filter-container .filters{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.studies-container .filter-container .filters .search {
+	padding: 10px;
+	background-color: white;
+	border-radius: 20px;
+	width: 50%;
+	margin: 10px 5px;
+}
+
+.studies-container .filter-container .filters .toggler {
+	position: relative;
+	padding: 10px;
+	background-color: white;
+	border-radius: 20px;
+	width: 50%;
+	margin: 10px 5px;
+	display: flex;
+	justify-content: space-around;
+	font-size: 13px;
+}
+
+.studies-container .filter-container .filters .toggler .left,
+.studies-container .filter-container .filters .toggler .right {
+	display: flex;
+	align-items: center;
+	z-index: 1;
+}
+
+.studies-container .filter-container .filters .toggler .right.active,
+.studies-container .filter-container .filters .toggler .left.active {
+	color:white;
+}
+
+.studies-container .filter-container .filters .toggler .highlighted {
+	position: absolute;
+    background-color: #528DFF;
+    width: 50%;
+    height: 100%;
+    /*left: 0;*/
+    top: 0;
+    border-radius: 20px;
 }
