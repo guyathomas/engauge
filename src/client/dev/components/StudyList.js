@@ -28,10 +28,8 @@ class StudyList extends React.Component {
 
   render() {
     const action = this.props.action;
-    const title = (action === 'review' ? 'Review Case Studies' : 'Record Session');
     return (
       <div className="studies-container">
-        <div className="title">{title}</div>
         <div className="studies">
           {this.state.studies.map(study => (
             <Link to={`/${action}/${study.shortCode}`}>
