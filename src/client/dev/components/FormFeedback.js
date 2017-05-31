@@ -6,7 +6,7 @@ const FormFeedback = (props) => {
   } = props;
   let isValid = true;
   let errorMessage = '';
-  // console.log('props, validations', props, props.validations);
+
   for (let i = 0; i < validations.length; i++) {
     if (!validations[i].condition(field)) {
       errorMessage = validations[i].message;

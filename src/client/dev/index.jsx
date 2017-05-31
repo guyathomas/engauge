@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 
 // Import Components
 import App from './components/App';
-import Landing from './components/Landing';
 import Watch from './components/Watch';
 import Review from './components/Review';
 import ReviewSidebar from './components/ReviewSidebar';
@@ -24,8 +23,7 @@ const ReviewList = () => (<CSList action="review" />);
 const router = (
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={Landing} />
-      <Route component={App}>
+      <Route path="/" component={App}>
         <Route path="/watch/:shortCode" component={Watch} />
         <Route path="/watch" component={WatchList} />
         <Route path="/review" component={ReviewList} />
