@@ -150,6 +150,8 @@ a, a:visited, a:hover, a:active {
 }
 
 .studies-container .filter-container .filters .search {
+	border: none;
+	font-size: 13px;
 	padding: 10px;
 	background-color: white;
 	border-radius: 20px;
