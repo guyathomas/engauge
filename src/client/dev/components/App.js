@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
-import PrimaryHeader from './PrimaryHeader';
+import Main from './Main';
 
 function mapStateToProps(state) {
   const { review, watch, studies } = state;
@@ -12,6 +12,6 @@ function mapDispachToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-const App = connect(mapStateToProps, mapDispachToProps)(PrimaryHeader);
+const App = connect(mapStateToProps, mapDispachToProps)(Main);
 
 export default App;
