@@ -192,3 +192,28 @@ a, a:visited, a:hover, a:active {
     top: 0;
     border-radius: 20px;
 }
+.studies-container .filter-container .results {
+    text-align: center;
+    font-size: 13px;
+    color: #464C50;
+}
+
+.sessions-container {
+	width: calc(100vw - 580px);
+	padding: 15px;
+}
+
+.sessions-container .views {
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid grey;
+	padding: 10px 0;
+	align-items: center;
+}
+
+.sessions-container .views li.active {
+	font-weight: 600;
+	color: #528DFF;
+	font-size: 18px;
+}

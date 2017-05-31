@@ -14,20 +14,18 @@ const Views = {
 
 };
 
-const SessionView = props => {
-	return (
-	  <div>
-	    <ul>
-	      <li>Summary</li>
-	      <li>Heatmaps</li>
-	      <li>Recordings</li>
-	      <li>Watch</li>
-	      <li>Study Options</li>
-	    </ul>
-	    {console.log(Views.summary)}
-	    {Views[props.routeParams.sessionView] || Views.summary}
-	  </div>
-		)
-}
+const SessionView = props => (
+  <div className="sessions-container">
+    <ul className="views">
+      <li className="active">Summary</li>
+      <li>Heatmaps</li>
+      <li>Recordings</li>
+      <li>Watch</li>
+      <li>Study Options</li>
+    </ul>
+    {console.log(Views.summary)}
+    {Views[props.routeParams.sessionView] || Views.summary}
+  </div>
+	);
 
 export default SessionView;
