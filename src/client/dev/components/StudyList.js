@@ -30,13 +30,11 @@ class StudyList extends React.Component {
     const action = this.props.action;
     return (
       <div className="studies-container">
-        <div className="studies">
-          {this.state.studies.map(study => (
-            <Link to={`/${action}/${study.shortCode}`}>
-              <StudyCard key={study.id} study={study} />
-            </Link>
-          ))}
-        </div>
+        {this.state.studies.map(study => (
+          <Link to={`/dash/${study.shortCode}`}>
+            <StudyCard key={study.id} study={study} />
+          </Link>
+        ))}
       </div>
     );
   }

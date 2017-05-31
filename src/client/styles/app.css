@@ -1,6 +1,15 @@
+#app {
+	display: flex;
+	flex-direction: column;
+}
 body {
 	margin: 0;
 	font-family: Raleway-Medium;
+}
+
+a, a:visited, a:hover, a:active {
+	  color: inherit;
+	  text-decoration: none;
 }
 /*==============================
 =======Primary Navigation=======
@@ -71,4 +80,40 @@ body {
 
 .stats-container .hideme:hover {
     background-color: #ee6123;
+}
+
+/*review container*/
+.review-container {
+	display: flex;
+	flex-direction: row;
+}
+
+/*studies view*/
+.studies-container {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+}
+
+.studies-container .study {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    background: #FEFEFE;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.studies-container .study .imgwrapper {
+	width:30%;
+	align-self: center;
+}
+.studies-container .study .details {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.studies-container .study img {
+	width:100%;
 }

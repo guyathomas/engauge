@@ -5,11 +5,13 @@ import SessionView from './SessionView';
 
 const Dash = props => (
   <div clasName="dash">
-	<AccountStats />
-    <StudyList />
-    <SessionView {...props} />
+    <AccountStats />
+    <div className="review-container">
+      <StudyList />
+      <SessionView {...props} />
+    </div>
   </div>
-)
+);
 
 
 export default Dash;
