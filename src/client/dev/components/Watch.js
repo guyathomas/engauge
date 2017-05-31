@@ -34,6 +34,16 @@ class Watch extends React.Component {
     });
   }
 
+  postSession() {
+    const thisSession = this.props.watch.activeSession;
+    const duration = thisSession[thisSession.length - 1].time - thisSession[0].time
+    fetch('/graphql', {
+      ...queries.headers,
+      ...queries.postSession(thisSession, duration, this.props.params.shortCode),
+    })
+    .catch((err) => {console.log('err',  err)})
+  }
+
   componentDidMount() {
     const shortCode = this.props.params.shortCode;
     this.getSessions(shortCode);
@@ -41,6 +51,7 @@ class Watch extends React.Component {
   }
 
   componentWillUnmount() {
+    this.postSession();
     // TODO: Add a post request to create the session
     // TODO: Stop the webcam light being on
   }

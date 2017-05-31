@@ -48,4 +48,14 @@ module.exports = {
       variables: { url, email }, // GraphQL text from input
     }),
   }),
+  postSession: (recording, duration, shortCode) => ({
+    body: JSON.stringify({
+      query: `mutation ($recording: JSON!, $duration: Int!, $shortCode: String!){
+             addSession(recording:$recording, duration:$duration, shortCode:$shortCode) {
+               id
+             }
+           }`,
+      variables: { recording, duration, shortCode },
+    }),
+  }),
 };
