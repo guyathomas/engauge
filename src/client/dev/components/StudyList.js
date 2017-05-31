@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import StudyCard from './StudyCard';
 import queries from '../queries';
 
-class CSList extends React.Component {
+class StudyList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,4 +44,4 @@ class CSList extends React.Component {
   }
 }
 
-module.exports = CSList;
+module.exports = StudyList;

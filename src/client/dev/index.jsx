@@ -13,7 +13,7 @@ import Review from './components/Review';
 import ReviewSidebar from './components/ReviewSidebar';
 import NotFound from './components/NotFound';
 // import PrimaryHeader from './components/PrimaryHeader';
-import CSList from './components/CSList';
+import StudyList from './components/StudyList';
 
 import store, { history } from './store';
 
