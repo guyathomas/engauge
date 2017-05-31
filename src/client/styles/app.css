@@ -114,6 +114,19 @@ a, a:visited, a:hover, a:active {
 	flex-direction: column;
 	justify-content: space-around;
 }
+
+.studies-container .study .details .title{
+}
+.studies-container .study .details .url{
+	color: #464C50;
+}
+
+.studies-container .study .details .session-count{
+	color: #ACACAC;
+	font-style: italic;
+	font-weight: 200;
+}
+
 .studies-container .study img {
 	width:100%;
 }
