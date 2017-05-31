@@ -178,14 +178,25 @@ const Mutation = new GraphQLObjectType({
           recording: {
             type: new GraphQLNonNull(GraphQLJSON),
           },
-          socketId: {
+          shortCode: {
             type: new GraphQLNonNull(GraphQLString),
           },
         },
         resolve(source, args) {
-          return db.sequelize.models.session.create({
-            duration: args.duration,
-            recording: args.recording,
+          // db.sequelize.models.session.create({
+          //   duration: args.duration,
+          //   recording: args.recording,
+          // })
+          return db.sequelize.models.study.findOne({ where: { shortCode: args.shortCode } })
+          .then((res) => {
+            console.log('Going to create with', res.dataValues.id);
+            return db.sequelize.models.session.create({
+              duration: args.duration,
+              recording: args.recording,
+              studyId: res.dataValues.id,
+            });
+            // return
+            // console.log('Result from findONe', res);
           });
         },
       },
