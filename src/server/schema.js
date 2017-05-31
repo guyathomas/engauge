@@ -186,7 +186,6 @@ const Mutation = new GraphQLObjectType({
           return db.sequelize.models.session.create({
             duration: args.duration,
             recording: args.recording,
-            socketId: args.socketId,
           });
         },
       },
