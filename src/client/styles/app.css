@@ -279,8 +279,7 @@ a, a:visited, a:hover, a:active {
 	overflow: scroll;
 }
 
-
-#heatmap-wrapper {
+.heatmap-section {
 	background-color: black;
 	width: 100%;
 	height: 100%;
@@ -288,7 +287,15 @@ a, a:visited, a:hover, a:active {
 	overflow-y: scroll;
 }
 
-#heatmap-wrapper img {
+#heatmap-wrapper {
+}
+
+#heatmap-wrapper .heatmap-canvas {
+	height: 100%;
+	width: 100%;
+}
+
+.heatmap-section img {
 	width: 100%;
 }
 

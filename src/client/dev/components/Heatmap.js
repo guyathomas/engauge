@@ -40,6 +40,7 @@ class Heatmap extends React.Component {
   componentDidMount() {
     const heatmap = this.createHeatmap()
     this.props.createHeatmap(heatmap)
+    console.log('Will add heat data')
     this.addHeatData();
   }
 
@@ -50,11 +51,13 @@ class Heatmap extends React.Component {
     const { sessions, selectedSessions } = this.props.sessionView;
     const activeStudyIndex = this.props.studyList.selectedStudy;
     const activeStudy = this.props.studyList.studies[activeStudyIndex];
-
+    console.log(activeStudy.url)
     return (
-      <div id="heatmap-wrapper">
-        <img src={activeStudy.url} />
-      </div>
+            <div className="heatmap-section">
+              <div id="heatmap-wrapper">
+                <img src={activeStudy.url} />
+              </div>
+            </div>
     );
   }
   }
