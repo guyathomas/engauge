@@ -48,3 +48,11 @@ export function updateSessions() {
     type: 'NO_CASE',
   };
 }
+
+// ===========Sessions View=============
+export function updateActiveTab(newIndex) {
+  return {
+    type: 'UPDATE_ACTIVE_TAB',
+    newIndex,
+  };
+}

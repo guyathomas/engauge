@@ -4,8 +4,8 @@ import * as actionCreators from '../actions/actionCreators';
 import Main from './Main';
 
 function mapStateToProps(state) {
-  const { review, watch, studies } = state;
-  return { review, watch, studies };
+  const { accountStats, sessionView, studyList, watch } = state;
+  return { accountStats, sessionView, studyList, watch };
 }
 
 function mapDispachToProps(dispatch) {

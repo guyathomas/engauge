@@ -17,7 +17,7 @@ const titles = ['Summary', 'Heatmaps', 'Recordings', 'WatchDetails', 'StudyOptio
 
 
 const Title = (props) => (
-  <li className={props.active === props.i ? 'active' : ''}>{props.title}</li>
+  <li className={props.isActive ? 'active' : ''} onClick={props.updateActiveTab} >{props.title}</li>
 );
 
 const SessionView = (props) => {
@@ -25,9 +25,16 @@ const SessionView = (props) => {
   return (
 	  <div className="sessions-container">
 	    <ul className="titles">
-	      {titles.map((title, i) => <Title title={title} i={i} key={i} active={1} />)}
+	      {titles.map((title, i) => (
+          <Title title={title}
+            i={i}
+            key={i}
+            isActive={props.sessionView.activeTab === i}
+            updateActiveTab={props.updateActiveTab.bind(this, i) }
+          />)
+        )}
 	    </ul>
-	    {views[1]}
+	    {views[props.sessionView.activeTab]}
 	  </div>
   )
 }

@@ -210,6 +210,7 @@ a, a:visited, a:hover, a:active {
 	border-bottom: 1px solid grey;
 	padding: 10px 0;
 	align-items: center;
+	cursor: default;
 }
 
 .sessions-container .titles li.active {

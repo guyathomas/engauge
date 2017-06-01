@@ -3,7 +3,7 @@ import AccountStats from './AccountStats';
 import StudyList from './StudyList';
 import SessionView from './SessionView';
 
-const ReviewContainer = (props) => (
+const ReviewContainer = props => (
 	<div className="review-container">
 	  <StudyList {...props} />
 	  <SessionView {...props} />

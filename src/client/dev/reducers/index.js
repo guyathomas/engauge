@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+import accountStats from './accountStats';
+import sessionView from './sessionView';
+import studyList from './studyList';
 import watch from './watch';
-import review from './review';
-import studies from './studies';
-import sessions from './sessions';
 
 
-const rootReducer = combineReducers({ watch, review, studies, sessions, routing: routerReducer });
+const rootReducer = combineReducers({ accountStats, sessionView, studyList, watch, routing: routerReducer });
 
 export default rootReducer;

@@ -28,7 +28,6 @@ class StudyList extends React.Component {
   }
 
   render() {
-    const action = this.props.action;
     return (
       <div className="studies-container">
         <Filters />
