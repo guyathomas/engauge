@@ -23,15 +23,15 @@ class StudyList extends React.Component {
     })
     .then(response => response.json())
     .then(({ data }) => {
-      this.setState({ studies: data.studies });
+      this.props.updateStudies(data.studies)
     });
   }
 
   render() {
     return (
       <div className="studies-container">
-        <Filters />
-        {this.state.studies.map((study, i) => (
+        <Filters studyCount={this.props.studyList.studies.length} />
+        {this.props.studyList.studies.map((study, i) => (
           <Link to={`/dash/${study.shortCode}`} key={i} >
             <StudyCard key={study.id} study={study} />
           </Link>

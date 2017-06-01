@@ -10,7 +10,7 @@ const Filters = props => (
       <Toggler />
     </div>
     <div className="results">
-       7 Studies Found
+       {`${props.studyCount} ${(props.studyCount === 1 ? 'study' : 'studies')} found`}
     </div>
   </div>
 );

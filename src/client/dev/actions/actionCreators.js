@@ -62,3 +62,12 @@ export function removeHeatmap() {
     type: 'REMOVE_HEATMAP',
   };
 }
+
+
+// Studylist
+export function updateStudies(studies) {
+  return {
+    type: 'UPDATE_STUDIES',
+    studies,
+  };
+}
