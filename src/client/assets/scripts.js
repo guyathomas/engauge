@@ -30,8 +30,9 @@ const mergeNArrays = (arraysToSort, comparitor) => {
 
 const pull = (indexObj, source, key) => {
   const result = [];
+  if (!(!!(indexObj) && !!(source) && !!(key))) { return result } //Don't run when there are no sessions
   const indices = Object.keys(indexObj);
-
+  console.log(indexObj, source, key)
   for (let i = 0; i < indices.length; i++) {
     const thisIndex = indices[i];
     console.log(source)
