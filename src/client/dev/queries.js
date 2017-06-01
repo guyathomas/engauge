@@ -13,7 +13,7 @@ module.exports = {
       query: `query ($shortCode: String!){
          study(shortCode: $shortCode) {
            url,
-           session {
+           sessions {
              id,
              recording,
              duration

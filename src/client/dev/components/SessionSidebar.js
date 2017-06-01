@@ -33,7 +33,7 @@ class SessionSidebar extends React.Component {
     .then(({ data }) => {
       console.log('data from getSessionData', data)
       this.setState({
-        sessions: data.study.session,
+        sessions: data.study.sessions,
         studyURL: data.study.url,
       });
     });
