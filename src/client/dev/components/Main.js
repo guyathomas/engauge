@@ -5,7 +5,8 @@ import Header from './Header';
 const Main = props => (
   <div>
     <Header />
-    {props.children}
+    {React.cloneElement(props.children, { ...props }) }
+    {/* Clone element can cause duplicate components that are deeply nested in the router*/}
   </div>
 
 );

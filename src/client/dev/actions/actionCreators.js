@@ -1,5 +1,3 @@
-// Watch & review shared
-
 // Watch
 export function nextClickgame(currentGame) {
   return {
@@ -44,9 +42,9 @@ export function removeHeatmap() {
   };
 }
 
-// Sessions
+// Sessions (haven't got any yet)
 export function updateSessions() {
   return {
-    type: 'UPDATE_SESSIONS',
+    type: 'NO_CASE',
   };
 }

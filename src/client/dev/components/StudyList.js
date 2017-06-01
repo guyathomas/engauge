@@ -32,8 +32,8 @@ class StudyList extends React.Component {
     return (
       <div className="studies-container">
         <Filters />
-        {this.state.studies.map(study => (
-          <Link to={`/dash/${study.shortCode}`}>
+        {this.state.studies.map((study, i) => (
+          <Link to={`/dash/${study.shortCode}`} key={i} >
             <StudyCard key={study.id} study={study} />
           </Link>
         ))}

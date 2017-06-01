@@ -20,13 +20,16 @@ const Title = (props) => (
   <li className={props.active === props.i ? 'active' : ''}>{props.title}</li>
 );
 
-const SessionView = () => (
-  <div className="sessions-container">
-    <ul className="titles">
-      {titles.map((title, i) => <Title title={title} i={i} active={1} />)}
-    </ul>
-    {views[1]}
-  </div>
-	);
+const SessionView = (props) => {
+	console.log('props in sessionview', props)
+  return (
+	  <div className="sessions-container">
+	    <ul className="titles">
+	      {titles.map((title, i) => <Title title={title} i={i} key={i} active={1} />)}
+	    </ul>
+	    {views[1]}
+	  </div>
+  )
+}
 
 export default SessionView;
