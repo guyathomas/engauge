@@ -1,6 +1,8 @@
 //Working Review however sidebar not populating
 import React from 'react';
+import { mergeNArrays } from '../../assets/scripts';
 
+console.log(mergeNArrays)
 class Heatmap extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +13,7 @@ class Heatmap extends React.Component {
   }
 
   createHeatmap() {
+    console.log('Running create heatmap with')
     const heatmap = h337.create({
       container: document.getElementById('heatmapContainer'),
       radius: 50,
@@ -35,6 +38,7 @@ class Heatmap extends React.Component {
   }
 
   componentDidUpdate() {
+    console.log('Going to add data to heatmap', this.props.activeSession)
     this.addHeatData(this.props.activeSession);
   }
 
