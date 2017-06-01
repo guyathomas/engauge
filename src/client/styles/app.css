@@ -106,13 +106,21 @@ a, a:visited, a:hover, a:active {
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid grey;
-    background-color: rgba(0,0,0,0)
+    background-color: rgba(0,0,0,0);
+    height: 200px;
 }
 
 .studies-container .study .imgwrapper {
 	width:30%;
+	height: 100%;
 	align-self: center;
 }
+
+.studies-container .study img {
+	width:100%;
+	height: 100%;
+}
+
 .studies-container .study .details {
 	display: flex;
 	flex-direction: column;
@@ -131,9 +139,7 @@ a, a:visited, a:hover, a:active {
 	font-weight: 200;
 }
 
-.studies-container .study img {
-	width:100%;
-}
+
 
 .studies-container .filter-container .filters {
 	display: flex;
