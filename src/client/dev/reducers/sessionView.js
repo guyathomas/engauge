@@ -1,9 +1,13 @@
 function sessionView(state = [], action) {
+	console.log('state in sessionView', state);
   switch (action.type) {
     case 'UPDATE_ACTIVE_TAB':
       return { ...state, activeTab: action.newIndex };
-    case 'UPDATE_HEATMAP':
-      return state;
+    case 'CREATE_HEATMAP':
+      return { ...state, heatmap: action.heatmap };
+    case 'RENDER_HEATMAP_DATA':
+      const renderedMap = state.heatmap.setData(action.data);
+      return { ...state, heatmap: renderedMap };
     case 'REMOVE_HEATMAP':
       return state;
     default:

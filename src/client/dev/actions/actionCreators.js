@@ -43,10 +43,17 @@ export function updateActiveTab(newIndex) {
   };
 }
 
-export function renderHeatmap(heatmap) {
+export function createHeatmap(heatmap) {
   return {
-    type: 'RENDER_HEATMAP',
+    type: 'CREATE_HEATMAP',
     heatmap,
+  };
+}
+
+export function renderHeatmapData(data) {
+  return {
+    type: 'RENDER_HEATMAP_DATA',
+    data,
   };
 }
 

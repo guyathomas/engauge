@@ -13,9 +13,7 @@ const defaultState = {
   },
   sessionView: {
     activeTab: 1,
-    heatmaps: {
-      heatmap: '',
-    },
+    heatmap: '',
     selectedSessions: [0],
     sessions: [
       {

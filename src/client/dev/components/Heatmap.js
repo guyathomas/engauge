@@ -1,45 +1,49 @@
 //Working Review however sidebar not populating
 import React from 'react';
-import { mergeNArrays } from '../../assets/scripts';
+import { mergeNArrays, pull } from '../../assets/scripts';
 
-console.log(mergeNArrays)
 class Heatmap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      session: {},
-      heatmap: '',
-    };
+    this.state = {};
+  }
+
+
+
+  addHeatData(activeSession) {
+    const { selectedSessions, sessions } = this.props.sessionView;
+    
+    const unsortedSessions = pull(selectedSessions, sessions, 'recording');
+    const test = [...unsortedSessions, ...unsortedSessions]
+    const aggregateData = mergeNArrays(test, (a, b) => (a && b) && (a.time < b.time));
+
+    if (aggregateData.length > 0) {
+      const heatMapData = {
+        max: 2,
+        min: 0,
+        data: aggregateData,
+      };
+      console.log('Just before sending the action', heatMapData)
+      this.props.renderHeatmapData(heatMapData);
+      // this.state.heatmap.setData(heatMapData);
+    }
   }
 
   createHeatmap() {
-    console.log('Running create heatmap with')
     const heatmap = h337.create({
-      container: document.getElementById('heatmapContainer'),
+      container: document.getElementById('heatmap-wrapper'),
       radius: 50,
     });
     return heatmap;
   }
 
-  addHeatData(activeSession) {
-    if (activeSession) {
-      const heatMapData = {
-        max: 2,
-        min: 0,
-        data: this.props.activeSession.recording,
-      };
-      this.state.heatmap.setData(heatMapData);
-    }
-  }
-
   componentDidMount() {
-    const context = this;
-    this.setState({heatmap: context.createHeatmap()})
+    const heatmap = this.createHeatmap()
+    this.props.createHeatmap(heatmap)
+    this.addHeatData();
   }
 
-  componentDidUpdate() {
-    console.log('Going to add data to heatmap', this.props.activeSession)
-    this.addHeatData(this.props.activeSession);
+  componentWillReceiveProps() {
   }
 
   render() {
@@ -47,7 +51,6 @@ class Heatmap extends React.Component {
     const activeStudyIndex = this.props.studyList.selectedStudy;
     const activeStudy = this.props.studyList.studies[activeStudyIndex];
 
-    console.log('sessions, selectedSessions', sessions, selectedSessions, this.props)
     return (
       <div id="heatmap-wrapper">
         <img src={activeStudy.url} />
