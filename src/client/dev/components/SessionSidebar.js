@@ -47,14 +47,14 @@ class SessionSidebar extends React.Component {
   render() {
     console.log('this.props in sessionsidebar', this.props)
     const { studies, selectedStudy } = this.props.studyList;
-    const sessions = studies[selectedStudy].sessions
+    const sessions = studies[selectedStudy] && studies[selectedStudy].sessions
     return (
       <div className="sessions-sidebar">
         {sessions && sessions.map((session, i) => {
           const duration = Math.floor(parseInt(session.duration) / 1000);
           const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`
           return (
-            <div className="session" key={session.id} onClick={this.updateSession.bind(this, i)}>
+            <div className="session" key={session.id} onClick={this.props.toggleSession.bind(this, i)}>
                 <div className="user">{session.user || 'Anonymous'}</div>
                 <div className="details">
                   <div className="date">{(session.createdAt && session.createdAt.split(' ').slice(1, 3).join(' ')) || 'recently'}</div>

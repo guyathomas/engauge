@@ -36,6 +36,20 @@ export function updateSessions() {
 }
 
 // ===========Sessions View=============
+
+export function toggleSession(index) {
+  return {
+    type: 'TOGGLE_SESSION',
+    index,
+  };
+}
+
+export function resetSessionSelection() {
+  return {
+    type: 'RESET_SESSION_SELECTION',
+  };
+}
+
 export function updateActiveTab(newIndex) {
   return {
     type: 'UPDATE_ACTIVE_TAB',

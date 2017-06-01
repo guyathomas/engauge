@@ -9,6 +9,15 @@ function sessionView(state = [], action) {
       return { ...state, heatmap: renderedMap };
     case 'REMOVE_HEATMAP':
       return state;
+    case 'TOGGLE_SESSION':
+      const index = action.index;
+      const newStatus = !(state.selectedSessions[index]);
+      const newSelectedObj = { ...state.selectedSessions };
+      newSelectedObj[index] = newStatus;
+      console.log('The new selection', { ...state, selectedSessions: newSelectedObj });
+      return { ...state, selectedSessions: newSelectedObj };
+    case 'RESET_SESSION_SELECTION':
+      return { ...state, selectedSessions: {} };
     default:
   }
   return state;

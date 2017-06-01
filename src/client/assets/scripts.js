@@ -1,5 +1,5 @@
 const mergeNArrays = (arraysToSort, comparitor) => {
-	if (arraysToSort.length === 1) { return arraysToSort; } // Only one array so no need to merge
+  if (arraysToSort.length === 1) { return arraysToSort; } // Only one array so no need to merge
   const newArr = [];
   const pointers = new Array(arraysToSort.length).fill(0);
   comparitor = comparitor || function (a, b) { return a < b; };
@@ -28,17 +28,18 @@ const mergeNArrays = (arraysToSort, comparitor) => {
   return newArr;
 };
 
-const pull = (indices, source, key) => {
-	const result = [];
-	indices.sort();
+const pull = (indexObj, source, key) => {
+  const result = [];
+  const indices = Object.keys(indexObj);
 
-	for (var i = 0; i < indices.length; i++) {
-		const thisIndex = indices[i];
-    key ? result.push(source[thisIndex][key]) : result.push(source[thisIndex])
-		
-	}
-	return result;
-}
+  for (let i = 0; i < indices.length; i++) {
+    const thisIndex = indices[i];
+    console.log(source)
+    key ? result.push(source[thisIndex][key]) : result.push(source[thisIndex]);
+  }
+  console.log('result from pull', result);
+  return result;
+};
 
 
 module.exports = { mergeNArrays, pull };
