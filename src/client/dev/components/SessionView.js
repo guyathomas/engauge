@@ -1,30 +1,31 @@
 import React from 'react';
 import Summary from './Summary';
-import HeatMaps from './Heatmaps';
+import Heatmaps from './Heatmaps';
 import Recordings from './Recordings';
 import WatchDetails from './WatchDetails';
 import StudyOptions from './StudyOptions';
 
-const Views = {
-  summary: <Summary />,
-  heatmaps: <HeatMaps />,
-  recordings: <Recordings />,
-  watchdetails: <WatchDetails />,
-  studyoptions: <StudyOptions />,
+//TODO: These are coupled. Change it so that they no longer have to be maintained together
+const views = [
+  <Summary />,
+  <Heatmaps />,
+  <Recordings />,
+  <WatchDetails />,
+  <StudyOptions />,
+];
+const titles = ['Summary', 'Heatmaps', 'Recordings', 'WatchDetails', 'StudyOptions'];
 
-};
 
-const SessionView = props => (
+const Title = (props) => (
+  <li className={props.active === props.i ? 'active' : ''}>{props.title}</li>
+);
+
+const SessionView = () => (
   <div className="sessions-container">
-    <ul className="views">
-      <li className="active">Summary</li>
-      <li>Heatmaps</li>
-      <li>Recordings</li>
-      <li>Watch</li>
-      <li>Study Options</li>
+    <ul className="titles">
+      {titles.map((title, i) => <Title title={title} i={i} active={1} />)}
     </ul>
-    {console.log(Views.summary)}
-    {Views[props.routeParams.sessionView] || Views.summary}
+    {views[1]}
   </div>
 	);
 

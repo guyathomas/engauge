@@ -203,7 +203,7 @@ a, a:visited, a:hover, a:active {
 	padding: 15px;
 }
 
-.sessions-container .views {
+.sessions-container .titles {
 	list-style: none;
 	display: flex;
 	justify-content: space-around;
@@ -212,8 +212,19 @@ a, a:visited, a:hover, a:active {
 	align-items: center;
 }
 
-.sessions-container .views li.active {
+.sessions-container .titles li.active {
 	font-weight: 600;
 	color: #528DFF;
 	font-size: 18px;
 }
+
+.sessions-container .titles li:hover {
+	color: #ee6123;
+}
+
+.sessions-container .not-finished {
+	height: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+} 
