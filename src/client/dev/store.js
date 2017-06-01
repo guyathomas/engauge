@@ -49,8 +49,7 @@ const defaultState = {
       targetGames: 2,
       currGame: 1,
     },
-    studyIndex: 0,
-    activeSession: [],
+    newSession: [],
   },
 };
 

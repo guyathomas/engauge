@@ -53,7 +53,6 @@ const User = new GraphQLObjectType({
     study: {
       type: new GraphQLList(Study),
       resolve(user) {
-        console.log('The user model', user);
         return user.getStudies();
       },
     },

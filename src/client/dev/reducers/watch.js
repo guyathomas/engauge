@@ -3,9 +3,9 @@ function watch(state = {}, action) {
   switch (action.type) {
     case 'ADD_SESSION_POINT':
       const { x, y, time } = action;
-      const newSessionData = [...state.activeSession, { x, y, time }];
+      const newSessionData = [...state.newSession, { x, y, time }];
       newState = { ...state };
-      newState.activeSession = newSessionData;
+      newState.newSession = newSessionData;
       return newState;
     case 'CLEAR_SESSION':
     case 'NEXT_CLICKGAME':
