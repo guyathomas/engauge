@@ -1,7 +1,7 @@
 //Working Review however sidebar not populating
 import React from 'react';
 
-class Review extends React.Component {
+class Heatmap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,6 @@ class Review extends React.Component {
       const heatMapData = {
         max: 2,
         min: 0,
-        // data: [{x:25,y:25},{x:36,y:36},{x:47,y:47},{x:58,y:58}],
         data: this.props.activeSession.recording,
       };
       this.state.heatmap.setData(heatMapData);
@@ -40,14 +39,17 @@ class Review extends React.Component {
   }
 
   render() {
+    const { sessions, selectedSessions } = this.props.sessionView;
+    const activeStudyIndex = this.props.studyList.selectedStudy;
+    const activeStudy = this.props.studyList.studies[activeStudyIndex];
+
+    console.log('sessions, selectedSessions', sessions, selectedSessions, this.props)
     return (
-      <div id="heatmapContainerWrapper">
-        <div id="heatmapContainer">
-          <img src={this.props.studyURL} /> 
-        </div>
+      <div id="heatmap-wrapper">
+        <img src={activeStudy.url} />
       </div>
     );
   }
   }
 
-module.exports = Review;
+module.exports = Heatmap;

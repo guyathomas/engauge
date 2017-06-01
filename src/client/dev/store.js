@@ -40,6 +40,7 @@ const defaultState = {
       url: 'https://s-media-cache-ak0.pinimg.com/736x/5d/4e/cc/5d4ecc2145f7153a09b44759319784fe.jpg',
       shortCode: '143a2',
     }],
+    selectedStudy: 0,
   },
   watch: {
     game: {

@@ -28,20 +28,6 @@ export function clearSession() {
 }
 
 
-// Review
-export function renderHeatmap(sessionIndex) {
-  return {
-    type: 'RENDER_HEATMAP',
-    sessionIndex,
-  };
-}
-
-export function removeHeatmap() {
-  return {
-    type: 'REMOVE_HEATMAP',
-  };
-}
-
 // Sessions (haven't got any yet)
 export function updateSessions() {
   return {
@@ -54,5 +40,18 @@ export function updateActiveTab(newIndex) {
   return {
     type: 'UPDATE_ACTIVE_TAB',
     newIndex,
+  };
+}
+
+export function renderHeatmap(heatmap) {
+  return {
+    type: 'RENDER_HEATMAP',
+    heatmap,
+  };
+}
+
+export function removeHeatmap() {
+  return {
+    type: 'REMOVE_HEATMAP',
   };
 }

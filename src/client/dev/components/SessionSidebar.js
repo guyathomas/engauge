@@ -45,7 +45,6 @@ class SessionSidebar extends React.Component {
 
   render() {
     const sessions = this.state.sessions;
-    console.log('Session sidebar', this.props)
     return (
       <div className="sessions-sidebar">
         {sessions.map((session, i) => {

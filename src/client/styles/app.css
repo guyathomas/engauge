@@ -200,9 +200,11 @@ a, a:visited, a:hover, a:active {
 
 .sessions-container {
 	width: calc(100vw - 580px);
-	height: calc(100vh - 62px - 280px);
-	padding: 15px;
+	height: calc(100vh - 62px - 265px);
+	padding: 15px 15px 0 15px;
 	position: relative;
+	display: flex;
+    flex-direction: column;
 }
 
 .sessions-container .titles {
@@ -233,8 +235,6 @@ a, a:visited, a:hover, a:active {
 }
 
 .sessions-sidebar {
-	display: flex;
-	flex-direction: column;
 	width: 250px;
 }
 
@@ -269,13 +269,27 @@ a, a:visited, a:hover, a:active {
 }
 
 .heatmaps-container {
-	height: calc(100% - 90px);
-	position: absolute;
+	height: 100%;
 	overflow: scroll;
+	display: flex;
+	flex-direction: row;
 }
 
 .heatmaps-container .sessions-sidebar {
 	overflow: scroll;
+}
+
+
+#heatmap-wrapper {
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	margin-left: 10px;
+	overflow-y: scroll;
+}
+
+#heatmap-wrapper img {
+	width: 100%;
 }
 
 /*    position: absolute;
