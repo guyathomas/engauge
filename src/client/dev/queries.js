@@ -6,7 +6,21 @@ module.exports = {
     },
   },
   getStudies: {
-    body: JSON.stringify({ query: '{studies {id,url,shortCode,}}' }),
+    body: JSON.stringify({ 
+      query: `{
+        studies {
+          id,
+          url,
+          shortCode,
+          sessions {
+            id,
+            recording,
+            createdAt,
+            duration
+          }
+        }
+      }`,
+    }),
   },
   getSessions: shortCode => ({
     body: JSON.stringify({

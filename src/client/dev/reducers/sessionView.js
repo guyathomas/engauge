@@ -1,5 +1,4 @@
 function sessionView(state = [], action) {
-	console.log('state in sessionView', state);
   switch (action.type) {
     case 'UPDATE_ACTIVE_TAB':
       return { ...state, activeTab: action.newIndex };

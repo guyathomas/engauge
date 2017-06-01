@@ -23,6 +23,7 @@ class StudyList extends React.Component {
     })
     .then(response => response.json())
     .then(({ data }) => {
+      console.log('Got these studies back', data.studies)
       this.props.updateStudies(data.studies)
     });
   }
@@ -32,7 +33,7 @@ class StudyList extends React.Component {
       <div className="studies-container">
         <Filters studyCount={this.props.studyList.studies.length} />
         {this.props.studyList.studies.map((study, i) => (
-          <StudyCard key={study.id} study={study} />
+          <StudyCard key={study.id} study={study} selectStudy={this.props.selectStudy.bind(this, i) }/>
         ))}
       </div>
     );

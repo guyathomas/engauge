@@ -25,18 +25,19 @@ class SessionSidebar extends React.Component {
   }
 
   getSessionData(shortCode) {
-    fetch('/graphql', {
-      ...queries.headers,
-      ...queries.getSessions('143a2'),
-    })
-    .then(response => response.json())
-    .then(({ data }) => {
-      console.log('data from getSessionData', data);
-      this.setState({
-        sessions: data.study.sessions,
-        studyURL: data.study.url,
-      });
-    });
+
+    // fetch('/graphql', {
+    //   ...queries.headers,
+    //   ...queries.getSessions('143a2'),
+    // })
+    // .then(response => response.json())
+    // .then(({ data }) => {
+    //   console.log('data from getSessionData', data);
+    //   this.setState({
+    //     sessions: data.study.sessions,
+    //     studyURL: data.study.url,
+    //   });
+    // });
   }
 
   updateSession(i) {
@@ -44,17 +45,19 @@ class SessionSidebar extends React.Component {
   }
 
   render() {
-    const sessions = this.state.sessions;
+    console.log('this.props in sessionsidebar', this.props)
+    const { studies, selectedStudy } = this.props.studyList;
+    const sessions = studies[selectedStudy].sessions
     return (
       <div className="sessions-sidebar">
-        {sessions.map((session, i) => {
+        {sessions && sessions.map((session, i) => {
           const duration = Math.floor(parseInt(session.duration) / 1000);
           const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`
           return (
             <div className="session" key={session.id} onClick={this.updateSession.bind(this, i)}>
-                <div className="user">Anonymous</div>
+                <div className="user">{session.user || 'Anonymous'}</div>
                 <div className="details">
-                  <div className="date">31st May, 2017</div>
+                  <div className="date">{(session.createdAt && session.createdAt.split(' ').slice(1, 3).join(' ')) || 'recently'}</div>
                   <div className="duration">{durationString}</div>
                 </div>
             </div>

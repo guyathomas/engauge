@@ -71,3 +71,10 @@ export function updateStudies(studies) {
     studies,
   };
 }
+
+export function selectStudy(index) {
+  return {
+    type: 'SELECT_STUDY',
+    index,
+  };
+}
