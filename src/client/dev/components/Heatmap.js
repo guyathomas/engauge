@@ -41,11 +41,9 @@ class Review extends React.Component {
 
   render() {
     return (
-      <div className="review-page">
-        <div id="heatmapContainerWrapper">
-          <div id="heatmapContainer">
-            <img src={this.props.studyURL} /> 
-          </div>
+      <div id="heatmapContainerWrapper">
+        <div id="heatmapContainer">
+          <img src={this.props.studyURL} /> 
         </div>
       </div>
     );

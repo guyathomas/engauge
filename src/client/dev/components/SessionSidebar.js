@@ -45,18 +45,23 @@ class SessionSidebar extends React.Component {
 
   render() {
     const sessions = this.state.sessions;
-
+    console.log('Session sidebar', this.props)
     return (
       <div className="sessions-sidebar">
-        {sessions.map((session, i) => (
-          <div className="session" key={session.id} onClick={this.updateSession.bind(this, i)}>
-              <div className="user">Anonymous</div>
-              <div className="details">
-                <div className="date">31st May, 2017</div>
-                <div className="duration">{`${Math.floor(session.duration / 1000)} seconds`}</div>
-              </div>
-          </div>
-        ))}
+        {sessions.map((session, i) => {
+          const duration = Math.floor(parseInt(session.duration) / 1000);
+          const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`
+          return (
+            <div className="session" key={session.id} onClick={this.updateSession.bind(this, i)}>
+                <div className="user">Anonymous</div>
+                <div className="details">
+                  <div className="date">31st May, 2017</div>
+                  <div className="duration">{durationString}</div>
+                </div>
+            </div>
+          )
+        }
+        )}
       </div>
     );
   }

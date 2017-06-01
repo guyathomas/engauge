@@ -2,10 +2,10 @@ import React from 'react';
 import Heatmap from './Heatmap';
 import SessionSidebar from './SessionSidebar';
 
-const Heatmaps = () => (
+const Heatmaps = (props) => (
   <div className="heatmaps-container">
-  	<SessionSidebar />
-  	<Heatmap />
+  	<SessionSidebar {...props} />
+  	<Heatmap {...props} />
   </div>
 );
 
