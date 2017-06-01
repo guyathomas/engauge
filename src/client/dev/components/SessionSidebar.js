@@ -31,7 +31,7 @@ class SessionSidebar extends React.Component {
     })
     .then(response => response.json())
     .then(({ data }) => {
-      console.log('data from getSessionData', data)
+      console.log('data from getSessionData', data);
       this.setState({
         sessions: data.study.sessions,
         studyURL: data.study.url,
@@ -48,9 +48,13 @@ class SessionSidebar extends React.Component {
 
     return (
       <div className="sessions-sidebar">
-        {sessions.map((item, i) => (
-          <div className="session" key={item.id} onClick={this.updateSession.bind(this, i)}>
-            {item.id}
+        {sessions.map((session, i) => (
+          <div className="session" key={session.id} onClick={this.updateSession.bind(this, i)}>
+              <div className="user">Anonymous</div>
+              <div className="details">
+                <div className="date">31st May, 2017</div>
+                <div className="duration">{`${Math.floor(session.duration / 1000)} seconds`}</div>
+              </div>
           </div>
         ))}
       </div>
