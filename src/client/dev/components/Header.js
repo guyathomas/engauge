@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Header = () => (
+const Header = (props) => (
   <nav className={"primary-nav"}>
+    {console.log(props)}
     <div className="logo">
       <Link to="/">
         <img src={'../../assets/images/brand.png'} />
