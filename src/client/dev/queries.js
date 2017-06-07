@@ -6,7 +6,7 @@ module.exports = {
     },
   },
   getStudies: {
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       query: `{
         studies {
           id,

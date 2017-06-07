@@ -22,10 +22,11 @@ class StudyList extends React.Component {
       ...queries.getStudies,
     })
     .then(response => response.json())
-    .then(({ data }) => {
-      console.log('Got these studies back', data.studies)
-      this.props.updateStudies(data.studies)
-    });
+    .then(({ data, errors }) => {
+      if (errors) { throw new Error('Error in response from graphql server'); }
+      this.props.updateStudies(data.studies);
+    })
+    .catch(err => console.log(err));
   }
 
   render() {

@@ -31,7 +31,7 @@ const Study = new GraphQLObjectType({
   name: 'Study',
   description: 'A study of a particular image',
   fields: () => (_.assign(attributeFields(db.sequelize.models.study), {
-    session: {
+    sessions: {
       type: new GraphQLList(Session),
       resolve(study) {
         return study.getSessions();
