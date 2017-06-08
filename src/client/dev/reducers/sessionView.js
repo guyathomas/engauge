@@ -10,12 +10,12 @@ function sessionView(state = [], action) {
     case 'REMOVE_HEATMAP':
       return { ...state, heatmap: '' };
     case 'TOGGLE_SESSION':
-      const index = action.index;
-      const newSelectedSet = new Set(state.selectedSessions);
+      const { shortCode, index } = action;
+      const newSelectedSet = state.selected[shortCode] ? new Set(state.selected[shortCode]) : new Set();
       newSelectedSet.has(index) ? newSelectedSet.delete(index) : newSelectedSet.add(index);
-      return { ...state, selectedSessions: newSelectedSet };
+      return { ...state, selected: { ...state.selected, [shortCode]: newSelectedSet } };
     case 'RESET_SESSION_SELECTION':
-      return { ...state, selectedSessions: new Set([0]) };
+      return { ...state, selected: {} };
     default:
   }
   return state;

@@ -37,10 +37,11 @@ export function updateSessions() {
 
 // ===========Sessions View=============
 
-export function toggleSession(index) {
+export function toggleSession(index, shortCode) {
   return {
     type: 'TOGGLE_SESSION',
     index,
+    shortCode,
   };
 }
 
