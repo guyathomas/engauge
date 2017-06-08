@@ -34,7 +34,7 @@ const pull = (indexObj, source, key) => {
   const indices = Object.keys(indexObj);
   for (let i = 0; i < indices.length; i++) {
     const thisIndex = indices[i];
-    key ? result.push(source[thisIndex][key]) : result.push(source[thisIndex]);
+    (key && source[thisIndex] )? result.push(source[thisIndex][key]) : result.push(source[thisIndex]);
   }
   return result;
 };

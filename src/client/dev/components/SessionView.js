@@ -8,10 +8,10 @@ import StudyOptions from './StudyOptions';
 // TODO: These are coupled. Change it so that they no longer have to be maintained together
 const views = [
   <Summary />,
-  <Heatmaps  />,
-  <Recordings  />,
-  <WatchDetails  />,
-  <StudyOptions  />,
+  <Heatmaps />,
+  <Recordings />,
+  <WatchDetails />,
+  <StudyOptions />,
 ];
 const titles = ['Summary', 'Heatmaps', 'Recordings', 'WatchDetails', 'StudyOptions'];
 
@@ -33,9 +33,8 @@ const SessionView = props => (
         />
     ))}
     </ul>
-    {React.cloneElement(views[props.sessionView.activeTab], {...props})}
+    {React.cloneElement(views[props.sessionView.activeTab], { ...props })}
   </div>
   );
 
 export default SessionView;
-    

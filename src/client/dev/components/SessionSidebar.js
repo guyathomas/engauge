@@ -16,10 +16,8 @@ const NoSessions = props => (
 
 const SessionSidebar = (props) => {
   const { studies, selectedStudy } = props.studyList;
-  console.log('Props in SessionSidebar', props);
-  console.log('studies, selectedStudy', studies, selectedStudy);
-
-  if (studies[selectedStudy]) {
+  if (studies[selectedStudy] && studies[selectedStudy].sessions.length > 0) {
+    // If the sessions have been populated by the get request and there are sessions for the selected study
     const sessions = studies[selectedStudy].sessions;
     return (
       <div className="sessions-sidebar">
@@ -30,8 +28,10 @@ const SessionSidebar = (props) => {
         })}
       </div>
     );
+  } else if (studies[selectedStudy] === undefined || studies[selectedStudy].sessions.length === 0) {
+    // If getCaseStudies has not yet run or there are no sessions for this study
+    return <NoSessions />;
   }
-  return <NoSessions />;
 };
 
 module.exports = SessionSidebar;

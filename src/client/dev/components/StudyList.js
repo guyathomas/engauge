@@ -1,15 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router';
-import StudyCard from './StudyCard';
 import queries from '../queries';
+
+import StudyCard from './StudyCard';
 import Filters from './Filters';
 
 class StudyList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      studies: [],
-    };
   }
 
   componentWillMount() {
@@ -34,7 +31,12 @@ class StudyList extends React.Component {
       <div className="studies-container">
         <Filters studyCount={this.props.studyList.studies.length} />
         {this.props.studyList.studies.map((study, i) => (
-          <StudyCard key={study.id} study={study} selectStudy={this.props.selectStudy.bind(this, i) }/>
+          <StudyCard
+            key={study.id}
+            study={study}
+            selectStudy={this.props.selectStudy.bind(this, i)
+          }
+          />
         ))}
       </div>
     );

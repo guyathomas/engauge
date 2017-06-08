@@ -6,7 +6,7 @@ const StudyCard = (props) => {
   return (
     <div className="study" onClick={props.selectStudy}>
     	<div className="details">
-  		<div className="title">{props.title || 'Cute Puppy'}</div>
+  		<div className="title">{props.title || 'Default Name'}</div>
   	    <div className="session-count">{sessionString}</div>
     	</div>
       <div className="imgwrapper">
