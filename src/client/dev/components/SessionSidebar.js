@@ -21,10 +21,16 @@ const SessionSidebar = (props) => {
     const sessions = studies[selectedStudy].sessions;
     return (
       <div className="sessions-sidebar">
-        {sessions && sessions.map((session, i) => {
+        {sessions.map((session, i) => {
           const duration = Math.floor(parseInt(session.duration) / 1000);
           const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`;
-          return <Session {...props} session={session} durationString={durationString} key={i} i={i} />;
+          return (<Session
+            {...props}
+            session={session}
+            durationString={durationString}
+            key={i}
+            i={i}
+          />);
         })}
       </div>
     );

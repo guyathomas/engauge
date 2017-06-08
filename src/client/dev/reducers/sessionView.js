@@ -11,11 +11,9 @@ function sessionView(state = [], action) {
       return state;
     case 'TOGGLE_SESSION':
       const index = action.index;
-      const newStatus = !(state.selectedSessions[index]);
-      const newSelectedObj = { ...state.selectedSessions };
-      newSelectedObj[index] = newStatus;
-      console.log('The new selection', { ...state, selectedSessions: newSelectedObj });
-      return { ...state, selectedSessions: newSelectedObj };
+      const newSelectedSet = new Set(state.selectedSessions);
+      newSelectedSet.has(index) ? newSelectedSet.delete(index) : newSelectedSet.add(index);
+      return { ...state, selectedSessions: newSelectedSet };
     case 'RESET_SESSION_SELECTION':
       return { ...state, selectedSessions: {} };
     default:
