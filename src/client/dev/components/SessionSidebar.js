@@ -18,10 +18,10 @@ const NoSessions = props => (
 const SessionSidebar = (props) => {
   const { studies, selectedStudy } = props.studyList;
   const selectedStudyInd = findKeyAtID(studies, selectedStudy, 'shortCode');
-  console.log('selectedStudyInd', selectedStudyInd)
-  if (studies[selectedStudy] && studies[selectedStudy].sessions.length > 0) {
+  console.log('selectedStudyInd', selectedStudyInd, studies[selectedStudyInd])
+  if (studies[selectedStudyInd] && studies[selectedStudyInd].sessions.length > 0) {
   // If the sessions have been populated by the get request and there are sessions for the selected study
-    const sessions = studies[selectedStudy].sessions;
+    const sessions = studies[selectedStudyInd].sessions;
     return (
       <div className="sessions-sidebar">
         {sessions.map((session, i) => {
@@ -33,12 +33,12 @@ const SessionSidebar = (props) => {
             durationString={durationString}
             key={i}
             i={i}
-            selected={props.sessionView.selectedSessions.has(i)}
+            selected={props.sessionView.selected[selectedStudy] && props.sessionView.selected[selectedStudy].has(i)}
           />);
         })}
       </div>
     );
-  } else if (studies[selectedStudy] === undefined || studies[selectedStudy].sessions.length === 0) {
+  } else if (studies[selectedStudyInd] === undefined || studies[selectedStudyInd].sessions.length === 0) {
     // If getCaseStudies has not yet run or there are no sessions for this study
     return <NoSessions />;
   }
