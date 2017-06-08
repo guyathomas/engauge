@@ -1,4 +1,3 @@
-//Working Review however sidebar not populating
 import React from 'react';
 import { mergeNArrays, pull } from '../../assets/scripts';
 
@@ -16,7 +15,7 @@ class Heatmap extends React.Component {
     
     const unsortedSessions = pull(selectedSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
-
+    console.log('The aggregateData to be added', aggregateData)
     if (aggregateData.length > 0) {
       const heatMapData = {
         max: 2,
@@ -42,6 +41,8 @@ class Heatmap extends React.Component {
   }
 
   componentWillReceiveProps() {
+    console.log('Will recieve props')
+    this.addHeatData();
   }
 
   render() {
