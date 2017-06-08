@@ -72,6 +72,12 @@ export function renderHeatmapData(data) {
   };
 }
 
+export function clearHeatmap() {
+  return {
+    type: 'CLEAR_HEATMAP',
+  };
+}
+
 export function removeHeatmap() {
   return {
     type: 'REMOVE_HEATMAP',
