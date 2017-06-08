@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeNArrays, pullKeyFromObjArr } from '../../assets/scripts';
+import { mergeNArrays, pullKeyFromObjArr, findKeyAtID } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -10,11 +10,12 @@ class Heatmap extends React.Component {
 
   renderHeatmap() {
     const { sessionView, studyList } = this.props;
-    const selectedSessions = sessionView.selectedSessions;
-    const selectedStudy = studyList.selectedStudy;
-    const sessions = studyList.studies[selectedStudy] ? studyList.studies[selectedStudy].sessions : [];
-    
-    const unsortedSessions = pullKeyFromObjArr(selectedSessions, sessions, 'recording');
+    const selectedStudyCode = studyList.selectedStudy;
+    const toggledSessions = sessionView.selected[selectedStudyCode];
+    const selectedStudyInd = findKeyAtID(studyList.studies, selectedStudyCode, 'shortCode');
+    const sessions = studyList.studies[selectedStudyInd] ? studyList.studies[selectedStudyInd].sessions : [];
+
+    const unsortedSessions = pullKeyFromObjArr(toggledSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
         if (aggregateData.length > 0) {
           const heatMapData = {
