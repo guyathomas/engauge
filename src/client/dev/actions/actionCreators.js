@@ -86,9 +86,9 @@ export function updateStudies(studies) {
   };
 }
 
-export function selectStudy(index) {
+export function selectStudy(shortCode) {
   return {
     type: 'SELECT_STUDY',
-    index,
+    shortCode,
   };
 }

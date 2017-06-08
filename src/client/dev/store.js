@@ -22,7 +22,7 @@ const defaultState = {
       showAll: true,
     },
     studies: [],
-    selectedStudy: 0,
+    selectedStudy: '',
   },
   watch: {
     game: {

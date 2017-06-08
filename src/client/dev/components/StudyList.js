@@ -21,7 +21,12 @@ class StudyList extends React.Component {
     .then(response => response.json())
     .then(({ data, errors }) => {
       if (errors) { throw new Error('Error in response from graphql server'); }
-      this.props.updateStudies(data.studies);
+      return this.props.updateStudies(data.studies);
+    })
+    .then(({ studies }) => {
+      console.log('The studies', studies);
+      //Set active study to the first in the list
+      this.props.selectStudy(studies[0].shortCode);
     })
     .catch(err => console.log(err));
   }

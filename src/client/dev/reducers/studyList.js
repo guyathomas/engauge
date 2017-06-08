@@ -4,7 +4,8 @@ function studyList(state = [], action) {
       console.log('The state after getting the studies request', { ...state, studies: action.studies });
       return { ...state, studies: action.studies };
     case 'SELECT_STUDY':
-      return { ...state, selectedStudy: action.index };
+      console.log('Now the study has been selected', { ...state, selectedStudy: action.shortCode });
+      return { ...state, selectedStudy: action.shortCode };
     default:
   }
   return state;
