@@ -8,7 +8,7 @@ function sessionView(state = [], action) {
       const renderedMap = state.heatmap.setData(action.data);
       return { ...state, heatmap: renderedMap };
     case 'REMOVE_HEATMAP':
-      return state;
+      return { ...state, heatmap: '' };
     case 'TOGGLE_SESSION':
       const index = action.index;
       const newSelectedSet = new Set(state.selectedSessions);

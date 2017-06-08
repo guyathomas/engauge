@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeNArrays, pull } from '../../assets/scripts';
+import { mergeNArrays, pullKeyFromObjArr } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -8,21 +8,22 @@ class Heatmap extends React.Component {
 
 
 
-  addHeatData(activeSession) {
-    const selectedSessions = this.props.sessionView.selectedSessions;
-    const activeStudy = this.props.studyList.selectedStudy;
-    const sessions = this.props.studyList.studies[activeStudy];
+  rerenderHeatmap() {
+    const { sessionView, studyList } = this.props;
+    const selectedSessions = sessionView.selectedSessions;
+    const selectedStudy = studyList.selectedStudy;
+    const sessions = studyList.studies[selectedStudy] ? studyList.studies[selectedStudy].sessions : [];
     
-    const unsortedSessions = pull(selectedSessions, sessions, 'recording');
+    const unsortedSessions = pullKeyFromObjArr(selectedSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
-    console.log('The aggregateData to be added', aggregateData)
-    if (aggregateData.length > 0) {
-      const heatMapData = {
-        max: 2,
-        min: 0,
-        data: aggregateData,
-      };
-      this.props.renderHeatmapData(heatMapData);
+    
+      if (aggregateData.length > 0) {
+        const heatMapData = {
+          max: 2,
+          min: 0,
+          data: aggregateData,
+        };
+        this.props.renderHeatmapData(heatMapData)
     }
   }
 
@@ -35,20 +36,22 @@ class Heatmap extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this);
     const heatmap = this.createHeatmap()
     this.props.createHeatmap(heatmap)
-    this.addHeatData();
+    this.rerenderHeatmap();
   }
 
-  componentWillReceiveProps() {
-    console.log('Will recieve props')
-    this.addHeatData();
-  }
+  // componentWillReceiveProps() {
+  //   console.log('Heatmap componentWillRecieveProps')
+  //   this.rerenderHeatmap();
+  // }
 
   render() {
     const { sessions, selectedSessions } = this.props.sessionView;
     const activeStudyIndex = this.props.studyList.selectedStudy;
     const activeStudy = this.props.studyList.studies[activeStudyIndex];
+    console.log('The activeStudy', sessions, selectedSessions)
     return (
             <div className="heatmap-section">
               <div id="heatmap-wrapper">

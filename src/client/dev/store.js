@@ -14,7 +14,7 @@ const defaultState = {
   sessionView: {
     activeTab: 1,
     heatmap: '',
-    selectedSessions: new Set(),
+    selectedSessions: new Set([0]),
   },
   studyList: {
     filters: {

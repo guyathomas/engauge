@@ -28,16 +28,28 @@ const mergeNArrays = (arraysToSort, comparitor) => {
   return newArr;
 };
 
-const pull = (indexObj, source, key) => {
+// Input:
+  // indicesToPull: Set
+  // dataSource: Array of Objects
+  // key: String to pull as a key from datasource
+const pullKeyFromObjArr = (indicesToPull, dataSource, key) => {
   const result = [];
-  if (!(!!(indexObj) && !!(source) && !!(key))) { return result } //Don't run when there are no sessions
-  const indices = Object.keys(indexObj);
-  for (let i = 0; i < indices.length; i++) {
-    const thisIndex = indices[i];
-    (key && source[thisIndex] )? result.push(source[thisIndex][key]) : result.push(source[thisIndex]);
+  if (indicesToPull.size === 0 || dataSource.length === 0) { 
+    console.log('Entered exit statement');
+    return result;
+  }
+
+  for (var index of indicesToPull) {
+    if (key) {
+      if (dataSource[index] && dataSource[index][key]) {
+        result.push(dataSource[index][key]);
+      }
+    } else {
+      result.push(dataSource[index]);
+    }
   }
   return result;
 };
 
 
-module.exports = { mergeNArrays, pull };
+module.exports = { mergeNArrays, pullKeyFromObjArr };
