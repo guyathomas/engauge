@@ -36,6 +36,7 @@ class StudyList extends React.Component {
         <Filters studyCount={this.props.studyList.studies.length} />
         {this.props.studyList.studies.map((study, i) => (
           <StudyCard
+            selected={study.shortCode === this.props.studyList.selectedStudy}
             key={study.id}
             study={study}
             selectStudy={this.props.selectStudy.bind(this, study.shortCode)

@@ -4,7 +4,7 @@ const StudyCard = (props) => {
   const sessionCount = props.study.sessions.length;
   const sessionString = `${sessionCount} ${sessionCount === 1 ? 'session' : 'sessions'}`;
   return (
-    <div className="study" onClick={props.selectStudy}>
+    <div className={`study${props.selected ? ' selected' : ''}`} onClick={props.selectStudy}>
     	<div className="details">
   		<div className="title">{props.title || 'Default Name'}</div>
   	    <div className="session-count">{sessionString}</div>
