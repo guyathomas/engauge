@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Session = props => (
-  <div className="session" key={props.session.id} onClick={props.toggleSession.bind(this, props.i)}>
+  <div className={`session${props.selected ? ' selected' : ''}`} key={props.session.id} onClick={props.toggleSession.bind(this, props.i)}>
     <div className="user">{props.session.user || 'Anonymous'}</div>
     <div className="details">
       <div className="date">{(props.session.createdAt && props.session.createdAt.split(' ').slice(1, 3).join(' ')) || 'recently'}</div>
@@ -30,6 +30,7 @@ const SessionSidebar = (props) => {
             durationString={durationString}
             key={i}
             i={i}
+            selected={props.sessionView.selectedSessions.has(i)}
           />);
         })}
       </div>
