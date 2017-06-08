@@ -39,7 +39,7 @@ class StudyList extends React.Component {
           <StudyCard
             key={study.id}
             study={study}
-            selectStudy={this.props.selectStudy.bind(this, i)
+            selectStudy={this.props.selectStudy.bind(this, study.shortCode)
           }
           />
         ))}

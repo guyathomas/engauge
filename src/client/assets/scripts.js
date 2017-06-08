@@ -51,7 +51,7 @@ const pullKeyFromObjArr = (indicesToPull, dataSource, key) => {
   return result;
 };
 
-const dummy = [{ id: 1,
+const dummy = [{ id: 3,
   url: 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg',
   shortCode: '123',
   sessions: [{ id: 1,
@@ -73,7 +73,7 @@ const dummy = [{ id: 1,
     createdAt: 'Wed May 31 2017 11:12:38 GMT+1000 (AEST)',
     duration: '10279' }],
 },
-{ id: 1,
+{ id: 3,
   url: 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg',
   shortCode: 'abc',
   sessions: [{ id: 1,
@@ -99,7 +99,7 @@ const dummy = [{ id: 1,
 const findKeyAtID = (array, target, idName, key) => {
   // key is optional and will default to returning the index
   idName = idName || 'id';
-
+  console.log(array, target, idName)
   for (var i = 0; i < array.length; i++) {
     if (array[i][idName] === target) {
       return key ? array[i][key] : i;
