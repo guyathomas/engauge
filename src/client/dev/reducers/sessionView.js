@@ -5,8 +5,8 @@ function sessionView(state = [], action) {
     case 'CREATE_HEATMAP':
       return { ...state, heatmap: action.heatmap };
     case 'RENDER_HEATMAP_DATA':
-      const renderedMap = state.heatmap.setData(action.data);
-      return { ...state, heatmap: renderedMap };
+      state.heatmap.setData(action.data);
+      return state;
     case 'REMOVE_HEATMAP':
       return { ...state, heatmap: '' };
     case 'TOGGLE_SESSION':
@@ -15,7 +15,7 @@ function sessionView(state = [], action) {
       newSelectedSet.has(index) ? newSelectedSet.delete(index) : newSelectedSet.add(index);
       return { ...state, selectedSessions: newSelectedSet };
     case 'RESET_SESSION_SELECTION':
-      return { ...state, selectedSessions: {} };
+      return { ...state, selectedSessions: new Set([0]) };
     default:
   }
   return state;

@@ -8,7 +8,7 @@ class Heatmap extends React.Component {
 
 
 
-  rerenderHeatmap() {
+  renderHeatmap() {
     const { sessionView, studyList } = this.props;
     const selectedSessions = sessionView.selectedSessions;
     const selectedStudy = studyList.selectedStudy;
@@ -16,15 +16,16 @@ class Heatmap extends React.Component {
     
     const unsortedSessions = pullKeyFromObjArr(selectedSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
-    
-      if (aggregateData.length > 0) {
-        const heatMapData = {
-          max: 2,
-          min: 0,
-          data: aggregateData,
-        };
-        this.props.renderHeatmapData(heatMapData)
-    }
+
+      console.log('About to pass this data to render on heatmap',aggregateData )
+        if (aggregateData.length > 0) {
+          const heatMapData = {
+            max: 2,
+            min: 0,
+            data: aggregateData,
+          };
+          this.props.renderHeatmapData(heatMapData)
+        }
   }
 
   createHeatmap() {
@@ -36,22 +37,19 @@ class Heatmap extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this);
     const heatmap = this.createHeatmap()
     this.props.createHeatmap(heatmap)
-    this.rerenderHeatmap();
+    this.renderHeatmap();
   }
 
-  // componentWillReceiveProps() {
-  //   console.log('Heatmap componentWillRecieveProps')
-  //   this.rerenderHeatmap();
-  // }
+  componentWillReceiveProps() {
+    this.renderHeatmap();
+  }
 
   render() {
-    const { sessions, selectedSessions } = this.props.sessionView;
-    const activeStudyIndex = this.props.studyList.selectedStudy;
-    const activeStudy = this.props.studyList.studies[activeStudyIndex];
-    console.log('The activeStudy', sessions, selectedSessions)
+    const selectedSessions = this.props.sessionView.selectedSessions;
+    const selectedStudyIndex = this.props.studyList.selectedStudy;
+    const activeStudy = this.props.studyList.studies[selectedStudyIndex];
     return (
             <div className="heatmap-section">
               <div id="heatmap-wrapper">

@@ -34,8 +34,8 @@ const mergeNArrays = (arraysToSort, comparitor) => {
   // key: String to pull as a key from datasource
 const pullKeyFromObjArr = (indicesToPull, dataSource, key) => {
   const result = [];
-  if (indicesToPull.size === 0 || dataSource.length === 0) { 
-    console.log('Entered exit statement');
+  if (indicesToPull.size === 0 || dataSource.length === 0) {
+    console.log('Entered exit statement', indicesToPull, dataSource);
     return result;
   }
 
