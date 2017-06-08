@@ -18,11 +18,9 @@ const NoSessions = props => (
 const SessionSidebar = (props) => {
   const { studies, selectedStudy } = props.studyList;
   const selectedStudyInd = findKeyAtID(studies, selectedStudy, 'shortCode');
-  console.log('When sessionSidebar is loaded', selectedStudyInd);
   if (studies[selectedStudy] && studies[selectedStudy].sessions.length > 0) {
   // If the sessions have been populated by the get request and there are sessions for the selected study
     const sessions = studies[selectedStudy].sessions;
-    console.log('The sessions to be printed', sessions)
     return (
       <div className="sessions-sidebar">
         {sessions.map((session, i) => {

@@ -99,7 +99,6 @@ const dummy = [{ id: 3,
 const findKeyAtID = (array, target, idName, key) => {
   // key is optional and will default to returning the index
   idName = idName || 'id';
-  console.log(array, target, idName)
   for (var i = 0; i < array.length; i++) {
     if (array[i][idName] === target) {
       return key ? array[i][key] : i;

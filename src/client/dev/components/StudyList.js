@@ -24,7 +24,6 @@ class StudyList extends React.Component {
       return this.props.updateStudies(data.studies);
     })
     .then(({ studies }) => {
-      console.log('The studies', studies);
       //Set active study to the first in the list
       this.props.selectStudy(studies[0].shortCode);
     })
