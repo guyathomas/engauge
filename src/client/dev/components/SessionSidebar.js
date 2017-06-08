@@ -25,7 +25,6 @@ const SessionSidebar = (props) => {
     return (
       <div className="sessions-sidebar">
         {sessions.map((session, i) => {
-          console.log(props.sessionView.selected[selectedStudy])
           const duration = Math.floor(parseInt(session.duration) / 1000);
           const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`;
           return (<Session
