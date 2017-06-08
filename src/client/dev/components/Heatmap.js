@@ -46,9 +46,11 @@ class Heatmap extends React.Component {
   }
 
   render() {
-    const selectedSessions = this.props.sessionView.selectedSessions;
-    const selectedStudyIndex = this.props.studyList.selectedStudy;
-    const activeStudy = this.props.studyList.studies[selectedStudyIndex];
+    const { sessionView, studyList } = this.props;
+    const selectedStudyCode = studyList.selectedStudy;
+    const toggledSessions = sessionView.selected[selectedStudyCode];
+    const selectedStudyInd = findKeyAtID(studyList.studies, selectedStudyCode, 'shortCode');
+    const activeStudy = this.props.studyList.studies[selectedStudyInd];
     return (
             <div className="heatmap-section">
               <div id="heatmap-wrapper">
