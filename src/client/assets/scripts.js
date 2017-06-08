@@ -96,11 +96,13 @@ const dummy = [{ id: 1,
     duration: '10279' }],
 }];
 
-const findKeyAtID = (array, key, idValue, idName) => {
+const findKeyAtID = (array, target, idName, key) => {
+  // key is optional and will default to returning the index
   idName = idName || 'id';
+
   for (var i = 0; i < array.length; i++) {
-    if (array[i][idName] === idValue) {
-      return array[i][idName];
+    if (array[i][idName] === target) {
+      return key ? array[i][key] : i;
     }
   }
 };

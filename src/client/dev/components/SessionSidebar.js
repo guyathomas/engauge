@@ -1,4 +1,5 @@
 import React from 'react';
+import { findKeyAtID } from '../../assets/scripts';
 
 const Session = props => (
   <div className={`session${props.selected ? ' selected' : ''}`} key={props.session.id} onClick={props.toggleSession.bind(this, props.i)}>
