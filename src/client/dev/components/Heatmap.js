@@ -8,8 +8,8 @@ class Heatmap extends React.Component {
 
 
 
-  renderHeatmap() {
-    const { sessionView, studyList } = this.props;
+  renderHeatData(nextProps) {
+    const { sessionView, studyList } = nextProps;
     const selectedStudyCode = studyList.selectedStudy;
     const toggledSessions = sessionView.selected[selectedStudyCode];
     const selectedStudyInd = findKeyAtID(studyList.studies, selectedStudyCode, 'shortCode');
@@ -23,7 +23,7 @@ class Heatmap extends React.Component {
             min: 0,
             data: aggregateData,
           };
-          this.props.renderHeatmapData(heatMapData)
+          this.props.sessionView.heatmap.setData(heatMapData)
         }
   }
 
@@ -38,11 +38,10 @@ class Heatmap extends React.Component {
   componentDidMount() {
     const heatmap = this.createHeatmap()
     this.props.createHeatmap(heatmap)
-    this.renderHeatmap();
   }
 
-  componentWillReceiveProps() {
-    this.renderHeatmap();
+  componentWillReceiveProps(nextProps) {
+    this.renderHeatData(nextProps);
   }
 
   render() {
