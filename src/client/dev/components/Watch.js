@@ -4,10 +4,6 @@ import queries from '../queries';
 class Watch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      study: {},
-      session: [],
-    };
   }
 
   startGazeListener() {
@@ -15,10 +11,15 @@ class Watch extends React.Component {
       // Don't send the data if there is no coordinates or is currently in training
       // TODO: Change this to be an implied reference in the redux store
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
-      if (!this.state.recStartMs) {
-        this.setState({ recStartMs: elapsedTime });
+      if (!this.props.watch.metaData.startTime) {
+        this.props.setMetaData(
+          elapsedTime, 
+          {
+            x: window.innerWidth, 
+            y: window.innerHeight
+          })
       } else {
-        this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.state.recStartMs));
+        this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.props.watch.metaData.startTime));
       }
     }).begin();
   }
@@ -35,12 +36,12 @@ class Watch extends React.Component {
   }
 
   postSession() {
-    const thisSession = this.props.watch.newSession;
-    console.log('Data to post', thisSession)
-    const duration = thisSession[thisSession.length - 1].time - thisSession[0].time
+    const newSession = this.props.watch.newSession;
+    const metaData = this.props.watch.metaData;
+    const duration = newSession[newSession.length - 1].time - newSession[0].time
     fetch('/graphql', {
       ...queries.headers,
-      ...queries.postSession(thisSession, duration, this.props.params.shortCode),
+      ...queries.postSession(newSession, duration, metaData.screenSize, this.props.params.shortCode),
     })
     .catch((err) => {console.log('err',  err)})
   }

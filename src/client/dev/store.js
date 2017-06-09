@@ -36,6 +36,7 @@ const defaultState = {
       currGame: 1,
     },
     newSession: [],
+    metaData: {},
   },
 };
 

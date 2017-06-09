@@ -177,6 +177,9 @@ const Mutation = new GraphQLObjectType({
           recording: {
             type: new GraphQLNonNull(GraphQLJSON),
           },
+          screenSize: {
+            type: new GraphQLNonNull(GraphQLJSON),
+          },
           shortCode: {
             type: new GraphQLNonNull(GraphQLString),
           },
@@ -193,6 +196,7 @@ const Mutation = new GraphQLObjectType({
               duration: args.duration,
               recording: args.recording,
               studyId: res.dataValues.id,
+              screenSize: args.screenSize,
             });
             // return
             // console.log('Result from findONe', res);

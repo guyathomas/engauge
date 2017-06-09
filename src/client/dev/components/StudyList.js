@@ -20,7 +20,8 @@ class StudyList extends React.Component {
     })
     .then(response => response.json())
     .then(({ data, errors }) => {
-      if (errors) { throw new Error('Error in response from graphql server'); }
+      console.log('errors', errors)
+      if (errors) { throw new Error('Error in response from graphql server', errors); }
       return this.props.updateStudies(data.studies);
     })
     .then(({ studies }) => {

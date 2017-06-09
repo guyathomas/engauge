@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeNArrays, pullKeyFromObjArr, findKeyAtID, scaleData } from '../../assets/scripts';
+import { mergeNArrays, pluckFromSet, findKeyAtID, scaleData } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -15,14 +15,29 @@ class Heatmap extends React.Component {
     const selectedStudyInd = findKeyAtID(studyList.studies, selectedStudyCode, 'shortCode');
     
     const sessions = studyList.studies[selectedStudyInd] ? studyList.studies[selectedStudyInd].sessions : []
+    const scaledSessions = []
 
-    const unsortedSessions = pullKeyFromObjArr(toggledSessions, sessions, 'recording');
+    for (var i = 0; i < sessions.length; i++) {
+      const tempSession = [];
+      for (var j = 0; j < sessions[i].recording.length; j++) {
+        const scaledPoint = scaleData(
+          sessions[i].recording[j], 
+          sessions[i].screenSize, 
+          {y: window.innerHeight - 400, x: window.innerWidth - 769} //TODO: This size should be the size of the heatmap being rendered
+        )
+        tempSession.push(scaledPoint);
+      }
+      scaledSessions.push(tempSession);
+    }
+
+    console.log('scaledSessions', scaledSessions)
+    const unsortedSessions = pluckFromSet(toggledSessions, scaledSessions);
+    console.log('unsortedSessions', unsortedSessions)
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
-    const scaledData = scaleData(aggregateData, {y: 1030, x: 1679}, {y: 621, x: 640})
     const heatMapData = {
       max: 2,
       min: 0,
-      data: scaledData,
+      data: aggregateData,
     };
     this.props.sessionView.heatmap && this.props.sessionView.heatmap.setData(heatMapData);
   }

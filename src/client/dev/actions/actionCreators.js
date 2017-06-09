@@ -34,6 +34,13 @@ export function clearSession() {
   };
 }
 
+export function setMetaData(startTime, screenSize ) {
+  return {
+    type: 'SET_META_DATA',
+    startTime,
+    screenSize, 
+  };
+}
 
 // Sessions (haven't got any yet)
 export function updateSessions() {

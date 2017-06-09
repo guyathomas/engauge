@@ -7,6 +7,9 @@ function watch(state = {}, action) {
       newState = { ...state };
       newState.newSession = newSessionData;
       return newState;
+    case 'SET_META_DATA':
+      const { screenSize, startTime } = action;
+      return { ...state, metaData: { screenSize, startTime }}
     case 'CLEAR_SESSION':
     case 'NEXT_CLICKGAME':
       newState = { ...state };

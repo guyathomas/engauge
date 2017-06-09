@@ -16,7 +16,8 @@ module.exports = {
             id,
             recording,
             createdAt,
-            duration
+            duration,
+            screenSize
           }
         }
       }`,
@@ -30,7 +31,8 @@ module.exports = {
            sessions {
              id,
              recording,
-             duration
+             duration,
+             screenSize
            }
          }
        }`,
@@ -62,14 +64,14 @@ module.exports = {
       variables: { url, email }, // GraphQL text from input
     }),
   }),
-  postSession: (recording, duration, shortCode) => ({
+  postSession: (recording, duration, screenSize, shortCode) => ({
     body: JSON.stringify({
-      query: `mutation ($recording: JSON!, $duration: Int!, $shortCode: String!){
-             addSession(recording:$recording, duration:$duration, shortCode:$shortCode) {
+      query: `mutation ($recording: JSON!, $duration: Int!, $screenSize: JSON!, $shortCode: String!){
+             addSession(recording:$recording, duration:$duration, screenSize:$screenSize, shortCode:$shortCode) {
                id
              }
            }`,
-      variables: { recording, duration, shortCode },
+      variables: { recording, duration, screenSize, shortCode },
     }),
   }),
 };
