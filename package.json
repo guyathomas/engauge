@@ -28,7 +28,7 @@
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "graphiql": "^0.10.2",
-    "graphql": "^0.9.6",
+    "graphql": "^0.10.0",
     "graphql-relay": "^0.5.2",
     "graphql-sequelize": "^5.3.2",
     "graphql-type-json": "^0.1.4",
@@ -40,11 +40,11 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
-    "react-router": "^4.1.1",
+    "react-router": "^3.0.0",
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "relay-compiler": "^1.0.0",
-    "sequelize": "^3.24.6",
+    "sequelize": "^3.27.0",
     "webpack": "^2.6.1"
   },
   "devDependencies": {
