@@ -27,6 +27,7 @@ const defaultState = {
     selectedStudy: '',
   },
   watch: {
+    activeStudy: {},
     game: {
       loc: { leftPerc: 0.50, topPerc: 0.50 },
       windowSize: { height: window.innerHeight, width: window.innerWidth },

@@ -11,31 +11,32 @@ class Watch extends React.Component {
   }
 
   startGazeListener() {
-    webgazer.setGazeListener((data, elapsedTime) => {
+    window.test = webgazer.setGazeListener((data, elapsedTime) => {
       // Don't send the data if there is no coordinates or is currently in training
       // TODO: Change this to be an implied reference in the redux store
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
       if (!this.state.recStartMs) {
         this.setState({ recStartMs: elapsedTime });
       } else {
-        this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.state.recStartMs))
+        this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.state.recStartMs));
       }
     }).begin();
   }
 
-  getSessions(shortCode) {
+  getStudy(shortCode) {
     fetch('/graphql', {
       ...queries.headers,
       ...queries.getStudy(shortCode),
     })
     .then(response => response.json())
     .then(({ data }) => {
-      this.setState({ study: data.study });
+      this.props.updateWatchStudy(data.study);
     });
   }
 
   postSession() {
-    const thisSession = this.props.watch.activeSession;
+    const thisSession = this.props.watch.newSession;
+    console.log('Data to post', thisSession)
     const duration = thisSession[thisSession.length - 1].time - thisSession[0].time
     fetch('/graphql', {
       ...queries.headers,
@@ -46,13 +47,14 @@ class Watch extends React.Component {
 
   componentDidMount() {
     const shortCode = this.props.params.shortCode;
-    this.getSessions(shortCode);
+    this.getStudy(shortCode);
     this.startGazeListener();
   }
 
   componentWillUnmount() {
+    window.webgazer.pause();
+    window.webgazerStream.getTracks()[0].stop()
     this.postSession();
-    // TODO: Add a post request to create the session
     // TODO: Stop the webcam light being on
   }
 
@@ -61,11 +63,10 @@ class Watch extends React.Component {
       return (
         <ClickGame {...this.props} />);
     } else {
-      const i = this.props.watch.studyIndex;
-      const currStudy = this.props.studies[i]
+      const currStudy = this.props.watch.activeStudy.url;
       return (
         <div className="watch">
-          <img src={currStudy.url} />
+          <img src={currStudy} />
         </div>
       );
     }

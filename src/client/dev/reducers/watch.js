@@ -12,6 +12,8 @@ function watch(state = {}, action) {
       newState = { ...state };
       newState.game.currGame = newState.game.currGame + 1;
       return newState;
+    case 'UPDATE_WATCH_STUDY':
+      return { ...state, activeStudy: action.study };
     default:
   }
   return state;

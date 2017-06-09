@@ -1,3 +1,10 @@
+/*
+    Changes i have made.
+        Made the media stream accessible to the window so that I can stop the video stream on unmounting
+            Line 10736
+            window.webgazerStream = stream;
+*/  
+
 /**
  * Real-time object detector based on the Viola Jones Framework.
  * Compatible to OpenCV Haar Cascade Classifiers (stump based only).
@@ -10728,6 +10735,7 @@ var mosseFilterResponses = function() {
             navigator.getUserMedia(options,
                     function(stream){
                         console.log('video stream created');
+                        window.webgazerStream = stream;
                         init(window.URL.createObjectURL(stream));
                     },
                     function(e){

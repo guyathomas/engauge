@@ -21,6 +21,13 @@ export function addSessionPoint(x, y, time) {
   };
 }
 
+export function updateWatchStudy(study) {
+  return {
+    type: 'UPDATE_WATCH_STUDY',
+    study,
+  };
+}
+
 export function clearSession() {
   return {
     type: 'CLEAR_SESSION',
