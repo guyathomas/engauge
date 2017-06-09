@@ -29,29 +29,30 @@ class SessionSidebar extends React.Component{
   componentWillReceiveProps(nextProps) {
     // console.log('mounted', this.props.studyList.selectedStudy)
     // If 
-    const selectedStudy = this.props.studyList.selectedStudy;
-    console.log(selectedStudy)
-    const sessionSelectionChanged = !isSetEqual(this.props.sessionView.selected[selectedStudy], nextProps.sessionView.selected[selectedStudy])
-    const studySelectionChanged = JSON.stringify(this.props.studyList.selectedStudy) !== JSON.stringify(nextProps.studyList.selectedStudy)
-    // debugger;
-    //If never been toggled before, toggle 0
-    console.log( nextProps.sessionView.selected[selectedStudy])
-    if ((nextProps.sessionView.selected[selectedStudy] && nextProps.sessionView.selected[selectedStudy].size === 0)) {
-      console.log('Calling toggleSession')
-      this.props.toggleSession(0, nextProps.studyList.selectedStudy);
-    }
+    // const selectedStudy = nextProps.studyList.selectedStudy;
+    // // console.log(selectedStudy)
+    // const sessionSelectionChanged = !isSetEqual(this.props.sessionView.selected[selectedStudy], nextProps.sessionView.selected[selectedStudy])
+    // const studySelectionChanged = JSON.stringify(this.props.studyList.selectedStudy) !== JSON.stringify(nextProps.studyList.selectedStudy)
+    // // debugger;
+    // //If never been toggled before, toggle 0
+    // if ((nextProps.sessionView.selected[selectedStudy] && nextProps.sessionView.selected[selectedStudy].size === 0)) {
+      
+    // }
   }
   render() {
     const { studies, selectedStudy } = this.props.studyList;
     const selectedStudyInd = findKeyAtID(studies, selectedStudy, 'shortCode');
-    if (!this.props.sessionView.selected[selectedStudy]) {this.props.sessionView.selected[selectedStudy] = new Set();}
+    if (!this.props.sessionView.selected[selectedStudy]) {
+        this.props.sessionView.selected[selectedStudy] = new Set();
+        this.props.toggleSession(0, this.props.studyList.selectedStudy);
+    }
     if (studies[selectedStudyInd] && studies[selectedStudyInd].sessions.length > 0) {
     // If the sessions have been populated by the get request and there are sessions for the selected study
       const sessions = studies[selectedStudyInd].sessions;
       return (
         <div className="sessions-sidebar">
           {sessions.map((session, i) => {
-            console.log('Will be toggled', this.props.sessionView.selected[selectedStudy] && this.props.sessionView.selected[selectedStudy].has(i))
+            // console.log('Will be toggled', this.props.sessionView.selected[selectedStudy] && this.props.sessionView.selected[selectedStudy].has(i))
             const duration = Math.floor(parseInt(session.duration) / 1000);
             const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`;
             return (<Session
