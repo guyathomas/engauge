@@ -26,7 +26,6 @@ class Heatmap extends React.Component {
   }
 
   createHeatmap() {
-    console.log('Does the image exist yet', document.getElementById('heatmap-wrapper'))
     const heatmap = h337.create({
       container: document.getElementById('heatmap-wrapper'),
       radius: 50,
@@ -41,6 +40,7 @@ class Heatmap extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.renderHeatData(nextProps);
+    document.getElementById('heatmap-wrapper')
   }
 
   render() {
