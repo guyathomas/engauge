@@ -17,14 +17,12 @@ class Heatmap extends React.Component {
 
     const unsortedSessions = pullKeyFromObjArr(toggledSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
-        if (aggregateData.length > 0) {
-          const heatMapData = {
-            max: 2,
-            min: 0,
-            data: aggregateData,
-          };
-          this.props.sessionView.heatmap.setData(heatMapData)
-        }
+    const heatMapData = {
+      max: 2,
+      min: 0,
+      data: aggregateData,
+    };
+    this.props.sessionView.heatmap && this.props.sessionView.heatmap.setData(heatMapData);
   }
 
   createHeatmap() {
@@ -50,6 +48,7 @@ class Heatmap extends React.Component {
     const toggledSessions = sessionView.selected[selectedStudyCode];
     const selectedStudyInd = findKeyAtID(studyList.studies, selectedStudyCode, 'shortCode');
     const activeStudy = this.props.studyList.studies[selectedStudyInd];
+
     return (
             <div className="heatmap-section">
               <div id="heatmap-wrapper">
