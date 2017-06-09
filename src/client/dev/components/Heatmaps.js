@@ -5,7 +5,7 @@ import SessionSidebar from './SessionSidebar';
 const Heatmaps = (props) => (
   <div className="heatmaps-container">
   	<SessionSidebar {...props} />
-  	<Heatmap {...props} />
+  	{/*<Heatmap {...props} />*/}
   </div>
 );
 

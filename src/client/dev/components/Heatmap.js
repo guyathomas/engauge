@@ -46,7 +46,6 @@ class Heatmap extends React.Component {
   }
 
   render() {
-    window.props = this.props
     const { sessionView, studyList } = this.props;
     const selectedStudyCode = studyList.selectedStudy;
     const toggledSessions = sessionView.selected[selectedStudyCode];

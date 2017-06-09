@@ -11,7 +11,7 @@ function sessionView(state = [], action) {
       state.heatmap.setData({ data: [] });
       return state;
     case 'TOGGLE_SESSION':
-      const { shortCode, index } = action;
+      const { index, shortCode } = action;
       const newSelectedSet = state.selected[shortCode] ? new Set(state.selected[shortCode]) : new Set();
       newSelectedSet.has(index) ? newSelectedSet.delete(index) : newSelectedSet.add(index);
       return { ...state, selected: { ...state.selected, [shortCode]: newSelectedSet } };
