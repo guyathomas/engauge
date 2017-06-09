@@ -26,24 +26,12 @@ class SessionSidebar extends React.Component{
 
   
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('mounted', this.props.studyList.selectedStudy)
-    // If 
-    // const selectedStudy = nextProps.studyList.selectedStudy;
-    // // console.log(selectedStudy)
-    // const sessionSelectionChanged = !isSetEqual(this.props.sessionView.selected[selectedStudy], nextProps.sessionView.selected[selectedStudy])
-    // const studySelectionChanged = JSON.stringify(this.props.studyList.selectedStudy) !== JSON.stringify(nextProps.studyList.selectedStudy)
-    // // debugger;
-    // //If never been toggled before, toggle 0
-    // if ((nextProps.sessionView.selected[selectedStudy] && nextProps.sessionView.selected[selectedStudy].size === 0)) {
-      
-    // }
-  }
   render() {
     const { studies, selectedStudy } = this.props.studyList;
     const selectedStudyInd = findKeyAtID(studies, selectedStudy, 'shortCode');
     if (!this.props.sessionView.selected[selectedStudy]) {
         this.props.sessionView.selected[selectedStudy] = new Set();
+        //TODO: This causes error "Warning: setState(...): " need to call this function outside the render method
         this.props.toggleSession(0, this.props.studyList.selectedStudy);
     }
     if (studies[selectedStudyInd] && studies[selectedStudyInd].sessions.length > 0) {
