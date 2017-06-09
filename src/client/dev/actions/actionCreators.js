@@ -72,13 +72,6 @@ export function createHeatmap(heatmap) {
   };
 }
 
-export function renderHeatmapData(data) {
-  return {
-    type: 'RENDER_HEATMAP_DATA',
-    data,
-  };
-}
-
 export function clearHeatmap() {
   return {
     type: 'CLEAR_HEATMAP',

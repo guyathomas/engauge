@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeNArrays, pullKeyFromObjArr, findKeyAtID } from '../../assets/scripts';
+import { mergeNArrays, pullKeyFromObjArr, findKeyAtID, scaleData } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -13,14 +13,16 @@ class Heatmap extends React.Component {
     const selectedStudyCode = studyList.selectedStudy;
     const toggledSessions = sessionView.selected[selectedStudyCode];
     const selectedStudyInd = findKeyAtID(studyList.studies, selectedStudyCode, 'shortCode');
-    const sessions = studyList.studies[selectedStudyInd] ? studyList.studies[selectedStudyInd].sessions : [];
+    
+    const sessions = studyList.studies[selectedStudyInd] ? studyList.studies[selectedStudyInd].sessions : []
 
     const unsortedSessions = pullKeyFromObjArr(toggledSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
+    const scaledData = scaleData(aggregateData, {y: 1030, x: 1679}, {y: 621, x: 640})
     const heatMapData = {
       max: 2,
       min: 0,
-      data: aggregateData,
+      data: scaledData,
     };
     this.props.sessionView.heatmap && this.props.sessionView.heatmap.setData(heatMapData);
   }
@@ -31,7 +33,6 @@ class Heatmap extends React.Component {
       radius: 50,
     });
 
-    console.log(window.hm = heatmap);
     return heatmap;
   }
 
@@ -42,7 +43,6 @@ class Heatmap extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.renderHeatData(nextProps);
-    document.getElementById('heatmap-wrapper')
   }
 
   render() {

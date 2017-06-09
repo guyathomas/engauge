@@ -4,9 +4,6 @@ function sessionView(state = [], action) {
       return { ...state, activeTab: action.newIndex };
     case 'CREATE_HEATMAP':
       return { ...state, heatmap: action.heatmap };
-    case 'RENDER_HEATMAP_DATA':
-      state.heatmap.setData(action.data);
-      return state;
     case 'CLEAR_HEATMAP':
       state.heatmap.setData({ data: [] });
       return state;
