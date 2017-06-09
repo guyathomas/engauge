@@ -17,6 +17,7 @@ class Heatmap extends React.Component {
 
     const unsortedSessions = pullKeyFromObjArr(toggledSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
+    console.log('Will create with this data', JSON.stringify(aggregateData))
     const heatMapData = {
       max: 2,
       min: 0,

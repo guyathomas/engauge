@@ -1,5 +1,5 @@
 const mergeNArrays = (arraysToSort, comparitor) => {
-  if (arraysToSort.length === 1) { return arraysToSort; } // Only one array so no need to merge
+  if (arraysToSort.length === 1) { return arraysToSort[0]; } // Only one array so no need to merge
   const newArr = [];
   const pointers = new Array(arraysToSort.length).fill(0);
   comparitor = comparitor || function (a, b) { return a < b; };
