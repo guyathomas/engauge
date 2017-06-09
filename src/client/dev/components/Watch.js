@@ -11,7 +11,7 @@ class Watch extends React.Component {
   }
 
   startGazeListener() {
-    window.test = webgazer.setGazeListener((data, elapsedTime) => {
+    webgazer.setGazeListener((data, elapsedTime) => {
       // Don't send the data if there is no coordinates or is currently in training
       // TODO: Change this to be an implied reference in the redux store
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }

@@ -30,6 +30,8 @@ class Heatmap extends React.Component {
       container: document.getElementById('heatmap-wrapper'),
       radius: 50,
     });
+
+    console.log(window.hm = heatmap);
     return heatmap;
   }
 
