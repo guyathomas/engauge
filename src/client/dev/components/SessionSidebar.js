@@ -27,6 +27,7 @@ class SessionSidebar extends React.Component{
   
 
   render() {
+    window.props = this.props
     const { studies, selectedStudy } = this.props.studyList;
     const selectedStudyInd = findKeyAtID(studies, selectedStudy, 'shortCode');
     if (!this.props.sessionView.selected[selectedStudy]) {

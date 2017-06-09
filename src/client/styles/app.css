@@ -294,6 +294,7 @@ a, a:visited, a:hover, a:active {
 }
 
 #heatmap-wrapper {
+	height: 100%;
 }
 
 #heatmap-wrapper .heatmap-canvas {

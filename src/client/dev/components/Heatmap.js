@@ -17,7 +17,6 @@ class Heatmap extends React.Component {
 
     const unsortedSessions = pullKeyFromObjArr(toggledSessions, sessions, 'recording');
     const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
-    console.log('Will create with this data', JSON.stringify(aggregateData))
     const heatMapData = {
       max: 2,
       min: 0,
@@ -27,6 +26,7 @@ class Heatmap extends React.Component {
   }
 
   createHeatmap() {
+    console.log('Does the image exist yet', document.getElementById('heatmap-wrapper'))
     const heatmap = h337.create({
       container: document.getElementById('heatmap-wrapper'),
       radius: 50,
