@@ -4400,8 +4400,8 @@
       "integrity": "sha1-UBP5+ZAj31DRvZiSwZ4979HVMwk="
     },
     "sequelize": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/sequelize/-/sequelize-4.0.0.tgz",
+      "version": "3.30.4",
+      "resolved": "https://registry.npmjs.org/sequelize/-/sequelize-3.30.4.tgz",
       "integrity": "sha512-sKJHt36Leyzlhsy2g8b2Q5DQxM4F8aIVFOohjnIC6d6rtutWmLjhW/7H2ZEqG8n/3hbK1mfSBnKqZCO7+1sJYA==",
       "dependencies": {
         "generic-pool": {
