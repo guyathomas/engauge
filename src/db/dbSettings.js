@@ -22,6 +22,6 @@ const config = {
     },
   },
 };
-console.log('DB settings', config);
-console.log('Nodeenv', process.env.NODE_ENV);
+console.log('DB Connection', config);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 module.exports = config;

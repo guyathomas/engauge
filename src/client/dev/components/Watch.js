@@ -12,11 +12,12 @@ class Watch extends React.Component {
       // TODO: Change this to be an implied reference in the redux store
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
       if (!this.props.watch.metaData.startTime) {
-        this.props.setMetaData(
+        const context = this;
+        context.props.setMetaData(
           elapsedTime, 
           {
-            x: $('.watch img').width, 
-            y: $('.watch img').height
+            x: context.refs['watch-img'].width,
+            y: context.refs['watch-img'].height
           })
       } else {
         this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.props.watch.metaData.startTime));
@@ -67,7 +68,7 @@ class Watch extends React.Component {
       const currStudy = this.props.watch.activeStudy.url;
       return (
         <div className="watch">
-          <img src={currStudy} />
+          <img ref="watch-img" src={currStudy} />
         </div>
       );
     }
