@@ -32,7 +32,7 @@ const mergeNArrays = (arraysToSort, comparitor) => {
   // indicesToPull: Set
   // dataSource: Array of Objects
   // key: String to pull as a key from datasource
-const pluckFromSet = (indicesToPull, dataSource) => {
+const pluckFromSetAtKey = (indicesToPull, dataSource, key) => {
   const result = [];
   if (indicesToPull.size === 0 || dataSource.length === 0) {
     console.log('Entered exit statement');
@@ -40,7 +40,7 @@ const pluckFromSet = (indicesToPull, dataSource) => {
   }
 
   for (const index of indicesToPull) {
-    result.push(dataSource[index]);
+    key ? result.push(dataSource[index][key]) : result.push(dataSource[index]);
   }
   return result;
 };
@@ -75,9 +75,9 @@ const scaleData = (data, beforeSize, afterSize) => {
   }
   return result;
 }
-const before = {y: 1030, x: 1679}
-const after = {y: 640, x: 621}
-const data = {"x":703,"y":643,"time":28}
-console.log(scaleData(data, before, after))
+// const before = {y: 1030, x: 1679}
+// const after = {y: 640, x: 621}
+// const data = {"x":703,"y":643,"time":28}
+// console.log(scaleData(data, before, after))
 
-module.exports = { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual , scaleData};
+module.exports = { mergeNArrays, pluckFromSetAtKey, findKeyAtID, isSetEqual , scaleData};

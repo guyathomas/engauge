@@ -91,6 +91,12 @@ export function removeHeatmap() {
   };
 }
 
+export function addHeatData(heatData) {
+  return {
+    type: 'ADD_HEAT_DATA',
+    heatData,
+  }
+}
 
 // Studylist
 export function updateStudies(studies) {
