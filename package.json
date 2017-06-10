@@ -39,7 +39,7 @@
     "react-router-redux": "4.0.8",
     "redux": "3.6.0",
     "relay-compiler": "1.0.0",
-    "sequelize": "^3.0.0",
+    "sequelize": ">=3.30.0 <4.0.0",
     "webpack": "^1.13.3"
   },
   "devDependencies": {
