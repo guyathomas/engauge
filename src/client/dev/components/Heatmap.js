@@ -23,7 +23,7 @@ class Heatmap extends React.Component {
         const scaledPoint = scaleData(
           sessions[i].recording[j], 
           sessions[i].screenSize, 
-          {y: window.innerHeight - 400, x: window.innerWidth - 769} //TODO: This size should be the size of the heatmap being rendered
+          {y: $('#heatmap-wrapper img').height, x: $('#heatmap-wrapper img').width} //TODO: This size should be the size of the heatmap being rendered
         )
         tempSession.push(scaledPoint);
       }

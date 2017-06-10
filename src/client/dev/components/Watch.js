@@ -15,8 +15,8 @@ class Watch extends React.Component {
         this.props.setMetaData(
           elapsedTime, 
           {
-            x: window.innerWidth, 
-            y: window.innerHeight
+            x: $('.watch img').width, 
+            y: $('.watch img').height
           })
       } else {
         this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.props.watch.metaData.startTime));
