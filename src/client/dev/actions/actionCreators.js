@@ -40,11 +40,10 @@ export function clearSession() {
   };
 }
 
-export function setMetaData(startTime, screenSize) {
+export function setMetaData(startTime) {
   return {
     type: 'SET_META_DATA',
     startTime,
-    screenSize, 
   };
 }
 

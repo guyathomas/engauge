@@ -13,14 +13,12 @@ class Watch extends React.Component {
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
       if (!this.props.watch.metaData.startTime) {
         const context = this;
-        context.props.setMetaData(
-          elapsedTime, 
-          {
-            x: context.refs['watch-img'].width,
-            y: context.refs['watch-img'].height
-          })
+        context.props.setMetaData(elapsedTime);
       } else {
-        this.props.addSessionPoint(data.x, data.y, Math.floor(elapsedTime - this.props.watch.metaData.startTime));
+        const xPercent = data.x / context.refs['watch-img'].width;
+        const yPercent = data.y / context.refs['watch-img'].height;
+        const timeSinceStart = Math.floor(elapsedTime - this.props.watch.metaData.startTime);
+        this.props.addSessionPoint(xPercent, yPercent, timeSinceStart);
       }
     }).begin();
   }
@@ -42,7 +40,7 @@ class Watch extends React.Component {
     const duration = newSession[newSession.length - 1].time - newSession[0].time
     fetch('/graphql', {
       ...queries.headers,
-      ...queries.postSession(newSession, duration, metaData.screenSize, this.props.params.shortCode),
+      ...queries.postSession(newSession, duration, this.props.params.shortCode),
     })
     .catch((err) => {console.log('err',  err)})
   }
@@ -57,7 +55,6 @@ class Watch extends React.Component {
     window.webgazer.pause();
     window.webgazerStream.getTracks()[0].stop()
     this.postSession();
-    // TODO: Stop the webcam light being on
   }
 
   render() {
