@@ -8,7 +8,6 @@ function sessionView(state = [], action) {
       state.heatmap.setData({ data: [] });
       return state;
     case 'ADD_HEAT_DATA':
-      console.log('The new heat data', JSON.stringify({ ...state, heatData: action.heatData}))
       return { ...state, heatData: action.heatData}
     case 'TOGGLE_SESSION':
       const { index, shortCode } = action;

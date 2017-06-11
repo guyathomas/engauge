@@ -27,7 +27,6 @@ class SessionSidebar extends React.Component{
   
 
   render() {
-    window.props = this.props
     const { studies, selectedStudy } = this.props.studyList;
     const selectedStudyInd = findKeyAtID(studies, selectedStudy, 'shortCode');
     if (!this.props.sessionView.selected[selectedStudy]) {
@@ -41,7 +40,6 @@ class SessionSidebar extends React.Component{
       return (
         <div className="sessions-sidebar">
           {sessions.map((session, i) => {
-            // console.log('Will be toggled', this.props.sessionView.selected[selectedStudy] && this.props.sessionView.selected[selectedStudy].has(i))
             const duration = Math.floor(parseInt(session.duration) / 1000);
             const durationString = `${duration} ${duration === 1 ? 'second' : 'seconds'}`;
             return (<Session
