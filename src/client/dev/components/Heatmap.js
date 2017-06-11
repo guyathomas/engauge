@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual } from '../../assets/scripts';
+import { mergeNArrays, indicesFromSet, findKeyAtID, isSetEqual } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -42,6 +42,7 @@ class Heatmap extends React.Component {
     const { height, width } = document.getElementsByClassName('heatmap-canvas')[0];
     const afterSize = { x: width, y: height };
     const data = this.scaleData(this.props.sessionView.heatData, afterSize);
+    console.log('The data after scaling', data)
     const heatData = {
       max: 2,
       min: 0,
@@ -53,15 +54,15 @@ class Heatmap extends React.Component {
   getSessionsToRender(nextProps) {
     // Get Sessions from store
     const activeStudy = this.getActiveStudyFromProps(nextProps);
-    const sessions = activeStudy ? activeStudy.sessions : [];
     
     // Pluck the selected sessions
     if (activeStudy) {
-      const activeStudyCode = activeStudy.shortCode;
-      const toggledSessions = nextProps.sessionView.selected[activeStudyCode];
-      const unsortedSessions = pluckFromSet(toggledSessions, sessions);
-      //Scale / standardize the data
-      const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
+      debugger;
+      const { sessions, shortCode } = activeStudy;
+      const toggledSessions = nextProps.sessionView.selected[shortCode];
+      const unsortedSessions = indicesFromSet(toggledSessions, sessions);
+      const pluckedSessions = _.map(unsortedSessions, 'recording');
+      const aggregateData = mergeNArrays(pluckedSessions, (a, b) => (a && b) && (a.time < b.time));
 
       //Add to the store
       this.props.addHeatData(aggregateData);

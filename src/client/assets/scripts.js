@@ -32,7 +32,7 @@ const mergeNArrays = (arraysToSort, comparitor) => {
   // indicesToPull: Set
   // dataSource: Array of Objects
   // key: String to pull as a key from datasource
-const pluckFromSet = (indicesToPull, dataSource) => {
+const indicesFromSet = (indicesToPull, dataSource) => {
   const result = [];
   if (indicesToPull.size === 0 || dataSource.length === 0) {
     console.log('Entered exit statement');
@@ -66,4 +66,4 @@ const isSetEqual = (a, b) => {
   return true;
 };
 
-module.exports = { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual, standardizeSize };
+module.exports = { mergeNArrays, indicesFromSet, findKeyAtID, isSetEqual };

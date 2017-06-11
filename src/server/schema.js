@@ -177,9 +177,6 @@ const Mutation = new GraphQLObjectType({
           recording: {
             type: new GraphQLNonNull(GraphQLJSON),
           },
-          screenSize: {
-            type: new GraphQLNonNull(GraphQLJSON),
-          },
           shortCode: {
             type: new GraphQLNonNull(GraphQLString),
           },
@@ -195,8 +192,7 @@ const Mutation = new GraphQLObjectType({
             return db.sequelize.models.session.create({
               duration: args.duration,
               recording: args.recording,
-              studyId: res.dataValues.id,
-              screenSize: args.screenSize,
+              studyId: res.dataValues.id
             });
             // return
             // console.log('Result from findONe', res);

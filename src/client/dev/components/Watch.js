@@ -10,15 +10,16 @@ class Watch extends React.Component {
     webgazer.setGazeListener((data, elapsedTime) => {
       // Don't send the data if there is no coordinates or is currently in training
       // TODO: Change this to be an implied reference in the redux store
+      const context = this;
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
       if (!this.props.watch.metaData.startTime) {
-        const context = this;
-        context.props.setMetaData(elapsedTime);
+        console.log('SHould only run once')
+        this.props.setMetaData(elapsedTime);
       } else {
         const xPercent = data.x / context.refs['watch-img'].width;
         const yPercent = data.y / context.refs['watch-img'].height;
-        const timeSinceStart = Math.floor(elapsedTime - this.props.watch.metaData.startTime);
-        this.props.addSessionPoint(xPercent, yPercent, timeSinceStart);
+        const timeSinceStart = Math.floor(elapsedTime - context.props.watch.metaData.startTime);
+        context.props.addSessionPoint(xPercent, yPercent, timeSinceStart);
       }
     }).begin();
   }
@@ -43,7 +44,8 @@ class Watch extends React.Component {
       ...queries.headers,
       ...queries.postSession(newSession, duration, this.props.params.shortCode),
     })
-    .catch((err) => {console.log('err',  err)})
+    .then(res => console.log('res', res))
+    .catch(err => console.log('err', err));
   }
 
   componentDidMount() {

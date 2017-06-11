@@ -16,8 +16,7 @@ module.exports = {
             id,
             recording,
             createdAt,
-            duration,
-            screenSize
+            duration
           }
         }
       }`,
@@ -31,8 +30,7 @@ module.exports = {
            sessions {
              id,
              recording,
-             duration,
-             screenSize
+             duration
            }
          }
        }`,
