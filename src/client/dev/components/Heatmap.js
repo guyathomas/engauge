@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual, standardizeSize } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
@@ -15,10 +16,10 @@ class Heatmap extends React.Component {
   }
 
   repaintHeatmap() {
-    document.getElementsByClassName('heatmap-canvas')[0].remove();
-    const heatmap = this.createHeatmap();
-    this.props.createHeatmap(heatmap);
-    this.renderData()
+      document.getElementsByClassName('heatmap-canvas')[0].remove();
+      const heatmap = this.createHeatmap();
+      this.props.createHeatmap(heatmap);
+      this.renderData()
   }
 
   scaleData (data, beforeSize, afterSize) {
@@ -83,9 +84,7 @@ class Heatmap extends React.Component {
     const heatmap = this.createHeatmap();
     this.props.createHeatmap(heatmap);
 
-    // This makes it quite laggy because it recreates the entire heatmap every time.
-    // But there is a bug with how the heatmap library will render everything in a way that is skewed if the browser is resized
-    window.addEventListener("resize", this.repaintHeatmap.bind(this));
+    window.addEventListener("resize", _.debounce(this.repaintHeatmap.bind(this), 100, {trailing: true, maxWait: 100}))
   }
 
   componentWillReceiveProps(nextProps) {
