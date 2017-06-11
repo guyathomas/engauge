@@ -72,6 +72,7 @@ class Watch extends React.Component {
     const shortCode = this.props.params.shortCode;
     this.getStudy(shortCode);
     this.startGazeListener();
+    window.debug = true;
   }
 
   componentWillUnmount() {
