@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeNArrays, pluckFromSet, findKeyAtID, scaleData, isSetEqual, standardizeSize } from '../../assets/scripts';
+import { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual, standardizeSize } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -15,17 +15,25 @@ class Heatmap extends React.Component {
   }
 
   scaleData (data, beforeSize, afterSize) {
-    const xRatio = afterSize.x / beforeSize.x;
-    const yRatio = afterSize.y / beforeSize.y;
-    const result = {
-      x: Math.floor(xRatio * data.x),
-      y: Math.floor(yRatio * data.y)
+    const result = []
+
+    for (var i = 0; i < data.length; i++) {
+      const xRatio = afterSize.x / beforeSize.x;
+      const yRatio = afterSize.y / beforeSize.y;
+      const dataPoint = {
+        x: Math.floor(xRatio * data.x),
+        y: Math.floor(yRatio * data.y)
+      };
+      result.push(dataPoint);
     }
     return result;
   }
 
   renderData() {
-
+    const { height, width } = this.refs['heatmap-img'];
+    const afterSize = { x: width, y: height };
+    const data = this.scaleData(this.props.sessionView.heatData, this.props.sessionView.defaultDataSize, afterSize);
+    console.log('Will now render this data', data)
   }
 
   renderScaledHeatData(imageSize) {
@@ -57,8 +65,6 @@ class Heatmap extends React.Component {
       //Add to the store
       this.props.addHeatData(aggregateData);
 
-      //Render the new data
-      // this.renderData();
     }
   }
 
@@ -95,6 +101,8 @@ class Heatmap extends React.Component {
   }
 
   render() {
+    if (this.refs['heatmap-img']) {this.renderData();}
+    
     const activeStudy = this.getActiveStudyFromProps(this.props);
 
     return (

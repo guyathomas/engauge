@@ -85,9 +85,4 @@ const standardizeSize = (sessions, targetSize) => {
   return result;
 };
 
-// const before = {y: 1030, x: 1679}
-// const after = {y: 640, x: 621}
-// const data = {"x":703,"y":643,"time":28}
-// console.log(scaleData(data, before, after))
-
 module.exports = { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual, standardizeSize };
