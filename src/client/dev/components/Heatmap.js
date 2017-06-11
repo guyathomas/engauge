@@ -19,7 +19,6 @@ class Heatmap extends React.Component {
     const heatmap = this.createHeatmap();
     this.props.createHeatmap(heatmap);
     this.renderData()
-    console.log('Window resized')
   }
 
   scaleData (data, beforeSize, afterSize) {
@@ -43,14 +42,12 @@ class Heatmap extends React.Component {
     // const { height, width } = this.refs['heatmap-img'];
     const { height, width } = document.getElementsByClassName('heatmap-canvas')[0];
     const afterSize = { x: width, y: height };
-    console.log('afterSize', afterSize)
     const data = this.scaleData(this.props.sessionView.heatData, this.props.sessionView.defaultDataSize, afterSize);
     const heatData = {
       max: 2,
       min: 0,
       data: data,
     };
-    console.log('Will now render this data', heatData)
     this.props.sessionView.heatmap.setData(heatData);
   }
 
