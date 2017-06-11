@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeNArrays, pluckFromSetAtKey, findKeyAtID, scaleData, isSetEqual } from '../../assets/scripts';
+import { mergeNArrays, pluckFromSet, findKeyAtID, scaleData, isSetEqual, standardizeSize } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -14,28 +14,24 @@ class Heatmap extends React.Component {
     return activeStudy;
   }
 
-  scaleData(data, beforeSize, afterSize) {
-    
+  scaleData (data, beforeSize, afterSize) {
+    const xRatio = afterSize.x / beforeSize.x;
+    const yRatio = afterSize.y / beforeSize.y;
+    const result = {
+      x: Math.floor(xRatio * data.x),
+      y: Math.floor(yRatio * data.y)
+    }
+    return result;
+  }
+
+  renderData() {
+
   }
 
   renderScaledHeatData(imageSize) {
-    const scaledSessions = [];
-    for (var i = 0; i < sessions.length; i++) {
-      const tempSession = [];
-      for (var j = 0; j < sessions[i].recording.length; j++) {
-        const scaledPoint = scaleData(
-          sessions[i].recording[j], 
-          sessions[i].screenSize, 
-          {
-            x: this.refs['heatmap-img'].width,
-            y: this.refs['heatmap-img'].height,
-          }
-        )
-        tempSession.push(scaledPoint);
-      }
-      scaledSessions.push(tempSession);
-    }
-    //Call renderScaledHeatmap
+    const afterSize = { x: this.refs['heatmap-img'].width, y: this.refs['heatmap-img'].height };
+    const beforeSize = ''
+
 
     const heatMapData = {
       max: 2,
@@ -53,11 +49,16 @@ class Heatmap extends React.Component {
     if (activeStudy) {
       const activeStudyCode = activeStudy.shortCode;
       const toggledSessions = nextProps.sessionView.selected[activeStudyCode];
-      const unsortedSessions = pluckFromSetAtKey(toggledSessions, sessions, 'recording');
-      const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
+      const unsortedSessions = pluckFromSet(toggledSessions, sessions);
+      //Scale / standardize the data
+      const standardizedSessions = standardizeSize(unsortedSessions, this.props.sessionView.defaultDataSize);
+      const aggregateData = mergeNArrays(standardizedSessions, (a, b) => (a && b) && (a.time < b.time));
 
       //Add to the store
       this.props.addHeatData(aggregateData);
+
+      //Render the new data
+      // this.renderData();
     }
   }
 

@@ -17,6 +17,7 @@ const defaultState = {
     selected: {
       shortcodeHere: new Set(),
     },
+    defaultDataSize: { x: 1920, y: 1080 },
   },
   studyList: {
     filters: {
