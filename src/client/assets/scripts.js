@@ -67,13 +67,14 @@ const isSetEqual = (a, b) => {
 };
 
 const standardizeSize = (sessions, targetSize) => {
+  //TODO: Duplicate logic in Heatmap.js this.scaleData function
   const result = [];
   for (var i = 0; i < sessions.length; i++) {
     const tempSession = [];
-    const scaleX = sessions[i].screenSize.x / targetSize.x;
-    const scaleY = sessions[i].screenSize.y / targetSize.y;
+    const scaleX = targetSize.x / sessions[i].screenSize.x ;
+    const scaleY = targetSize.y / sessions[i].screenSize.y ;
       // console.log(sessions[i].length)
-    const recording = sessions[i].recording
+    const recording = sessions[i].recording;
     for (var j = 0; j < recording.length; j++) {
       const tempPoint = Object.assign({}, recording[j]);
       tempPoint.x = recording[j].x * scaleX;
