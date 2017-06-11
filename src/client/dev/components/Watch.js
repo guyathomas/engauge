@@ -37,7 +37,8 @@ class Watch extends React.Component {
   postSession() {
     const newSession = this.props.watch.newSession;
     const metaData = this.props.watch.metaData;
-    const duration = newSession[newSession.length - 1].time - newSession[0].time
+    const duration = newSession[newSession.length - 1].time - newSession[0].time;
+    console.log('The session data to post', newSession);
     fetch('/graphql', {
       ...queries.headers,
       ...queries.postSession(newSession, duration, this.props.params.shortCode),

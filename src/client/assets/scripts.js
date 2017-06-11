@@ -66,24 +66,4 @@ const isSetEqual = (a, b) => {
   return true;
 };
 
-const standardizeSize = (sessions, targetSize) => {
-  //TODO: Duplicate logic in Heatmap.js this.scaleData function
-  const result = [];
-  for (var i = 0; i < sessions.length; i++) {
-    const tempSession = [];
-    const scaleX = targetSize.x / sessions[i].screenSize.x ;
-    const scaleY = targetSize.y / sessions[i].screenSize.y ;
-      // console.log(sessions[i].length)
-    const recording = sessions[i].recording;
-    for (var j = 0; j < recording.length; j++) {
-      const tempPoint = Object.assign({}, recording[j]);
-      tempPoint.x = recording[j].x * scaleX;
-      tempPoint.y = recording[j].y * scaleY;
-      tempSession.push(tempPoint);
-    }
-    result.push(tempSession)
-  }
-  return result;
-};
-
 module.exports = { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual, standardizeSize };

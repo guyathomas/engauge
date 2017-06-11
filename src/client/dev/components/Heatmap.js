@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual, standardizeSize } from '../../assets/scripts';
+import { mergeNArrays, pluckFromSet, findKeyAtID, isSetEqual } from '../../assets/scripts';
 
 class Heatmap extends React.Component {
   constructor(props) {
@@ -22,15 +22,13 @@ class Heatmap extends React.Component {
       this.renderData()
   }
 
-  scaleData (data, beforeSize, afterSize) {
+  scaleData (data, afterSize) {
     const result = [];
 
     for (var i = 0; i < data.length; i++) {
-      const xRatio = afterSize.x / beforeSize.x;
-      const yRatio = afterSize.y / beforeSize.y;
       const dataPoint = {
-        x: Math.floor(xRatio * data[i].x),
-        y: Math.floor(yRatio * data[i].y)
+        x: Math.floor(data[i].x * afterSize.x),
+        y: Math.floor(data[i].y * afterSize.y)
       };
       result.push(dataPoint);
     }
@@ -43,7 +41,7 @@ class Heatmap extends React.Component {
     // const { height, width } = this.refs['heatmap-img'];
     const { height, width } = document.getElementsByClassName('heatmap-canvas')[0];
     const afterSize = { x: width, y: height };
-    const data = this.scaleData(this.props.sessionView.heatData, this.props.sessionView.defaultDataSize, afterSize);
+    const data = this.scaleData(this.props.sessionView.heatData, afterSize);
     const heatData = {
       max: 2,
       min: 0,
@@ -63,8 +61,7 @@ class Heatmap extends React.Component {
       const toggledSessions = nextProps.sessionView.selected[activeStudyCode];
       const unsortedSessions = pluckFromSet(toggledSessions, sessions);
       //Scale / standardize the data
-      const standardizedSessions = standardizeSize(unsortedSessions, this.props.sessionView.defaultDataSize);
-      const aggregateData = mergeNArrays(standardizedSessions, (a, b) => (a && b) && (a.time < b.time));
+      const aggregateData = mergeNArrays(unsortedSessions, (a, b) => (a && b) && (a.time < b.time));
 
       //Add to the store
       this.props.addHeatData(aggregateData);
