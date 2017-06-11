@@ -21,8 +21,8 @@ class Heatmap extends React.Component {
       const xRatio = afterSize.x / beforeSize.x;
       const yRatio = afterSize.y / beforeSize.y;
       const dataPoint = {
-        x: Math.floor(xRatio * data.x),
-        y: Math.floor(yRatio * data.y)
+        x: Math.floor(xRatio * data[i].x),
+        y: Math.floor(yRatio * data[i].y)
       };
       result.push(dataPoint);
     }
@@ -33,20 +33,13 @@ class Heatmap extends React.Component {
     const { height, width } = this.refs['heatmap-img'];
     const afterSize = { x: width, y: height };
     const data = this.scaleData(this.props.sessionView.heatData, this.props.sessionView.defaultDataSize, afterSize);
-    console.log('Will now render this data', data)
-  }
-
-  renderScaledHeatData(imageSize) {
-    const afterSize = { x: this.refs['heatmap-img'].width, y: this.refs['heatmap-img'].height };
-    const beforeSize = ''
-
-
-    const heatMapData = {
+    const heatData = {
       max: 2,
       min: 0,
-      data: aggregateData,
+      data: data,
     };
-    this.props.sessionView.heatmap && this.props.sessionView.heatmap.setData(heatMapData);
+    console.log('Will now render this data', heatData)
+    this.props.sessionView.heatmap.setData(heatData);
   }
 
   getSessionsToRender(nextProps) {
