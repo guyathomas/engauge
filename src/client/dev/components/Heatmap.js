@@ -57,7 +57,6 @@ class Heatmap extends React.Component {
     
     // Pluck the selected sessions
     if (activeStudy) {
-      debugger;
       const { sessions, shortCode } = activeStudy;
       const toggledSessions = nextProps.sessionView.selected[shortCode];
       const unsortedSessions = indicesFromSet(toggledSessions, sessions);

@@ -1,6 +1,21 @@
 import React from 'react';
 import ClickGame from './ClickGame';
 import queries from '../queries';
+
+const Debug = (props) => (
+  <div 
+    id="watch-debugger"
+    style={{width: '50px',
+    height: '50px',
+    position: 'absolute',
+    zIndex: '1',
+    top: `${props.x}px`,
+    left: `${props.y}px`,
+    backgroundColor: 'black'}}
+    >
+  </div>
+)
+
 class Watch extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +54,6 @@ class Watch extends React.Component {
     const newSession = this.props.watch.newSession;
     const metaData = this.props.watch.metaData;
     const duration = newSession[newSession.length - 1].time - newSession[0].time;
-    console.log('The session data to post', newSession);
     fetch('/graphql', {
       ...queries.headers,
       ...queries.postSession(newSession, duration, this.props.params.shortCode),
@@ -66,8 +80,11 @@ class Watch extends React.Component {
         <ClickGame {...this.props} />);
     } else {
       const currStudy = this.props.watch.activeStudy.url;
+      const currentSession = this.props.watch.newSession;
+      const currentPoint = currentSession[currentSession.length - 1] || { x: 0, y: 0 };
       return (
         <div className="watch">
+          {window.debug && <Debug x={currentPoint.x * this.refs['watch-img'].width } y={currentPoint.y * this.refs['watch-img'].height }/> }
           <img ref="watch-img" src={currStudy} />
         </div>
       );

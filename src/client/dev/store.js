@@ -33,7 +33,7 @@ const defaultState = {
     game: {
       loc: { leftPerc: 0.50, topPerc: 0.50 },
       circle: { r: 40 },
-      targetGames: 5,
+      targetGames: 2,
       currGame: 1,
     },
     newSession: [],
