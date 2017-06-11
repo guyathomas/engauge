@@ -14,8 +14,16 @@ class Heatmap extends React.Component {
     return activeStudy;
   }
 
+  repaintHeatmap() {
+    document.getElementsByClassName('heatmap-canvas')[0].remove();
+    const heatmap = this.createHeatmap();
+    this.props.createHeatmap(heatmap);
+    this.renderData()
+    console.log('Window resized')
+  }
+
   scaleData (data, beforeSize, afterSize) {
-    const result = []
+    const result = [];
 
     for (var i = 0; i < data.length; i++) {
       const xRatio = afterSize.x / beforeSize.x;
@@ -30,8 +38,12 @@ class Heatmap extends React.Component {
   }
 
   renderData() {
-    const { height, width } = this.refs['heatmap-img'];
+    // Turns out the heatmap rendering engine actually renders the locations relative to the size at which it was initialised (stored as properties on the dom element)
+    // I would like to actually reference the size of thre image like commented out below, however I have to access the dom element to get the size that the rendering engine thinks it is
+    // const { height, width } = this.refs['heatmap-img'];
+    const { height, width } = document.getElementsByClassName('heatmap-canvas')[0];
     const afterSize = { x: width, y: height };
+    console.log('afterSize', afterSize)
     const data = this.scaleData(this.props.sessionView.heatData, this.props.sessionView.defaultDataSize, afterSize);
     const heatData = {
       max: 2,
@@ -43,10 +55,11 @@ class Heatmap extends React.Component {
   }
 
   getSessionsToRender(nextProps) {
-    //Get Sessions from store
+    // Get Sessions from store
     const activeStudy = this.getActiveStudyFromProps(nextProps);
     const sessions = activeStudy ? activeStudy.sessions : [];
-    //Pluck the selected sessions
+    
+    // Pluck the selected sessions
     if (activeStudy) {
       const activeStudyCode = activeStudy.shortCode;
       const toggledSessions = nextProps.sessionView.selected[activeStudyCode];
@@ -57,7 +70,6 @@ class Heatmap extends React.Component {
 
       //Add to the store
       this.props.addHeatData(aggregateData);
-
     }
   }
 
@@ -73,6 +85,10 @@ class Heatmap extends React.Component {
   componentDidMount() {
     const heatmap = this.createHeatmap();
     this.props.createHeatmap(heatmap);
+
+    // This makes it quite laggy because it recreates the entire heatmap every time.
+    // But there is a bug with how the heatmap library will render everything in a way that is skewed if the browser is resized
+    window.addEventListener("resize", this.repaintHeatmap.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
