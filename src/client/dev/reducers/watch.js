@@ -13,7 +13,8 @@ function watch(state = {}, action) {
     case 'CLEAR_SESSION':
     case 'NEXT_CLICKGAME':
       newState = { ...state };
-      newState.game.currGame = newState.game.currGame + 1;
+      newState.game.currGame = state.game.currGame + 1;
+      newState.game.loc = { leftPerc: Math.random(), topPerc: Math.random() };
       return newState;
     case 'UPDATE_WATCH_STUDY':
       return { ...state, activeStudy: action.study };

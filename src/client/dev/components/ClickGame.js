@@ -16,51 +16,14 @@ const Cirlce = (props) => {
 class ClickGame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loc: {
-        leftPerc: 0.50,
-        topPerc: 0.50,
-      },
-      windowSize: {
-        height: window.innerHeight,
-        width: window.innerWidth,
-      },
-      circle: {
-        r: 40,
-      },
-      targetGames: 2,
-      currGame: 1,
-    };
-  }
-
-  componentDidMount() {
-    const context = this;
-    window.addEventListener('resize', () => {
-      context.setState({
-        windowSize: {
-          height: window.innerHeight,
-          width: window.innerWidth,
-        },
-      });
-    });
   }
 
   posInBounds(locPerc, planeSize, objSize) {
     return ((planeSize - objSize) * locPerc);
   }
 
-  nextGame() {
-    this.setState({
-      loc: {
-        leftPerc: Math.random(),
-        topPerc: Math.random(),
-      },
-      currGame: this.state.currGame + 1,
-    });
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.currGame < nextState.targetGames) {
+    if (nextProps.watch.game.currGame < nextProps.watch.game.targetGames) {
       return true;
     } else {
       this.props.completeTraining();
@@ -69,9 +32,11 @@ class ClickGame extends React.Component {
   }
 
   render() {
-    const left = this.posInBounds(this.state.loc.leftPerc, this.state.windowSize.width, this.state.circle.r * 2);
-    const top = this.posInBounds(this.state.loc.topPerc, this.state.windowSize.height, this.state.circle.r * 2);
-    const gamesLeft = this.state.targetGames - this.state.currGame;
+
+    const { loc, circle, targetGames, currGame } = this.props.watch.game;
+    const left = this.posInBounds(loc.leftPerc, window.innerWidth, circle.r * 2);
+    const top = this.posInBounds(loc.topPerc, window.innerHeight, circle.r * 2);
+    const gamesLeft = targetGames - currGame;
     const statusText = `Click the circle ${gamesLeft} time${gamesLeft > 1 ? 's' : ''} to train your Webcam`;
     return (
       <div>
@@ -80,7 +45,7 @@ class ClickGame extends React.Component {
           { ...this.props }
           left={left}
           top={top}
-          circle={this.state.circle}
+          circle={circle}
         />
       </div>
     );

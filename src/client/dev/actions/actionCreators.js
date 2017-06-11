@@ -1,14 +1,20 @@
 // Watch
-export function nextClickgame(currentGame) {
+export function nextClickgame() {
   return {
     type: 'NEXT_CLICKGAME',
-    currentGame,
   };
 }
 
 export function toggleTraining() {
   return {
     type: 'TOGGLE_TRAINING',
+  };
+}
+
+export function setWindowSize(size) {
+  return {
+    type: 'SET_WINDOW_SIZE',
+    size,
   };
 }
 
@@ -34,7 +40,7 @@ export function clearSession() {
   };
 }
 
-export function setMetaData(startTime, screenSize ) {
+export function setMetaData(startTime, screenSize) {
   return {
     type: 'SET_META_DATA',
     startTime,

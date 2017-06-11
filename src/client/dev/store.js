@@ -32,9 +32,8 @@ const defaultState = {
     activeStudy: {},
     game: {
       loc: { leftPerc: 0.50, topPerc: 0.50 },
-      windowSize: { height: window.innerHeight, width: window.innerWidth },
       circle: { r: 40 },
-      targetGames: 2,
+      targetGames: 5,
       currGame: 1,
     },
     newSession: [],
