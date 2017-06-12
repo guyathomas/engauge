@@ -39,7 +39,6 @@ class Watch extends React.Component {
         this.props.setMetaData(elapsedTime);
       } else {
         const dataInBounds = webgazer.util.bound(data);
-
         const xPercent = dataInBounds.x / context.refs['watch-img'].width;
         const yPercent = dataInBounds.y / context.refs['watch-img'].height;
         
