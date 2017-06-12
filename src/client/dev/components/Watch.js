@@ -3,19 +3,21 @@ import ClickGame from './ClickGame';
 import queries from '../queries';
 
 const Debug = (props) => {
+  webgazer.showPredictionPoints(true)
   const currentPoint = props.currentSession[props.currentSession.length - 1] || { x: 0, y: 0 };
   let { x, y } = currentPoint;
+  const size = 40;
   x *= props.image.width;
   y *= props.image.height;
   return (
     <div 
       id="watch-debugger"
-      style={{width: '50px',
-      height: '50px',
+      style={{width: `${size}px`,
+      height: `${size}px`,
       position: 'absolute',
-      zIndex: '1',
-      top: `${x}px`,
-      left: `${y}px`,
+      zIndex: '10',
+      top: `${y}px`,
+      left: `${x}px`,
       backgroundColor: 'black'}}
       >
     </div>
@@ -34,11 +36,13 @@ class Watch extends React.Component {
       const context = this;
       if (data == null || this.props.watch.game.currGame < this.props.watch.game.targetGames) { return; }
       if (!this.props.watch.metaData.startTime) {
-        console.log('SHould only run once')
         this.props.setMetaData(elapsedTime);
       } else {
-        const xPercent = data.x / context.refs['watch-img'].width;
-        const yPercent = data.y / context.refs['watch-img'].height;
+        const dataInBounds = webgazer.util.bound(data);
+
+        const xPercent = dataInBounds.x / context.refs['watch-img'].width;
+        const yPercent = dataInBounds.y / context.refs['watch-img'].height;
+        
         const timeSinceStart = Math.floor(elapsedTime - context.props.watch.metaData.startTime);
         context.props.addSessionPoint(xPercent, yPercent, timeSinceStart);
       }
@@ -76,9 +80,9 @@ class Watch extends React.Component {
   }
 
   componentWillUnmount() {
-    window.webgazer.pause();
-    window.webgazerStream.getTracks()[0].stop()
     this.postSession();
+    window.webgazer.pause();
+    window.webgazerStream.getTracks()[0].stop();
   }
 
   render() {

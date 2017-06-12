@@ -42,7 +42,6 @@ class Heatmap extends React.Component {
     const { height, width } = document.getElementsByClassName('heatmap-canvas')[0];
     const afterSize = { x: width, y: height };
     const data = this.scaleData(this.props.sessionView.heatData, afterSize);
-    console.log('The data after scaling', data)
     const heatData = {
       max: 2,
       min: 0,
