@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
-db.sequelize.sync(/*{ force: true }*/)
+db.sequelize.sync({ force: true })
   .catch((err) => {
     console.log('Error in syncing', err);
   });
