@@ -6,7 +6,6 @@ machine:
 
 dependencies:
   pre:
-    - rm -r ~/.gradle
     - pip install awscli
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     #Push new web image to dockerhub
