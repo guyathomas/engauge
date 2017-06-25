@@ -63,7 +63,7 @@ class Hero extends React.Component {
         </div>
         <form className="tracknew" ref="new-study-form" onSubmit={this.handleSubmit.bind(this)} >
           <input onKeyUp={this.handleChange.bind(this)} ref="url" id="url" className="input"type="text" placeholder={'URL to track'} />
-          <FormFeedback field={this.state.url} validations={this.urlValidations} />
+          {/*<FormFeedback field={this.state.url} validations={this.urlValidations} />*/}
           <input onKeyUp={this.handleChange.bind(this)} ref="email" id="email" className="input" type="text" placeholder={'Your email'} />
           <input type="submit" className={this.state.hasCompletedForm ? 'button-cta' : 'button-cta inactive'} />
           <div className={this.state.watchURL ? 'form-message' : 'hidden'}>
