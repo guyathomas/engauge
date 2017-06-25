@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const db = require('../db/models');
 const GraphHTTP = require('express-graphql');
 const Schema = require('./schema.js');
+const cors = require('cors');
 
 const app = express();
 
@@ -20,7 +21,7 @@ db.sequelize.sync(/*{ force: true }*/)
     console.log('Error in syncing', err);
   });
 
-app.use('/graphql', GraphHTTP({
+app.use('/graphql', cors(), GraphHTTP({
   schema: Schema,
   pretty: true,
   graphiql: true,

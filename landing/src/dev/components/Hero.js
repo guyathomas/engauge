@@ -1,4 +1,5 @@
 import React from 'react';
+import queries from '../queries';
 
 class Hero extends React.Component {
   constructor(props) {
@@ -24,13 +25,20 @@ class Hero extends React.Component {
   createLink() {
     const url = this.refs.url.value;
     const email = this.refs.email.value;
-
-    fetch('/graphql', {
+    const body = {
+      ...queries.headers,
+      ...queries.newUserStudy(url, email),
+    }
+    // b = body;
+    console.log(body);
+    debugger;
+    fetch('http://0.0.0.0:3000/graphql', {
       ...queries.headers,
       ...queries.newUserStudy(url, email),
     })
     .then(rawResponse => rawResponse.json())
-    .then(({ data }) => {
+    .then(({ data, error }) => {
+      console.log('data, error', data, error)
       this.setState({ watchURL: (`${window.location.href}watch/${data.newUserStudy.shortCode}`) });
     })
     .catch((error) => console.log('Error in creating link', error));

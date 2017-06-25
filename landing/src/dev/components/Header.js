@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => (
   <nav className="landing-nav">
-    <div className="first-item">First Item</div>
-    <div>Second Item</div>
+    <div>Open App</div>
+    <div>Create New Study</div>
   </nav>
 );
 
