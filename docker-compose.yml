@@ -14,6 +14,10 @@ services:
       - ~/.localhost/:/etc/letsencrypt/live/ebcert/
     links:
       - web
+      - landing
+    depends_on:
+      - 'web'
+      - 'landing'
   web: # name of the first service
     build: . # specify the directory of the Dockerfile
     ports:
@@ -23,6 +27,12 @@ services:
     env_file: .env
     depends_on:
       - 'database'
+  landing:
+    build: ./landing
+    ports:
+      - "3001:3001"
+    links:
+      - web
   database: # name of the third service
     image: postgres:latest # specify image to build container from
     ports:

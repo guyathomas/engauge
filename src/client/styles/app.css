@@ -294,7 +294,7 @@ a, a:visited, a:hover, a:active {
 }
 
 #heatmap-wrapper {
-	height: 606px;
+	height: 100%;
 	display: flex; /* This will disable the ability to have a scrollable image but means the heatmap is rendered correctly */
 }
 
