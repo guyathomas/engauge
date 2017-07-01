@@ -1,9 +1,9 @@
 import React from 'react';
 
 const AccountStats = () => (
-  <div className="stats-container">
-    <div className="stats">
-      <div className="message">Sign up to get stats on all your studies</div>
+  <div id="stats-container" className="small">
+    <div id="stats">
+      <div>Sign up to get stats on all your studies</div>
     </div>
     <div className="bottom-bar">
       <div className="button small round">
