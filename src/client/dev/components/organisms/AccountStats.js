@@ -6,7 +6,7 @@ const AccountStats = () => (
       <div className="message">Sign up to get stats on all your studies</div>
     </div>
     <div className="bottom-bar">
-      <div className="button">
+      <div className="button small round">
   			Hide Stats
   		</div>
     </div>
