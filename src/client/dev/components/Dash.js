@@ -1,5 +1,5 @@
 import React from 'react';
-import AccountStats from './AccountStats';
+import AccountStats from './pages/AccountStats';
 import StudyList from './StudyList';
 import SessionView from './SessionView';
 

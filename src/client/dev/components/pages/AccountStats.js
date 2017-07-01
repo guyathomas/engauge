@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./AccountStats.styl');
+
 const AccountStats = () => (
   <div className="stats-container">
   	<div className="message">Sign up to get stats on all your studies</div>

@@ -5,21 +5,34 @@ const BUILD_DIR = path.resolve(__dirname, 'src/client/build');
 const APP_DIR = path.resolve(__dirname, 'src/client/dev');
 
 const config = {
-  entry: `${APP_DIR}/index.jsx`,
+  entry: [
+    `${APP_DIR}/index.jsx`,
+  ],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
+  context: __dirname,
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?/,
-        include: APP_DIR,
-        loader: 'babel-loader',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
+      },
+      {
+        test: /\.styl$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'stylus-loader',
+        ],
       },
     ],
   },
 };
-
 
 module.exports = config;
