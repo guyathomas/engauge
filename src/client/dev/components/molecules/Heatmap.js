@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-import { mergeNArrays, indicesFromSet, findKeyAtID, isSetEqual } from '../../assets/scripts';
+import { mergeNArrays, indicesFromSet, findKeyAtID, isSetEqual } from '../../../assets/scripts';
+
+import './Heatmap.styl';
 
 class Heatmap extends React.Component {
   constructor(props) {

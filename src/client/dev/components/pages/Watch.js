@@ -1,6 +1,8 @@
 import React from 'react';
 import ClickGame from './ClickGame';
-import queries from '../queries';
+import queries from '../../queries';
+
+import './Watch.styl';
 
 const Debug = (props) => {
   webgazer.showPredictionPoints(true)

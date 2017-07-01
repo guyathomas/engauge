@@ -1,7 +1,9 @@
 import React from 'react';
-import AccountStats from './pages/AccountStats';
-import StudyList from './StudyList';
-import SessionView from './SessionView';
+import AccountStats from '../organisms/AccountStats';
+import StudyList from '../organisms/StudyList';
+import SessionView from '../organisms/SessionView';
+
+import './Dash.styl';
 
 const ReviewContainer = props => (
 	<div className="review-container">

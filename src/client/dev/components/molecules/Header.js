@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import './Header.styl';
+
 const Header = (props) => (
   <nav className={"primary-nav"}>
     <div className="logo">

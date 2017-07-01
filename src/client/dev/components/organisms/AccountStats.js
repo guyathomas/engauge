@@ -1,6 +1,6 @@
 import React from 'react';
 
-require('./AccountStats.styl');
+import './AccountStats.styl';
 
 const AccountStats = () => (
   <div className="stats-container">

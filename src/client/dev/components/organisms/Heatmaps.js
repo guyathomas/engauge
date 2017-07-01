@@ -1,6 +1,8 @@
 import React from 'react';
-import Heatmap from './Heatmap';
-import SessionSidebar from './SessionSidebar';
+import Heatmap from '../molecules/Heatmap';
+import SessionSidebar from '../molecules/SessionSidebar';
+
+import './Heatmaps.styl';
 
 const Heatmaps = (props) => (
   <div className="heatmaps-container">

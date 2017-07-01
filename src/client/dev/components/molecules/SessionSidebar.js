@@ -1,5 +1,7 @@
 import React from 'react';
-import { findKeyAtID, isSetEqual } from '../../assets/scripts';
+import { findKeyAtID, isSetEqual } from '../../../assets/scripts';
+
+import './SessionSidebar.styl';
 
 const Session = props => (
   <div className={`session${props.selected ? ' selected' : ''}`} key={props.session.id} onClick={props.toggleSession.bind(this, props.i, props.shortCode)}>
