@@ -21,12 +21,15 @@
 		position: absolute;
 		justify-content: center;
 		display: flex;
-		bottom: -10px;	
+		bottom: -10px;
+		.button {
+			background-color: medium-green;
+			&:hover {
+				background-color: action-hover;
+			}
+		}
 	}
 }
 
 /* Out here to reduce the specificity so that the 
 :hover psuedoclass still works*/
-.button {
-	background-color: medium-green;
-}
