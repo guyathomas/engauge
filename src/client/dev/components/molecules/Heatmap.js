@@ -95,6 +95,7 @@ class Heatmap extends React.Component {
     // Has the session selection changed?
     const oldSessionSelection = this.props.sessionView.selected[oldStudy];
     const newSessionSelection = nextProps.sessionView.selected[newStudy]
+    debugger;
     const sessionsChanged = !isSetEqual(oldSessionSelection, newSessionSelection);
 
     // Only recalculate the sessions on the state if the session selection has changed or the study selection has changed

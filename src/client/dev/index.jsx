@@ -8,8 +8,8 @@ import { Provider } from 'react-redux';
 
 // Import Components
 import App from './components/App';
-import Watch from './components/Watch';
-import Dash from './components/Dash';
+import Watch from './components/pages/Watch';
+import Dash from './components/pages/Dash';
 import NotFound from './components/NotFound';
 
 import store, { history } from './store';
