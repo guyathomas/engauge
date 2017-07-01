@@ -1,10 +1,8 @@
 .stats-container {
-	display: flex;
-	justify-content: center;
-	position: relative;
 	background-color: #144052;
 	height: 250px;
-	
+	display: flex;
+	    flex-direction: column;
 	.stats {
 		height: 100%;
 		width: 100%;
@@ -20,18 +18,16 @@
 	
 	.bottom-bar {
 		width: 100%;
-		position: absolute;
-		bottom: -10px;
-		display: flex;
-		justify-content: center;
-		
+		position: relative;
+		    justify-content: center;
+		    display: flex;
+		    bottom: -10px;		
 		.button {
 			background-color: #144052;
 			color: white;
 			padding: 5px;
 			font-size: 12px;
 			border-radius: 10px;
-			z-index: 2;
 			
 			&:hover {
 				background-color: #ee6123;
