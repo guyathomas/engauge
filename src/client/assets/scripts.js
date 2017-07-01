@@ -57,10 +57,10 @@ const findKeyAtID = (array, target, idName, key) => {
 
 const isSetEqual = (a, b) => {
   if (!a || !b) {return false;}
-  for (value of a) {
+  for (let value of a) {
       if (!b.has(value)) { return false; }
   }
-  for (value of b) {
+  for (let value of b) {
     if (!a.has(value)) { return false; }
   }
   return true;
