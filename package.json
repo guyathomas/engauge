@@ -18,6 +18,7 @@
   "author": "Guy Thomas",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer-stylus": "^0.14.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.15.2",
     "codemirror": "5.25.0",

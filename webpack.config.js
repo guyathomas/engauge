@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const autoprefixer = require('autoprefixer-stylus');
 
 const BUILD_DIR = path.resolve(__dirname, 'src/client/build');
 const APP_DIR = path.resolve(__dirname, 'src/client/dev');
@@ -28,7 +29,12 @@ const config = {
         use: [
           'style-loader',
           'css-loader',
-          'stylus-loader',
+          {
+            loader: 'stylus-loader',
+            options: {
+              use: [autoprefixer()],
+            },
+          },
         ],
       },
     ],
