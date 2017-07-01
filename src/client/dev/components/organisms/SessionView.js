@@ -5,8 +5,6 @@ import Recordings from './Recordings';
 import WatchDetails from './WatchDetails';
 import StudyOptions from './StudyOptions';
 
-import './SessionView.styl';
-
 // TODO: These are coupled. Change it so that they no longer have to be maintained together
 const views = [
   <Summary />,

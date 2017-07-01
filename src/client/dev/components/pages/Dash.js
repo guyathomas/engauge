@@ -3,8 +3,6 @@ import AccountStats from '../organisms/AccountStats';
 import StudyList from '../organisms/StudyList';
 import SessionView from '../organisms/SessionView';
 
-import './Dash.styl';
-
 const ReviewContainer = props => (
 	<div className="review-container">
 	  <StudyList {...props} />

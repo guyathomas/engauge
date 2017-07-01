@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './ClickGame.styl';
-
 const Cirlce = (props) => {
   const containerSize = (props.circle.r) * 2;
   const circleR = props.circle.r;

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './StudyCard.styl';
-
 const StudyCard = (props) => {
   const sessionCount = props.study.sessions.length;
   const sessionString = `${sessionCount} ${sessionCount === 1 ? 'session' : 'sessions'}`;

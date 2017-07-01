@@ -4,8 +4,6 @@ import queries from '../../queries';
 import StudyCard from '../molecules/StudyCard';
 import Filters from '../molecules/Filters';
 
-import './StudyList.styl';
-
 class StudyList extends React.Component {
   constructor(props) {
     super(props);

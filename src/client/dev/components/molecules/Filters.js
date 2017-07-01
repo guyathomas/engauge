@@ -3,8 +3,6 @@ import React from 'react';
 import Toggler from '../atoms/Toggler';
 import Search from '../atoms/Search';
 
-import './Filters.styl';
-
 const Filters = props => (
   <div className="filter-container">
     <div className="filters">

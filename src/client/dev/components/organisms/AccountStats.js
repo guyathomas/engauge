@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './AccountStats.styl';
-
 const AccountStats = () => (
   <div className="stats-container">
     <div className="stats">

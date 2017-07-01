@@ -2,8 +2,6 @@ import React from 'react';
 import ClickGame from './ClickGame';
 import queries from '../../queries';
 
-import './Watch.styl';
-
 const Debug = (props) => {
   webgazer.showPredictionPoints(true)
   const currentPoint = props.currentSession[props.currentSession.length - 1] || { x: 0, y: 0 };
