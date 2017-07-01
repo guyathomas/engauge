@@ -1,20 +1,26 @@
 .sessions-container {
   padding: 15px 15px 0 15px;
-  position: relative;
   grid-column-start: span 2
+  
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 50px 1fr;
   
   @media screen and (max-width: break-medium) {
     grid-column-start: span 3
   }
   
   .titles {
+    padding-left: 0;
+    grid-column: 1 / span 2;
+    margin: 0;
     list-style: none;
     display: flex;
-    height: 1em;
     justify-content: space-around;
     border-bottom: 1px solid grey;
-    padding: 10px 0;
-    align-items: center;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
     cursor: default;
   }
 
