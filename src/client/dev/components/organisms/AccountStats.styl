@@ -1,17 +1,17 @@
 .stats-container {
-	background-color: #144052;
+	background-color: medium-green;
 	padding: 10px;
-	height: 50px;
+	height: stats-large;
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	&.small {
+		height: stats-small;
+	}
 	.stats {
 		height: 100%;
 		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		
+		flex-center()
 		.message {
 			font-size: 1.5em;
 			color: white;
@@ -21,20 +21,8 @@
 	.bottom-bar {
 		width: 100%;
 		position: absolute;
-		    justify-content: center;
-		    display: flex;
-		    bottom: -10px;		
-		.button {
-			background-color: #144052;
-			color: white;
-			padding: 5px;
-			font-size: 12px;
-			border-radius: 10px;
-			margin: auto;
-			&:hover {
-				background-color: #ee6123;
-			}
-		}
-		
+		justify-content: center;
+		display: flex;
+		bottom: -10px;		
 	}
 }
