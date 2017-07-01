@@ -1,4 +1,5 @@
 import React from 'react';
+import './Toggler.styl'
 
 class Toggler extends React.Component {
   constructor(props) {

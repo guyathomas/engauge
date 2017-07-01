@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-
+import './Main.styl';
 
 const Main = props => (
   <div>
