@@ -1,28 +1,42 @@
 .stats-container {
+	display: flex;
+	justify-content: center;
 	position: relative;
 	background-color: #144052;
 	height: 250px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	
-	.message {
-		font-size: 1.5em;
-		color: white;
-		/*display: */
+	.stats {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		.message {
+			font-size: 1.5em;
+			color: white;
+		}
 	}
 	
-	.hideme {
+	.bottom-bar {
+		width: 100%;
 		position: absolute;
 		bottom: -10px;
-		background-color: #144052;
-	    color: white;
-	    padding: 5px;
-	    font-size: 12px;
-	    border-radius: 10px;
-	}
-	&.hover {
-		background-color: #ee6123;
+		display: flex;
+		justify-content: center;
+		
+		.button {
+			background-color: #144052;
+			color: white;
+			padding: 5px;
+			font-size: 12px;
+			border-radius: 10px;
+			z-index: 2;
+			
+			&:hover {
+				background-color: #ee6123;
+			}
+		}
+		
 	}
 }
