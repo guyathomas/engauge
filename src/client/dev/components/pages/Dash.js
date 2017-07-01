@@ -3,19 +3,12 @@ import AccountStats from '../organisms/AccountStats';
 import StudyList from '../organisms/StudyList';
 import SessionView from '../organisms/SessionView';
 
-const ReviewContainer = props => (
-	<div className="review-container">
-	  <StudyList {...props} />
-	  <SessionView {...props} />
-	</div>
-)
-
 const Dash = props => (
-  <div className="dash">
+  <div id="dash">
     <AccountStats {...props} />
-    <ReviewContainer {...props} />
+    <StudyList {...props} />
+    <SessionView {...props} />
   </div>
 );
-
 
 export default Dash;

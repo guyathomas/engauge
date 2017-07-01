@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AccountStats = () => (
-  <div id="stats-container" className="small">
+  <div id="stats-container">
     <div id="stats">
       <div>Sign up to get stats on all your studies</div>
     </div>
