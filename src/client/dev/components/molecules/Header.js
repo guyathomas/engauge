@@ -15,17 +15,3 @@ const Header = (props) => (
 );
 
 module.exports = Header;
-
-
-// const Logo = (location) => {
-//   if (location === 'landing-nav') {
-//     return (<div className="hidden"/>);
-//   } else {
-//     return (
-//     );
-//   }
-// };
-
-// const HeaderLinks = props => (
-//
-// );

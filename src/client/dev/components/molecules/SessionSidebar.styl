@@ -1,0 +1,31 @@
+.sessions-sidebar {
+  width: 250px;
+  .session {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 5px;
+    border-bottom: 1px solid grey;
+  }
+
+  .session .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #919CA2;
+  }
+
+  .session .details * {
+    margin: 3px 0;
+  }
+
+  .session.selected {
+    background-color: #528DFF;
+    color: white;
+    border-bottom: 1px solid white !important;
+  }
+  .session.selected * {
+    color: white;
+  }
+}

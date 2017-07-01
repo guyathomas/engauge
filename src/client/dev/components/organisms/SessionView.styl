@@ -1,0 +1,35 @@
+.sessions-container {
+  width: calc(100vw - 580px);
+  height: calc(100vh - 62px - 265px);
+  padding: 15px 15px 0 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+  .titles {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid grey;
+    padding: 10px 0;
+    align-items: center;
+    cursor: default;
+  }
+
+  .titles li.active {
+    font-weight: 600;
+    color: #528DFF;
+    font-size: 18px;
+  }
+
+  .titles li:hover {
+    color: #ee6123;
+  }
+
+  .not-finished {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
