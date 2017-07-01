@@ -3,9 +3,14 @@
   position: relative;
   grid-column-start: span 2
   
+  @media screen and (max-width: break-medium) {
+    grid-column-start: span 3
+  }
+  
   .titles {
     list-style: none;
     display: flex;
+    height: 1em;
     justify-content: space-around;
     border-bottom: 1px solid grey;
     padding: 10px 0;
@@ -16,7 +21,7 @@
   .titles li.active {
     font-weight: 600;
     color: #528DFF;
-    font-size: 18px;
+    font-size: 1em;
   }
 
   .titles li:hover {
