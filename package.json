@@ -44,7 +44,8 @@
     "redux": "3.6.0",
     "relay-compiler": "1.0.0",
     "sequelize": "3.30.0",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
