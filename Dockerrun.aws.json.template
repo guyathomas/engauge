@@ -39,6 +39,20 @@
       ]
     },
     {
+      "name": "landing",
+      "image": "stolemyusername/engauge-landing:<TAG>",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 3001,
+          "containerPort": 3001
+        }
+      ],
+      "mountPoints": [
+      ]
+    },
+    {
       "name": "nginx-proxy",
       "image": "stolemyusername/nginx:latest",
       "essential": true,
