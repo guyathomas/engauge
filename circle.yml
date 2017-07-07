@@ -16,7 +16,7 @@ dependencies:
     - docker push stolemyusername/engauge-landing
     #Push new ngnix proxy
     - docker build --rm=false -t stolemyusername/nginx:latest ./nginx
-    - docker push stolemyusername/nginx:latest
+    - docker push stolemyusername/nginx
 test:
   override:
     - echo "test"
