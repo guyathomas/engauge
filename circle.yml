@@ -10,10 +10,10 @@ dependencies:
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     #Push new app image to dockerhub
     - docker build --rm=false -t stolemyusername/engauge:$CIRCLE_SHA1 .
-    - docker push stolemyusername/engauge:$CIRCLE_SHA1
+    - docker push stolemyusername/engauge
     #Push new landing image to dockerhub
     - docker build --rm=false -t stolemyusername/engauge-landing:$CIRCLE_SHA1 ./landing
-    - docker push stolemyusername/engauge:$CIRCLE_SHA1
+    - docker push stolemyusername/engauge-landing
     #Push new ngnix proxy
     # - docker build --rm=false -t stolemyusername/nginx:latest ./nginx
     # - docker push stolemyusername/nginx:latest
