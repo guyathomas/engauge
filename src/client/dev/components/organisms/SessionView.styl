@@ -19,29 +19,29 @@
     grid-column: 1 / span 2;
     margin: 0;
     list-style: none;
-    display: flex;
-    justify-content: space-around;
     border-bottom: 1px solid grey;
-    align-items: flex-end;
     margin-bottom: 10px;
     padding-bottom: 5px;
     cursor: default;
-  }
+    overflow-x: scroll;
+    li {
+      padding: 0 1em;
+      &.active {
+        font-weight: 600;
+        color: #528DFF;
+        font-size: 1em;
+        
+        /*Underline the selected tab*/
+        border-bottom: 3px solid #528dff;
+        margin-bottom: -6px;
+        padding-bottom: 4px;
 
-  .titles li.active {
-    font-weight: 600;
-    color: #528DFF;
-    font-size: 1em;
-    
-    /*Underline the selected tab*/
-    border-bottom: 3px solid #528dff;
-    margin-bottom: -6px;
-    padding-bottom: 4px;
+      }
 
-  }
-
-  .titles li:hover {
-    color: #ee6123;
+      &:hover {
+        color: #ee6123;
+      }
+    }
   }
 
   .not-finished {
