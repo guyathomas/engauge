@@ -11,7 +11,7 @@
     "relay": "relay-compiler --src ./src/client/dev --schema schema.graphql",
     "get-schema": "node ./scripts/getSchema.js",
     "build": "webpack -d;",
-    "dev": "concurrently \"webpack -d --watch\" \"npm start\"",
+    "dev": "concurrently \"webpack -d --watch\" \"NODE_ENV=dev; npm start\"",
     "test:unit": "mocha test './test/unit/**/*.spec.js'",
     "test": "npm run test:unit"
   },
