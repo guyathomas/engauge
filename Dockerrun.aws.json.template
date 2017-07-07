@@ -49,6 +49,9 @@
           "containerPort": 3001
         }
       ],
+      "links": [
+        "app"
+      ],
       "mountPoints": [
       ]
     },
