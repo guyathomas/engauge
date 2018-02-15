@@ -1,0 +1,99 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "globals": {
+    "__DEV__": true
+  },
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "filenames",
+    "babel"
+  ],
+  "rules": {
+    "computed-property-spacing": ["error", "always"],
+    "lines-around-comment": [
+      "error",
+      {
+        "beforeBlockComment": true,
+        "beforeLineComment": true,
+        "allowBlockStart": true,
+        "allowObjectStart": true,
+        "allowArrayStart": true,
+        "allowBlockEnd": false,
+        "allowObjectEnd":false,
+        "allowArrayEnd": false
+      }
+    ],
+    "max-len": "off",
+    "no-mixed-operators": "warn",
+    "no-multiple-empty-lines": ["error", { "max": 1}],
+    "no-plusplus": ["error", {"allowForLoopAfterthoughts": true }],
+    "no-restricted-imports": ["error", { "patterns": [ "../../*" ]}],
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "space-in-parens": ["error", "always", {
+      "exceptions": ["[]", "{}"]
+    }],
+    "array-bracket-spacing": ["error", "always", {
+      "objectsInArrays": false,
+      "arraysInArrays": false,
+      "singleValue": true
+    }],
+    "template-curly-spacing": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "object-curly-newline": ["error", {
+      "consistent": true,
+      "multiline": true
+    }],
+    "react/jsx-curly-spacing": [2, {
+      "when": "always",
+      "children": true,
+      "spacing": {
+        "objectLiterals": "never"
+      }
+    }],
+    "react/forbid-prop-types": "off",
+    "react/jsx-filename-extension": "off",
+    "react/no-danger": "off",
+    "react/prefer-stateless-function": "off",
+    "filenames/match-regex": [2, "^[a-zA-Z-]+(.spec)?$", true],
+    "filenames/match-exported": [2, ["pascal", "camel", "kebab"]],
+    "filenames/no-index": 2,
+    "babel/semi": 1,
+    "jsx-a11y/anchor-is-valid" : ["error", {
+      "components": []
+    }],
+    "jsx-a11y/label-has-for": [ "error", {
+      "components": [ "Label" ],
+      "required": {
+        "every": [ "id" ]
+      },
+      "allowChildren": false
+    }]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+        ]
+      },
+      "alias": [
+        [
+          "rxajax",
+          "rxjs/observable/dom/ajax"
+        ],
+        [
+          "immutable-prop-types",
+          "react-immutable-proptypes"
+        ]
+      ]
+    }
+  }
+}
