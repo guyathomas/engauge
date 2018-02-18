@@ -1,94 +1,22 @@
-<<<<<<< HEAD
-version: '3' # specify docker-compose version
-||||||| parent of aec4375... Remove dependeancy on minio
-version: '3'
-=======
 version: '3.1'
->>>>>>> aec4375... Remove dependeancy on minio
 
-# Define the services/containers to be run
 services:
   nginx:
-<<<<<<< HEAD
-    build: ./nginx
-    container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      # Generate the keys locally with:
-      # openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout privkey.pem -out fullchain.pem
-      - ~/.localhost/:/etc/letsencrypt/live/ebcert/
-    links:
-      - app
-      - landing
-      - screenshot
-||||||| parent of d785e83... Add testing configurations
-    build: ./nginx
-    container_name: engauge-nginx
-    expose:
-      - 80
-      - 443
-    links:
-      - app
-      - landing
-      - screenshot
-=======
     image: stolemyusername/engauge-nginx:latest
->>>>>>> d785e83... Add testing configurations
     depends_on:
       - 'app'
       - 'landing'
-<<<<<<< HEAD
-  app: # name of the first service
-    build: ./app # specify the directory of the Dockerfile
-    ports:
-      - "3000:3000" # specify port forewarding
-    links:
-      - database
-||||||| parent of d785e83... Add testing configurations
-    environment:
-      VIRTUAL_HOST: engauge.xyz,www.engauge.xyz,app.engauge.xyz
-      LETSENCRYPT_HOST: engauge.xyz,www.engauge.xyz,app.engauge.xyz
-      LETSENCRYPT_EMAIL: guythomas721@gmail.com
-  app:
-    build: ./app
-    ports:
-      - "3000:3000"
-    links:
-      - database
-=======
     networks:
       - traefik-net
       - engauge
   app:
     image: stolemyusername/engauge-app:latest
->>>>>>> d785e83... Add testing configurations
     env_file: .env
     depends_on:
       - 'database'
     networks:
       - engauge
   landing:
-<<<<<<< HEAD
-    build: ./landing
-    ports:
-      - "3001:3001"
-    links:
-      - app
-      - screenshot
-  database: # name of the third service
-    image: postgres:latest # specify image to build container from
-||||||| parent of d785e83... Add testing configurations
-    build: ./landing
-    ports:
-      - "3001:3001"
-    links:
-      - app
-      - screenshot
-  database:
-    image: postgres:latest
-=======
     image: stolemyusername/engauge-landing:latest
     networks:
       - engauge
@@ -104,79 +32,18 @@ services:
   database:
     image: postgres:9.6
     env_file: .env
->>>>>>> d785e83... Add testing configurations
     ports:
-<<<<<<< HEAD
-      - "5432:5432" # specify port forewarding
-    env_file: .env
-    # volumes:
-      # - studies:/var/lib/postgresql
-<<<<<<< HEAD
-  screenshot: # name of the third service
-    build: ./screenshot # specify image to build container from
-    ports:
-      - "3002:3002" # specify port forewarding
-<<<<<<< HEAD
-||||||| parent of 28ae1e6... Update docker compose to accomodate landing
-=======
-  screenshot: # name of the third service
-    build: ./screenshot # specify image to build container from
-    ports:
-      - "3002:3002" # specify port forewarding
->>>>>>> 28ae1e6... Update docker compose to accomodate landing
-||||||| parent of f2635b9... Completed end to end functionality for taking a screenshot
-=======
-    env_file: .env
-<<<<<<< HEAD
->>>>>>> f2635b9... Completed end to end functionality for taking a screenshot
-# volumes:
-  # studies:
-||||||| parent of e538b7d... Add minio support
-volumes:
-  engauge-db:
-networks:
-  default:
-    external:
-      name: nginx-proxy
-=======
-    volumes:
-      - ./screenshot/server/screenshots:/usr/src/app/server/screenshots
-||||||| parent of d785e83... Add testing configurations
-      - "5432:5432"
-    env_file: .env
-    volumes:
-      - engauge-db:/var/lib/postgresql/data
-  screenshot:
-    build: ./screenshot
-    ports:
-      - "3002:3002"
-    env_file: .env
-    volumes:
-      - ./screenshot/server/screenshots:/usr/src/app/server/screenshots
-=======
       - "5432:5432"
     volumes:
       - engauge-db:/var/lib/postgresql/data
     networks:
       - engauge
->>>>>>> d785e83... Add testing configurations
 volumes:
   engauge-db:
 networks:
-<<<<<<< HEAD
-  default:
-    external:
-      name: nginx-proxy
->>>>>>> e538b7d... Add minio support
-||||||| parent of d785e83... Add testing configurations
-  default:
-    external:
-      name: nginx-proxy
-=======
   engauge:
     external: true
   traefik-net:
     external: true
   minio-distributed:
     external: true
->>>>>>> d785e83... Add testing configurations

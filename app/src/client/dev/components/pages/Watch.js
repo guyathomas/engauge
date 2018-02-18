@@ -28,17 +28,12 @@ class Watch extends React.Component {
   constructor(props) {
     super(props);
   }
-<<<<<<< HEAD
 
   componentDidMount() {
     console.log('Component Did Mount');
   }
 
-||||||| parent of 9339f4e... Client is establishing socket connection with server succesfully
-=======
-
-<<<<<<< HEAD
-  openSocket() {
+    openSocket() {
     const socket = io.connect(window.location.origin, { secure: true, port: 433 });
     socket.on('connect', () => {
       console.log('Client has opened the connection');
@@ -49,21 +44,6 @@ class Watch extends React.Component {
     this.setState({ socket });
   }
 
->>>>>>> 9339f4e... Client is establishing socket connection with server succesfully
-||||||| parent of 828289e... Remove socket connection
-  openSocket() {
-    const socket = io.connect(window.location.origin, { secure: true, port: 433 });
-    socket.on('connect', () => {
-      console.log('Client has opened the connection');
-    });
-    socket.on('disconnect', () => {
-      console.log('about to terminate the socket connection');
-    });
-    this.setState({ socket });
-  }
-
-=======
->>>>>>> 828289e... Remove socket connection
   startGazeListener() {
     webgazer.setGazeListener((data, elapsedTime) => {
       // Don't send the data if there is no coordinates or is currently in training
@@ -83,24 +63,12 @@ class Watch extends React.Component {
     }).begin();
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-||||||| parent of 9339f4e... Client is establishing socket connection with server succesfully
   componentDidMount() {
     this.startGazeListener();
   }
 
 
-=======
-||||||| parent of df9dfbf... Image now dynamically comes through on watch page
-=======
-  getSessions(shortCode) {
-||||||| parent of 2a356fc... Watch now stops using camera on unmounting of component
-  getSessions(shortCode) {
-=======
   getStudy(shortCode) {
->>>>>>> 2a356fc... Watch now stops using camera on unmounting of component
     fetch('/graphql', {
       ...queries.headers,
       ...queries.getStudy(shortCode),
@@ -111,10 +79,6 @@ class Watch extends React.Component {
     });
   }
 
-<<<<<<< HEAD
->>>>>>> df9dfbf... Image now dynamically comes through on watch page
-||||||| parent of d0a68c7... Implement posting of session data with graphql
-=======
   postSession() {
     const newSession = this.props.watch.newSession;
     const metaData = this.props.watch.metaData;
@@ -127,7 +91,6 @@ class Watch extends React.Component {
     .catch(err => console.log('err', err));
   }
 
->>>>>>> d0a68c7... Implement posting of session data with graphql
   componentDidMount() {
     const shortCode = this.props.params.shortCode;
     this.getStudy(shortCode);
@@ -141,19 +104,10 @@ class Watch extends React.Component {
     window.webgazerStream.getTracks()[0].stop();
   }
 
-<<<<<<< HEAD
   completeTraining() {
     this.setState({ isTraining: false });
   }
 
->>>>>>> 9339f4e... Client is establishing socket connection with server succesfully
-||||||| parent of 187b1f7... Migrate clickgame to use redux state
-  completeTraining() {
-    this.setState({ isTraining: false });
-  }
-
-=======
->>>>>>> 187b1f7... Migrate clickgame to use redux state
   render() {
     const { currGame, targetGames } = this.props.watch.game;
     if ( currGame < targetGames) {
@@ -172,4 +126,4 @@ class Watch extends React.Component {
   }
   }
 
-module.exports = Watch;
+export default Watch;

@@ -13,123 +13,35 @@ language: python
 python:
   - "2.7"
 
-# specify language options
-
 # configure which branches to run
 branches:
   # whitelist
   only:
     - master
     - /^deploy-.*$/ # regex ok
-  # blacklist
   except:
-    - test 
+    - test
 
 # declare your environment variables
-env:
-  # global will stay the same across all matrix possibilities (will not create additional combinations to run)
-  global:
-    - SECRET_TOKEN=k399dkkgklsk
+
 sudo: required
 # enable services (stuff like DBs, MQs)
 services:
   - docker
 
-## begin build steps
-####################
 before_install:
-<<<<<<< HEAD
-# - sudo apt-get update -qq
-  - pip install awscli
-||||||| parent of 3711c32... dsad
-  - sudo apt-get update -qq
-  - pip install awscli
-=======
   - sudo apt-get update -qq
   # - pip install awscli
->>>>>>> 3711c32... dsad
   - docker run --rm --privileged multiarch/qemu-user-static:register
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
 install:
   #Push new app image to dockerhub
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - docker build --rm=false -f ./app/Dockerfile-arm -t stolemyusername/engauge:arm ./app
-  - docker push stolemyusername/engauge
-  #Push new landing image to dockerhub
-  - docker build --rm=false -f ./landing/Dockerfile-arm -t stolemyusername/engauge-landing:arm ./landing
-  - docker push stolemyusername/engauge-landing
-  #Push new screenshot service image to dockerhub
-  - docker build --rm=false -f ./screenshot/Dockerfile-arm -t stolemyusername/engauge-screenshot:arm ./screenshot
-  - docker push stolemyusername/engauge-screenshot
-||||||| parent of 3b067b4... asdas
   - docker build --rm=false -f ./app/Dockerfile-arm -t stolemyusername/engauge-app:arm ./app
   - docker push stolemyusername/engauge-app
-  #Push new landing image to dockerhub
-  - docker build --rm=false -f ./landing/Dockerfile-arm -t stolemyusername/engauge-landing:arm ./landing
-  - docker push stolemyusername/engauge-landing
-=======
-  # - docker build --rm=false -f ./app/Dockerfile-arm -t stolemyusername/engauge-app:arm ./app
-  # - docker push stolemyusername/engauge-app
-||||||| parent of 9ac8114... Change port mappings
-  # - docker build --rm=false -f ./app/Dockerfile-arm -t stolemyusername/engauge-app:arm ./app
-  # - docker push stolemyusername/engauge-app
-=======
-  - docker build --rm=false -f ./app/Dockerfile-arm -t stolemyusername/engauge-app:arm ./app
-  - docker push stolemyusername/engauge-app
->>>>>>> 9ac8114... Change port mappings
   # #Push new landing image to dockerhub
-<<<<<<< HEAD
-  # - docker build --rm=false -f ./landing/Dockerfile-arm -t stolemyusername/engauge-landing:arm ./landing
-  # - docker push stolemyusername/engauge-landing
->>>>>>> 3b067b4... asdas
-||||||| parent of 9ac8114... Change port mappings
-  # - docker build --rm=false -f ./landing/Dockerfile-arm -t stolemyusername/engauge-landing:arm ./landing
-  # - docker push stolemyusername/engauge-landing
-=======
   - docker build --rm=false -f ./landing/Dockerfile-arm -t stolemyusername/engauge-landing:arm ./landing
   - docker push stolemyusername/engauge-landing
->>>>>>> 9ac8114... Change port mappings
   #Push new ngnix proxy
-  - docker build --rm=false -f ./nginx/Dockerfile-arm -t stolemyusername/nginx:arm ./nginx
-  - docker push stolemyusername/nginx
-
-# before_script:
-#   - bower install
-
-# after_success:
-# - test $TRAVIS_PULL_REQUEST = false
-#   && git push
-
-before_deploy:
-# check that build passed successfully
-# add the \ afterwards to tell travis it's part of the same command thanks @markhuge
-# - test $TRAVIS_TEST_RESULT = 0 \
-#   && gulp build \
-#   && cd dist \
-#   && npm install --prod \
-#   && cd $TRAVIS_BUILD_DIR \
-#   && tar -zcvf amber-storm-$TRAVIS_BRANCH.tar.gz dist \
-#   && export PRODBUILDCOMPLETE=true
-
-
-## Deployment options
-####################
-
-deploy:
-  # specify the deployment provider
-  # provider: releases
-  # # options for provider
-  # api_key:
-  #   secure: securekeyhere
-  # file: myrepo-$TRAVIS_BRANCH.tar.gz
-  # # conditions for deployment
-  # on:
-  #   condition: $PRODBUILDCOMPLETE = true
-  #   repo: myname/myrepo
-  #   all_branches: true
-  #   tags: true
-
-after_deploy:
-  # - ssh git@mysite.biz "./deploy.sh $TRAVIS_BRANCH"
+  - docker build --rm=false -f ./nginx/Dockerfile-arm -t stolemyusername/engauge-nginx:arm ./nginx
+  - docker push stolemyusername/engauge-nginx

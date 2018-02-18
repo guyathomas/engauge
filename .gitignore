@@ -1,144 +1,28 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 node_modules/
 bower_components/
 *.log
 
 build/
 dist/
-||||||| parent of 38aaaad... Finish skeleton of app creation
-=======
-||||||| parent of 8ac4fdc... Remove .DS_Store from everywhere
-=======
 **/.DS_Store
-<<<<<<< HEAD
->>>>>>> 8ac4fdc... Remove .DS_Store from everywhere
 node_modules
-<<<<<<< HEAD
->>>>>>> 38aaaad... Finish skeleton of app creation
-||||||| parent of 47fc33d... Add eyegazer initialisation
-node_modules
-=======
-node_modules
-<<<<<<< HEAD
 config
-src/client/build
->>>>>>> 47fc33d... Add eyegazer initialisation
-||||||| parent of 1d26a07... Add basic routing
-config
-src/client/build
-=======
 designs
->>>>>>> 1d26a07... Add basic routing
-||||||| parent of fea7873... Update gitignore to not include bundle files
-||||||| parent of dbc1e07... Remove bundle files
-node_modules
-=======
-**/node_modules
->>>>>>> dbc1e07... Remove bundle files
-designs
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-designs
-<<<<<<< HEAD
-src/client/build
->>>>>>> fea7873... Update gitignore to not include bundle files
-||||||| parent of f699a8e... Move environment variables to env file
-src/client/build
-=======
-src/client/build
-||||||| parent of 278be3e... Fix build steps for app
-src/client/build
-=======
 app/src/client/build/
 landing/src/build/
->>>>>>> 278be3e... Fix build steps for app
-||||||| parent of d07dc45... Update circle to deploy all
-app/src/client/build/
-landing/src/build/
-=======
 **/build/
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> d07dc45... Update circle to deploy all
-||||||| parent of 60ce7a7... Add aws dependencies
-=======
 **/credentials.json
->>>>>>> 60ce7a7... Add aws dependencies
-||||||| parent of fbdb067... Add env to gitignore
-**/credentials.json
-=======
 **/env.js
->>>>>>> fbdb067... Add env to gitignore
-||||||| parent of 8adc251... Add env to gitignore
-**/credentials.json
-=======
-**/env.js
->>>>>>> 8adc251... Add env to gitignore
 
-#docker-compose env file
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 .env
->>>>>>> f699a8e... Move environment variables to env file
-||||||| parent of 844cb97... Move db connection settings into ignored file
-.env
-<<<<<<< HEAD
-=======
-.env
-<<<<<<< HEAD
-
-#config file for keys and database info
 config.js
->>>>>>> 844cb97... Move db connection settings into ignored file
-||||||| parent of baba17b... remove environment variables
-
-#config file for keys and database info
-config.js
-=======
->>>>>>> baba17b... remove environment variables
-||||||| parent of 395bd93... remove data connection
-=======
-||||||| parent of 5855856... Make environment variables public since they are only for dev anyway
-.env
-=======
-#.env not needed anymore because it's just keys for local development
->>>>>>> 5855856... Make environment variables public since they are only for dev anyway
-||||||| parent of f84e8de... Modify logic for local testing
-#.env not needed anymore because it's just keys for local development
-=======
-*.env not needed anymore because it's just keys for local development
->>>>>>> f84e8de... Modify logic for local testing
-||||||| parent of d45e913... Refactor to always create a new case study
-*.env not needed anymore because it's just keys for local development
-=======
-.env
->>>>>>> d45e913... Refactor to always create a new case study
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-<<<<<<< HEAD
->>>>>>> 395bd93... remove data connection
-||||||| parent of d91d525... Change dockerrun to be configured for a single container environment
-=======
 EC2TaskDefinition.JSON
-<<<<<<< HEAD
->>>>>>> d91d525... Change dockerrun to be configured for a single container environment
-||||||| parent of a1e5e5a... Change environment and app names
-=======
 EC2TaskDefinition-Single.JSON
-<<<<<<< HEAD
->>>>>>> a1e5e5a... Change environment and app names
-||||||| parent of b0c475b... Add basic testing and refactored DB connection to get all details from .env file
-=======
 
 # Logs
 *.log
->>>>>>> b0c475b... Add basic testing and refactored DB connection to get all details from .env file
