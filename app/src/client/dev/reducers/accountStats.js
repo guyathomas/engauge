@@ -1,5 +1,5 @@
-function accountStats(state = [], action) {
-  switch (action.type) {
+function accountStats( state = [], action ) {
+  switch ( action.type ) {
     case 'HIDE_STATS':
       return state;
     default:

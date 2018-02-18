@@ -1,19 +1,25 @@
-const webpack = require('webpack');
-const path = require('path');
-const autoprefixer = require('autoprefixer-stylus');
+const webpack = require( 'webpack' );
+const path = require( 'path' );
+const autoprefixer = require( 'autoprefixer-stylus' );
 
-const BUILD_DIR = path.resolve(__dirname, 'src/client/build');
-const APP_DIR = path.resolve(__dirname, 'src/client/dev');
-
+const BUILD_DIR = path.resolve( __dirname, 'src/client/build' );
+const APP_DIR = path.resolve( __dirname, 'src/client/dev' );
 const config = {
   entry: [
-    `${APP_DIR}/index.jsx`,
+    `${ APP_DIR }/router.jsx`,
   ],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
   context: __dirname,
+  resolve: {
+    modules: [
+      'node_modules',
+      path.resolve( __dirname ),
+      path.resolve( APP_DIR ),
+    ],
+  },
   module: {
     rules: [
       {
@@ -32,7 +38,7 @@ const config = {
           {
             loader: 'stylus-loader',
             options: {
-              use: [autoprefixer()],
+              use: [ autoprefixer() ],
             },
           },
         ],

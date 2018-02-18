@@ -1,5 +1,5 @@
-function studyList(state = [], action) {
-  switch (action.type) {
+function studyList( state = [], action ) {
+  switch ( action.type ) {
     case 'UPDATE_STUDIES':
       return { ...state, studies: action.studies };
     case 'SELECT_STUDY':

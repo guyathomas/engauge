@@ -48,7 +48,7 @@ module.exports = {
       variables: { shortCode }, // GraphQL text from input
     }),
   }),
-  newUserStudy: (url, email) => ({
+  newUserStudy: ( url, email ) => ({
     body: JSON.stringify({
       query: `mutation ($url: String!, $email: String!){
         newUserStudy(email:$email, url:$url) {
@@ -62,7 +62,7 @@ module.exports = {
       variables: { url, email }, // GraphQL text from input
     }),
   }),
-  postSession: (recording, duration, shortCode) => ({
+  postSession: ( recording, duration, shortCode ) => ({
     body: JSON.stringify({
       query: `mutation ($recording: JSON!, $duration: Int!, $shortCode: String!){
              addSession(recording:$recording, duration:$duration, shortCode:$shortCode) {

@@ -116,7 +116,15 @@
 =======
 >>>>>>> 814895a... Add AWS dependecy
   "devDependencies": {
-    "concurrently": "^3.4.0"
+    "babel-eslint": "^8.2.1",
+    "concurrently": "^3.4.0",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-filenames": "^1.2.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1"
   },
   "babel": {
     "presets": [

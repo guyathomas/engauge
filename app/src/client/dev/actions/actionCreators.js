@@ -11,14 +11,14 @@ export function toggleTraining() {
   };
 }
 
-export function setWindowSize(size) {
+export function setWindowSize( size ) {
   return {
     type: 'SET_WINDOW_SIZE',
     size,
   };
 }
 
-export function addSessionPoint(x, y, time) {
+export function addSessionPoint( x, y, time ) {
   return {
     type: 'ADD_SESSION_POINT',
     x,
@@ -27,7 +27,7 @@ export function addSessionPoint(x, y, time) {
   };
 }
 
-export function updateWatchStudy(study) {
+export function updateWatchStudy( study ) {
   return {
     type: 'UPDATE_WATCH_STUDY',
     study,
@@ -40,7 +40,7 @@ export function clearSession() {
   };
 }
 
-export function setMetaData(startTime) {
+export function setMetaData( startTime ) {
   return {
     type: 'SET_META_DATA',
     startTime,
@@ -56,7 +56,7 @@ export function updateSessions() {
 
 // ===========Sessions View=============
 
-export function toggleSession(index, shortCode) {
+export function toggleSession( index, shortCode ) {
   return {
     type: 'TOGGLE_SESSION',
     index,
@@ -70,14 +70,14 @@ export function resetSessionSelection() {
   };
 }
 
-export function updateActiveTab(newIndex) {
+export function updateActiveTab( newIndex ) {
   return {
     type: 'UPDATE_ACTIVE_TAB',
     newIndex,
   };
 }
 
-export function createHeatmap(heatmap) {
+export function createHeatmap( heatmap ) {
   return {
     type: 'CREATE_HEATMAP',
     heatmap,
@@ -96,22 +96,22 @@ export function removeHeatmap() {
   };
 }
 
-export function addHeatData(heatData) {
+export function addHeatData( heatData ) {
   return {
     type: 'ADD_HEAT_DATA',
     heatData,
-  }
+  };
 }
 
 // Studylist
-export function updateStudies(studies) {
+export function updateStudies( studies ) {
   return {
     type: 'UPDATE_STUDIES',
     studies,
   };
 }
 
-export function selectStudy(shortCode) {
+export function selectStudy( shortCode ) {
   return {
     type: 'SELECT_STUDY',
     shortCode,

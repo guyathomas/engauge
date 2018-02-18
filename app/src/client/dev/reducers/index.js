@@ -6,7 +6,6 @@ import sessionView from './sessionView';
 import studyList from './studyList';
 import watch from './watch';
 
-
 const rootReducer = combineReducers({ accountStats, sessionView, studyList, watch, routing: routerReducer });
 
 export default rootReducer;

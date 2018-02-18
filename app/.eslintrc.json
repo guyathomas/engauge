@@ -84,7 +84,8 @@
     "import/resolver": {
       "node": {
         "moduleDirectory": [
-          "node_modules"
+          "node_modules",
+          "./src/client/dev"
         ]
       }
     }

@@ -1,15 +1,15 @@
-function watch(state = {}, action) {
+function watch( state = {}, action ) {
   let newState;
-  switch (action.type) {
+  switch ( action.type ) {
     case 'ADD_SESSION_POINT':
       const { x, y, time } = action;
-      const newSessionData = [...state.newSession, { x, y, time }];
+      const newSessionData = [ ...state.newSession, { x, y, time }];
       newState = { ...state };
       newState.newSession = newSessionData;
       return newState;
     case 'SET_META_DATA':
       const { screenSize, startTime } = action;
-      return { ...state, metaData: { screenSize, startTime }}
+      return { ...state, metaData: { screenSize, startTime } };
     case 'CLEAR_SESSION':
     case 'NEXT_CLICKGAME':
       newState = { ...state };
