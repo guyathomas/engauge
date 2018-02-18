@@ -4,14 +4,21 @@ import { takeScreenshot, uploadFile, deleteFile } from './utils';
 const router = express.Router();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.post('/capture', async (req, res) => {
+||||||| parent of 481852f... Cleanup props
+router.post('/capture', async (req, res) => {
+=======
+router.post( '/capture', async ( req, res ) => {
+>>>>>>> 481852f... Cleanup props
   const { targetURL } = req.body;
-  const filepath = await takeScreenshot(targetURL);
-  const publicInfo = await uploadFile(filepath);
-  await deleteFile(filepath);
-  res.send(publicInfo)
+  const filepath = await takeScreenshot( targetURL );
+  const publicInfo = await uploadFile( filepath );
+  await deleteFile( filepath );
+  res.send( publicInfo );
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 router.get('*', (req, res) => {
@@ -55,6 +62,15 @@ router.post('/capture', async (req, res) => {
 router.get('*', (req, res) => {
   res.send('Catch all')
 }))
+||||||| parent of 481852f... Cleanup props
+router.get('*', (req, res) => {
+  res.send('Catch all')
+})
+=======
+router.get( '*', ( req, res ) => {
+  res.send( 'Catch all' );
+});
+>>>>>>> 481852f... Cleanup props
 
 >>>>>>> b04790c... Clean up deployment steps and stop buttons hiding on small devices
 module.exports = router;

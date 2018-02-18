@@ -1,26 +1,27 @@
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
-const bodyParser = require('body-parser');
-const db = require('../db/models');
-const GraphHTTP = require('express-graphql');
-const Schema = require('./schema.js');
-const cors = require('cors');
+const express = require( 'express' );
+const morgan = require( 'morgan' );
+const path = require( 'path' );
+const bodyParser = require( 'body-parser' );
+const db = require( '../db/models' );
+const GraphHTTP = require( 'express-graphql' );
+const Schema = require( './schema.js' );
+const cors = require( 'cors' );
 
 const app = express();
 
 // Setup logger
-app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use( morgan( ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms' ) );
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded({ extended: true }) );
 
 // Serve static assets
-app.use(express.static(path.resolve(__dirname, '..', 'client')));
-db.sequelize.sync(/*{ force: true }*/)
-  .catch((err) => {
-    console.log('Error in syncing', err);
+app.use( express.static( path.resolve( __dirname, '..', 'client' ) ) );
+db.sequelize.sync( /* { force: true } */ )
+  .catch( ( err ) => {
+    console.log( 'Error in syncing', err );
   });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -475,16 +476,27 @@ app.use('/graphql', GraphHTTP({
 =======
 app.use('/graphql', cors(), GraphHTTP({
 >>>>>>> d4fcfdf... Basic functionality is working
+||||||| parent of 481852f... Cleanup props
+app.use('/graphql', cors(), GraphHTTP({
+=======
+app.use( '/graphql', cors(), GraphHTTP({
+>>>>>>> 481852f... Cleanup props
   schema: Schema,
   pretty: true,
   graphiql: true,
+<<<<<<< HEAD
 }));
 >>>>>>> 3fd819c... Implement GraphQL server and change casestudy references to studies
+||||||| parent of 481852f... Cleanup props
+}));
+=======
+}) );
+>>>>>>> 481852f... Cleanup props
 
 >>>>>>> df9dfbf... Image now dynamically comes through on watch page
 // Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
+app.get( '*', ( req, res ) => {
+  res.sendFile( path.resolve( __dirname, '..', 'client', 'index.html' ) );
 });
 
 module.exports = app;

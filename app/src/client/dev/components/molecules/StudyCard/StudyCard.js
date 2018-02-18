@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 class StudyCard extends React.Component {
     static propTypes = {
       study: PropTypes.shape({
+        title: PropTypes.string,
         url: PropTypes.string,
+        views: PropTypes.string,
       }),
     };
 
@@ -13,19 +15,19 @@ class StudyCard extends React.Component {
     };
 
     render() {
-      const { url } = this.props.study;
+      const { title, url, views } = this.props.study;
       return (
         <div>
           <div className="details">
-            <div className="title">Default Name</div>
-            <div className="session-count">Session Count</div>
+            <div className="title">{ title }</div>
+            <div className="session-count">{ views }</div>
           </div>
           <div className="imgwrapper">
-            <img src={ url } />
+            <img src={ url } alt={ title } />
           </div>
         </div>
       );
     }
 }
 
-module.exports = StudyCard;
+export default StudyCard;

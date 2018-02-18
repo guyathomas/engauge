@@ -1,5 +1,6 @@
-const path = require('path');
-const rootPath = path.normalize(`${__dirname}/..`);
+const path = require( 'path' );
+
+const rootPath = path.normalize( `${ __dirname }/..` );
 
 const config = {
   root: rootPath,
@@ -22,6 +23,6 @@ const config = {
     },
   },
 };
-console.log('DB Connection', config);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+console.log( 'DB Connection', config );
+console.log( 'process.env.NODE_ENV', process.env.NODE_ENV );
 module.exports = config;

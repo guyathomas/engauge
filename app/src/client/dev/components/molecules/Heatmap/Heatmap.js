@@ -23,11 +23,6 @@ class Heatmap extends React.Component {
       }, []);
     }
 
-    getActiveStudy() {
-      const { selectedStudy, studies } = this.props.studyList;
-      return studies[ selectedStudy ];
-    }
-
     renderData() {
     // Turns out the heatmap rendering engine actually renders the locations relative to the size at which it was initialised (stored as properties on the dom element)
     // I would like to actually reference the size of thre image like commented out below, however I have to access the dom element to get the size that the rendering engine thinks it is
@@ -100,6 +95,11 @@ class Heatmap extends React.Component {
       if ( /* studyChanged || */ sessionsChanged ) {
         this.getSessionsToRender( nextProps );
       }
+    }
+
+    getActiveStudy() {
+      const { selectedStudy, studies } = this.props.studyList;
+      return studies[ selectedStudy ];
     }
 
     render() {

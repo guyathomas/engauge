@@ -8,23 +8,23 @@ import 'whatwg-fetch';
 
 // Import Components
 import App from 'components/App';
-import Watch from 'components/pages/Watch';
-import Dash from 'components/pages/Dash';
+import Watch from 'components/environments/Watch';
+import Dash from 'components/environments/Dash';
 import NotFound from 'components/NotFound';
 
 import store, { history } from './store';
 
 const router = (
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App}>
-      	<IndexRedirect to="/dash" />
-        <Route path="/watch/:shortCode" component={Watch} />
-        <Route path="/dash(/:shortCode)(/:sessionView)" component={Dash} />
-        <Route path="/*" component={NotFound} />
+  <Provider store={ store }>
+    <Router history={ history }>
+      <Route path="/" component={ App }>
+        <IndexRedirect to="/dash" />
+        <Route path="/watch/:shortCode" component={ Watch } />
+        <Route path="/dash(/:shortCode)(/:sessionView)" component={ Dash } />
+        <Route path="/*" component={ NotFound } />
       </Route>
     </Router>
   </Provider>
 );
 
-render(router, document.getElementById('app'));
+render( router, document.getElementById( 'app' ) );

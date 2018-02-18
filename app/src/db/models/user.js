@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+module.exports = ( sequelize, DataTypes ) => {
+  const User = sequelize.define( 'user', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     // schema: 'engauge',
     classMethods: {
-      associate: (models) => {
-        User.hasMany(models.study);
+      associate: ( models ) => {
+        User.hasMany( models.study );
       },
     },
     tableName: 'Users',
