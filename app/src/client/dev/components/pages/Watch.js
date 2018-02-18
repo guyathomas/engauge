@@ -155,14 +155,16 @@ class Watch extends React.Component {
 =======
 >>>>>>> 187b1f7... Migrate clickgame to use redux state
   render() {
-    if (this.props.watch.game.currGame < this.props.watch.game.targetGames) {
+    const { currGame, targetGames } = this.props.watch.game;
+    if ( currGame < targetGames) {
       return (
         <ClickGame {...this.props} />);
     } else {
-      const currStudy = this.props.watch.activeStudy.url;
+      const { newSession, activeStudy } = this.props.watch
+      const currStudy = activeStudy.url;
       return (
         <div className="watch">
-          {window.debug && this.refs['watch-img'] && <Debug currentSession={this.props.watch.newSession} image={this.refs['watch-img'] }/> }
+          {window.debug && this.refs['watch-img'] && <Debug currentSession={newSession} image={this.refs['watch-img'] }/> }
           <img ref="watch-img" src={currStudy} />
         </div>
       );

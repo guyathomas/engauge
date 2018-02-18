@@ -20,7 +20,7 @@ services:
          - node.role == manager
     networks:
       - traefik-net
-      - engauge
+      - engauge-net
   app:
     image: stolemyusername/engauge-app:latest
     env_file: .env
@@ -31,7 +31,7 @@ services:
         constraints:
          - node.role == manager
     networks:
-      - engauge
+      - engauge-net
     ports:
       - "3000:3000"
   landing:
@@ -41,7 +41,7 @@ services:
         constraints:
          - node.role == manager
     networks:
-      - engauge
+      - engauge-net
     ports:
       - "3001:3001"
   screenshot:
@@ -52,7 +52,7 @@ services:
         constraints:
          - node.role == manager
     networks:
-      - engauge
+      - engauge-net
     secrets:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
@@ -68,11 +68,11 @@ services:
         constraints:
          - node.role == manager
     networks:
-      - engauge
+      - engauge-net
 volumes:
   engauge-db:
 networks:
-  engauge:
+  engauge-net:
     external: true
   traefik-net:
     external: true

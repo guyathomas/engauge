@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Router, Route, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 
-// Import Polyfill
+// Fetch Polyfill
 import 'whatwg-fetch';
 
 // Import Components

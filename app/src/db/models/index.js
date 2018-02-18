@@ -13,7 +13,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 sequelize
-  .authenticate()
+  .authenticate({force: true})
   .then(() => {
     console.log('Connection has been established successfully.');
   })

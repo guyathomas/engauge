@@ -4,7 +4,7 @@ Engauge is a web app that allows you to track where people are looking on a webs
     - When navigating to that link, the web app will start tracking eye movements. Click a few times to train the eye tracker (more clicks while looking at pointer = more accuracy).
   - Every recorded session can be viewed at /review. The numbers on the left refer to a particular session
 
-![alt text](http://res.cloudinary.com/dqvlfpaev/image/upload/c_scale,w_2916/v1490566913/Screen_Shot_2017-03-27_at_9.18.53_am_xykuve.png "An example case study of a puppy")
+![alt text](http://res.cloudinary.com/dqvlfpaev/image/upload/v1517893027/Screen_Shot_2018-02-05_at_8.53.33_pm_qxpxb9.png)
 
 ### Features
 - #### New

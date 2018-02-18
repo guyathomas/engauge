@@ -32,9 +32,10 @@ class Hero extends React.Component {
     fetch('/api/graphql', request)
     .then(rawResponse => rawResponse.json())
     .then((json) => {
-      const data = json.data;
-      console.log('The response from the server', json);
-      this.setState({ watchURL: (`${window.location.protocol}//app.${window.location.host}/watch/${data.newUserStudy.shortCode}`) });
+      const { shortCode } = json.data.newUserStudy;
+      const { protocol, host } = window.location;
+      const baseHost = host.replace('www.', '');
+      this.setState({ watchURL: (`${protocol}//app.${baseHost}/watch/${shortCode}`) });
     })
     .catch(error => console.log('Error in creating link', error));
   }
