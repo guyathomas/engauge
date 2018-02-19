@@ -1,0 +1,77 @@
+mutation {
+    studyOne: createStudy(data: {
+        description: "Sleepy Pup"
+        imageURL: "https://i.ytimg.com/vi/Ce7hJ24a8yM/maxresdefault.jpg"
+        shortCode: "2001"
+        }) {
+            id
+        }
+
+    studyTwo: createStudy(data: {
+        description: "Twinsies"
+        imageURL: "http://www.cutenessoverflow.com/wp-content/uploads/2014/02/30-cute-puppies-you-will-want-to-take-home-with-you-12.jpg"
+        shortCode: "2002"
+        }) {
+            id
+        }
+
+    studyThree: createStudy(data: {
+        description: "Brotherly love"
+        imageURL: "https://i.ytimg.com/vi/gvfDAcKzCco/maxresdefault.jpg"
+        shortCode: "2003"
+        }) {
+            id
+        }
+
+    studyFour: createStudy(data: {
+        description: "I'm Hungry"
+        imageURL: "https://fortunedotcom.files.wordpress.com/2017/08/512536165-e1510081190643.jpg"
+        shortCode: "2004"
+        }) {
+            id
+        }
+
+    userOne: createUser(data: {
+        email: "guy@gmail.com"
+        password: "123"
+        name: "Guy"
+        }) {
+            id
+        }
+
+    userTwo: createUser(data: {
+        email: "guy@fakeemail.com"
+        password: "123"
+        name: "NotGuy"
+        }) {
+            id
+        }
+
+    studyFive: createStudy(data: {
+      	owner: { connect: { email: "guythomas721@gmail.com" } }
+        description: "Basket of Joy"
+        imageURL: "https://i.ytimg.com/vi/TyT4XIwT6lg/maxresdefault.jpg"
+        shortCode: "2005"
+        }) {
+            id
+        }
+
+    studySix: createStudy(data: {
+        owner: { connect: { email: "guythomas721@gmail.com" } }
+        description: "Beachy Bro"
+        imageURL: "http://www.qygjxz.com/data/out/60/5420126-cute-puppies.jpg"
+        shortCode: "2006"
+        }) {
+            id
+        }
+
+    studySeven: createStudy(data: {
+        owner: { connect: { email: "guythomas721@gmail.com" } }
+        description: "What's Up?"
+        imageURL: "https://1funny.com/ultimate-cute-puppies/"
+        shortCode: "2007"
+        }) {
+            id
+        }
+}
+

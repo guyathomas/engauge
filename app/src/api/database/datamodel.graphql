@@ -1,0 +1,37 @@
+type User {
+  id: ID! @unique
+  email: String! @unique
+  password: String!
+  name: String!
+  studies: [Study!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Study {
+  id: ID! @unique
+  owner: User
+  imageURL: String!
+  shortCode: String! @unique
+  sessions: [Session!]!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Session {
+  id: ID! @unique
+  study: Study!
+  sessionPoints: [SessionPoint!]!
+  ipAddress: String
+  participant: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SessionPoint {
+  session: Session!
+  x: Float!
+  y: Float!
+  createdAt: DateTime!
+}

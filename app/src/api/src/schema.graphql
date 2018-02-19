@@ -1,0 +1,30 @@
+# import Session from "./generated/prisma.graphql"
+# import Study from "./generated/prisma.graphql"
+
+type Query {
+  me: User!
+  user( id: ID ): User!
+  users: [User!]!
+  study( shortCode: String, id: ID ): Study!
+  studies( email: String ): [Study!]!
+  session( id: ID): Session!
+  sessions: [Session!]!
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createStudy(owner: String, imageURL: String!, description: String): Study!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  studies: [Study!]!
+}
